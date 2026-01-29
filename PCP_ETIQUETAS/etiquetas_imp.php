@@ -9,28 +9,13 @@ header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Pragma: no-cache');
 header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
 
-// Verificar se TCPDF existe e incluir corretamente
-$tcpdfPath = __DIR__ . '/tcpdf/';
-if (!file_exists($tcpdfPath . 'tcpdf.php')) {
-    die("TCPDF não encontrado em: $tcpdfPath");
+// Verificar se há OPs
+if (!isset($_SESSION['ops_cruzadas']) || empty($_SESSION['ops_cruzadas'])) {
+    echo "<script>alert('Nenhuma OP para imprimir!'); window.close();</script>";
+    exit;
 }
 
-// Incluir TCPDF
-require_once($tcpdfPath . 'tcpdf.php');
-
-// Verificar qual arquivo de códigos de barras existe
-$barcode1D = $tcpdfPath . 'tcpdf_barcodes_1d.php';
-$barcode2D = $tcpdfPath . 'tcpdf_barcodes_2d.php';
-
-if (file_exists($barcode1D)) {
-    require_once($barcode1D);
-    $barcodeClass = 'TCPDFBarcode';
-} elseif (file_exists($barcode2D)) {
-    require_once($barcode2D);
-    $barcodeClass = 'TCPDF2DBarcode';
-} else {
-    die("Arquivo de códigos de barras do TCPDF não encontrado!");
-}
+$listaOps = $_SESSION['ops_cruzadas'];
 
 function garantirUTF8($string) {
     if (is_string($string)) {
@@ -62,14 +47,6 @@ function prepararDadosUTF8($dados) {
     }
     return $dados;
 }
-
-if (!isset($_SESSION['ops']) || empty($_SESSION['ops'])) {
-    // Redirecionar de volta se não houver OPs
-    header('Location: etiquetas.php');
-    exit;
-}
-
-$listaOps = prepararDadosUTF8($_SESSION['ops']);
 
 function getBarcodeValue($valor, $tipo = 'geral') {
     $valor = garantirUTF8((string)$valor);
@@ -116,145 +93,23 @@ function getBarcodeValue($valor, $tipo = 'geral') {
     return $valor;
 }
 
-function gerarBarcodeBase64($texto, $tipo = 'geral') {
-    global $barcodeClass;
-    
-    if (empty(trim($texto))) {
-        return '';
-    }
-    
-    $texto_limpo = trim((string)$texto);
-    
-    // Configurações otimizadas para melhor definição
-    $config = [
-        'largura_modulo' => 2.5,  // Largura de cada módulo (barra/space) em pixels
-        'altura' => 75,           // Altura do código de barras em pixels
-        'cor' => [0, 0, 0],       // Cor preta [R, G, B]
-        'resolucao' => 300,       // Resolução DPI (pontos por polegada)
-        'tipo' => 'C128'          // Tipo de código de barras (Code 128)
-    ];
-    
-    // Ajustar configurações baseado no tipo
-    switch($tipo) {
-        case 'op':
-            $config['largura_modulo'] = 2.8;
-            $config['altura'] = 80;
-            break;
-        case 'produto':
-            $config['largura_modulo'] = 2.6;
-            $config['altura'] = 78;
-            break;
-        case 'lote':
-            $config['largura_modulo'] = 2.4;
-            $config['altura'] = 76;
-            break;
-    }
-    
-    try {
-        // Criar objeto de código de barras
-        if ($barcodeClass === 'TCPDFBarcode') {
-            $barcodeobj = new TCPDFBarcode($texto_limpo, $config['tipo']);
-            // Gerar PNG com configurações otimizadas
-            $barcode_data = $barcodeobj->getBarcodePngData(
-                $config['largura_modulo'],  // Largura do módulo
-                $config['altura'],          // Altura
-                $config['cor'],             // Cor
-                true                        // Texto abaixo do código (se aplicável)
-            );
-        } else {
-            // Para TCPDF2DBarcode (2D), usar CODE128 para códigos de barras 1D
-            $barcodeobj = new TCPDF2DBarcode($texto_limpo, 'CODE128');
-            
-            // Para 2D, precisamos gerar de forma diferente
-            // Tentar método alternativo se disponível
-            if (method_exists($barcodeobj, 'getBarcodePngData')) {
-                $barcode_data = $barcodeobj->getBarcodePngData(
-                    $config['largura_modulo'],
-                    $config['altura'],
-                    $config['cor']
-                );
-            } else {
-                // Método alternativo para 2D
-                $barcode_data = $barcodeobj->getBarcodePNGData(
-                    $config['largura_modulo'],
-                    $config['altura'],
-                    $config['cor']
-                );
-            }
-        }
-        
-        // Converter para base64
-        if (!empty($barcode_data)) {
-            // Melhorar qualidade da imagem
-            if (function_exists('imagecreatefromstring')) {
-                $im = imagecreatefromstring($barcode_data);
-                if ($im !== false) {
-                    // Criar nova imagem com melhor qualidade
-                    $largura = imagesx($im);
-                    $altura = imagesy($im);
-                    
-                    // Criar nova imagem com fundo branco (melhor para impressão)
-                    $nova_im = imagecreatetruecolor($largura, $altura);
-                    $branco = imagecolorallocate($nova_im, 255, 255, 255);
-                    imagefill($nova_im, 0, 0, $branco);
-                    
-                    // Copiar código de barras mantendo transparência
-                    imagecopy($nova_im, $im, 0, 0, 0, 0, $largura, $altura);
-                    
-                    // Salvar em buffer com melhor qualidade
-                    ob_start();
-                    imagepng($nova_im, null, 9, PNG_ALL_FILTERS); // Nível máximo de compressão
-                    $barcode_data_melhorado = ob_get_clean();
-                    
-                    // Liberar memória
-                    imagedestroy($im);
-                    imagedestroy($nova_im);
-                    
-                    // Usar a versão melhorada
-                    $barcode_data = $barcode_data_melhorado;
-                }
-            }
-            
-            return 'data:image/png;base64,' . base64_encode($barcode_data);
-        }
-    } catch (Exception $e) {
-        error_log("Erro ao gerar código de barras: " . $e->getMessage());
-        // Tentar com configurações mais simples em caso de erro
-        try {
-            if ($barcodeClass === 'TCPDFBarcode') {
-                $barcodeobj = new TCPDFBarcode($texto_limpo, 'C128');
-                $barcode_data = $barcodeobj->getBarcodePngData(2, 70, array(0,0,0));
-            } else {
-                $barcodeobj = new TCPDF2DBarcode($texto_limpo, 'CODE128');
-                if (method_exists($barcodeobj, 'getBarcodePngData')) {
-                    $barcode_data = $barcodeobj->getBarcodePngData(2, 70, array(0,0,0));
-                }
-            }
-            
-            if (!empty($barcode_data)) {
-                return 'data:image/png;base64,' . base64_encode($barcode_data);
-            }
-        } catch (Exception $e2) {
-            error_log("Erro secundário ao gerar código de barras: " . $e2->getMessage());
-        }
-    }
-    
-    return '';
-}
-
 function exibirTexto($texto) {
     $texto = garantirUTF8((string)$texto);
     return htmlspecialchars($texto, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
+
+// Processar dados para UTF-8
+$listaOps = prepararDadosUTF8($listaOps);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Impressão de Etiquetas - Sistema</title>
+    <title>Impressão de Etiquetas - Dados Cruzados</title>
+    <!-- Biblioteca para gerar códigos de barras -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -270,11 +125,11 @@ function exibirTexto($texto) {
             font-family: 'Arial', sans-serif;
             -webkit-print-color-adjust: exact;
             color-adjust: exact;
+            width: 567px;
         }
 
         @page {
             size: 567px 450px;
-            border: none;
             margin: 0;
         }
 
@@ -287,6 +142,7 @@ function exibirTexto($texto) {
             display: flex;
             flex-direction: column;
             page-break-after: always;
+            border: 1px solid #ccc;
         }
 
         .etiqueta-container:last-child {
@@ -518,12 +374,22 @@ function exibirTexto($texto) {
             position: relative;
         }
 
-        .barcode {
-            width: 100%;
-            height: 42px;
-            object-fit: contain;
+        .barcode-canvas {
+            width: 100% !important;
+            height: 42px !important;
+            max-width: 200px;
             display: block;
-            image-rendering: -webkit-optimize-contrast;
+            margin: 0 auto;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+        }
+
+        .barcode-img {
+            width: 100% !important;
+            height: 42px !important;
+            max-width: 200px;
+            display: block;
+            margin: 0 auto;
             image-rendering: crisp-edges;
             image-rendering: pixelated;
         }
@@ -666,18 +532,18 @@ function exibirTexto($texto) {
 
         @media print {
             body {
-                background: white;
-                padding: 0;
-                margin: 0;
-                width: 567px;
-                height: 450px;
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 567px !important;
             }
 
             .etiqueta-container {
-                width: 567px;
-                height: 450px;
-                margin: 0;
-                page-break-inside: avoid;
+                width: 567px !important;
+                height: 450px !important;
+                margin: 0 !important;
+                page-break-inside: avoid !important;
+                border: none !important;
             }
 
             .cabecalho {
@@ -697,55 +563,19 @@ function exibirTexto($texto) {
                 border-bottom: 1px solid #000 !important;
             }
             
-            .etiqueta-container + .etiqueta-container {
-                margin-top: 0;
-            }
-            
-            .barcode {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                image-rendering: crisp-edges !important;
-                image-rendering: pixelated !important;
+            .barcode-canvas,
+            .barcode-img {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                filter: contrast(1.5) !important;
+                opacity: 1 !important;
+                visibility: visible !important;
                 width: 100% !important;
                 height: 42px !important;
-                filter: contrast(1.2) !important;
-            }
-            
-            img.barcode {
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
             }
             
             .sem-barcode {
                 display: none !important;
-            }
-            
-            .campo-conferencia.operador {
-                width: 50% !important;
-                flex: 0 0 50% !important;
-            }
-            
-            .campo-conferencia.quantidade {
-                width: 20% !important;
-                flex: 0 0 20% !important;
-            }
-            
-            .campo-conferencia.data {
-                width: 30% !important;
-                flex: 0 0 30% !important;
-            }
-            
-            .titulo-central {
-                flex: 1 !important;
-            }
-            
-            .label-op {
-                line-height: 1.1 !important;
-            }
-            
-            .info-op-direita {
-                flex-shrink: 0 !important;
             }
             
             .loading-screen {
@@ -755,10 +585,18 @@ function exibirTexto($texto) {
             .contador-copia {
                 display: none !important;
             }
+            
+            /* Garantir que cada etiqueta seja impressa em página separada */
+            .etiqueta-container {
+                page-break-after: always !important;
+            }
+            
+            .etiqueta-container:last-child {
+                page-break-after: auto !important;
+            }
         }
     </style>
 </head>
-
 <body>
     <!-- Tela de carregamento -->
     <div class="loading-screen" id="loadingScreen">
@@ -766,10 +604,10 @@ function exibirTexto($texto) {
         <div class="loading-text">Preparando impressão...</div>
         <div class="loading-subtext">
             As etiquetas estão sendo preparadas para impressão.
-            <br>Aguarde um momento enquanto carregamos todos os códigos de barras.
+            <br>Aguarde um momento enquanto geramos os códigos de barras.
         </div>
         <div class="loading-details" id="loadingDetails">
-            Carregando códigos de barras...
+            Gerando códigos de barras...
         </div>
     </div>
 
@@ -777,34 +615,31 @@ function exibirTexto($texto) {
     <div id="etiquetasContainer" style="display: none;">
         <?php
         $contadorTotal = 0;
-        $contadorOP = 0;
         foreach ($listaOps as $opItem):
             $quantidade = isset($opItem['quantidade']) ? (int)$opItem['quantidade'] : 1;
             
-            // Gerar os códigos de barras UMA VEZ por OP (otimização)
+            // Preparar dados
             $op_numero = isset($opItem['seqop']) ? exibirTexto($opItem['seqop']) : '';
-            $codigo = isset($opItem['cod_produto']) ? exibirTexto($opItem['cod_produto']) : '';
             $lote = isset($opItem['lote']) ? exibirTexto($opItem['lote']) : '';
-            $produto_nome = isset($opItem['produto']) ? exibirTexto($opItem['produto']) : '';
-            $cliente_nome = isset($opItem['nome_cliente']) ? exibirTexto($opItem['nome_cliente']) : '';
+            $produto_nome = isset($opItem['descricao_produto']) ? exibirTexto($opItem['descricao_produto']) : 'DESCRIÇÃO NÃO ENCONTRADA';
+            $cliente_nome = isset($opItem['nome_cliente']) ? exibirTexto($opItem['nome_cliente']) : 'CLIENTE NÃO INFORMADO';
             $cidade = isset($opItem['cidade']) ? exibirTexto($opItem['cidade']) : 'CIDADE NÃO INFORMADA';
+            $pedido = isset($opItem['pedido']) ? exibirTexto($opItem['pedido']) : 'NÃO INFORMADO';
             
+            // Usar o pedido como código de produto (ou parte dele)
+            $codigo = strlen($pedido) > 8 ? substr($pedido, 0, 8) : $pedido;
+            
+            // Gerar valores para códigos de barras
             $codigo_op = getBarcodeValue($opItem['seqop'] ?? '', 'op');
-            $codigo_produto = getBarcodeValue($opItem['cod_produto'] ?? '', 'produto');
+            $codigo_produto = getBarcodeValue($codigo, 'produto');
             $codigo_lote = getBarcodeValue($opItem['lote'] ?? '', 'lote');
             
             $loteNulo = empty($codigo_lote) || ($opItem['lote'] ?? '') == 'LOTE NÃO DEFINIDO';
             $cidadeNula = $cidade == 'CIDADE NÃO INFORMADA';
             
-            // Gerar códigos de barras em base64 (apenas uma vez)
-            $barcode_op = gerarBarcodeBase64($codigo_op, 'op');
-            $barcode_produto = gerarBarcodeBase64($codigo_produto, 'produto');
-            $barcode_lote = gerarBarcodeBase64($codigo_lote, 'lote');
-            
             // Gerar múltiplas cópias da mesma OP
             for ($copia = 1; $copia <= $quantidade; $copia++):
                 $contadorTotal++;
-                $contadorOP++;
         ?>
             
             <div class="etiqueta-container" data-etiqueta="<?php echo $contadorTotal; ?>" data-op="<?php echo $op_numero; ?>">
@@ -860,42 +695,22 @@ function exibirTexto($texto) {
                         <div class="side-card" data-type="op">
                             <div class="side-card-title">OP Nº</div>
                             <div class="side-card-value"><?php echo $op_numero; ?></div>
-                            <div class="barcode-container">
-                                <?php if (!empty($barcode_op)): ?>
-                                    <img src="<?php echo $barcode_op; ?>"
-                                        class="barcode"
-                                        alt="Código de Barras OP: <?php echo $codigo_op; ?>"
-                                        data-type="op"
-                                        data-value="<?php echo htmlspecialchars($codigo_op, ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-original="<?php echo $op_numero; ?>"
-                                        onerror="handleBarcodeError(this)"
-                                        onload="handleBarcodeLoad(this)"
-                                        style="filter: contrast(1.1);">
-                                    <div class="sem-barcode" style="display: none;" data-type="op">SEM CÓDIGO OP</div>
-                                <?php else: ?>
-                                    <div class="sem-barcode" data-type="op">SEM CÓDIGO OP</div>
-                                <?php endif; ?>
+                            <div class="barcode-container" data-barcode-type="op" data-value="<?php echo htmlspecialchars($codigo_op, ENT_QUOTES, 'UTF-8'); ?>">
+                                <canvas class="barcode-canvas" id="barcode-op-<?php echo $contadorTotal; ?>"></canvas>
+                                <div class="sem-barcode" id="fallback-op-<?php echo $contadorTotal; ?>" style="display: none;">
+                                    OP: <?php echo $op_numero; ?>
+                                </div>
                             </div>
                         </div>
 
                         <div class="side-card" data-type="produto">
-                            <div class="side-card-title">PRODUTO</div>
+                            <div class="side-card-title">PEDIDO</div>
                             <div class="side-card-value"><?php echo $codigo; ?></div>
-                            <div class="barcode-container">
-                                <?php if (!empty($barcode_produto)): ?>
-                                    <img src="<?php echo $barcode_produto; ?>"
-                                        class="barcode"
-                                        alt="Código de Produto: <?php echo $codigo_produto; ?>"
-                                        data-type="produto"
-                                        data-value="<?php echo htmlspecialchars($codigo_produto, ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-original="<?php echo $codigo; ?>"
-                                        onerror="handleBarcodeError(this)"
-                                        onload="handleBarcodeLoad(this)"
-                                        style="filter: contrast(1.1);">
-                                    <div class="sem-barcode" style="display: none;" data-type="produto">SEM CÓDIGO</div>
-                                <?php else: ?>
-                                    <div class="sem-barcode" data-type="produto">SEM CÓDIGO</div>
-                                <?php endif; ?>
+                            <div class="barcode-container" data-barcode-type="produto" data-value="<?php echo htmlspecialchars($codigo_produto, ENT_QUOTES, 'UTF-8'); ?>">
+                                <canvas class="barcode-canvas" id="barcode-produto-<?php echo $contadorTotal; ?>"></canvas>
+                                <div class="sem-barcode" id="fallback-produto-<?php echo $contadorTotal; ?>" style="display: none;">
+                                    PED: <?php echo $codigo; ?>
+                                </div>
                             </div>
                         </div>
 
@@ -910,21 +725,11 @@ function exibirTexto($texto) {
                                 }
                                 ?>
                             </div>
-                            <div class="barcode-container">
-                                <?php if (!empty($barcode_lote)): ?>
-                                    <img src="<?php echo $barcode_lote; ?>"
-                                        class="barcode"
-                                        alt="Código de Lote: <?php echo $codigo_lote; ?>"
-                                        data-type="lote"
-                                        data-value="<?php echo htmlspecialchars($codigo_lote, ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-original="<?php echo $lote; ?>"
-                                        onerror="handleBarcodeError(this)"
-                                        onload="handleBarcodeLoad(this)"
-                                        style="filter: contrast(1.1);">
-                                    <div class="sem-barcode" style="display: none;" data-type="lote">SEM LOTE</div>
-                                <?php else: ?>
-                                    <div class="sem-barcode" data-type="lote">SEM LOTE</div>
-                                <?php endif; ?>
+                            <div class="barcode-container" data-barcode-type="lote" data-value="<?php echo htmlspecialchars($codigo_lote, ENT_QUOTES, 'UTF-8'); ?>">
+                                <canvas class="barcode-canvas" id="barcode-lote-<?php echo $contadorTotal; ?>"></canvas>
+                                <div class="sem-barcode" id="fallback-lote-<?php echo $contadorTotal; ?>" style="display: none;">
+                                    <?php echo $loteNulo ? 'SEM LOTE' : $lote; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -958,99 +763,106 @@ function exibirTexto($texto) {
     </div>
 
     <script>
-        // Variáveis de controle
-        let barcodesLoaded = 0;
-        let totalBarcodes = 0;
-        let autoPrintTriggered = false;
-        let allBarcodesLoaded = false;
-        
-        function handleBarcodeLoad(imgElement) {
-            barcodesLoaded++;
-            updateLoadingProgress();
+        // Função para gerar códigos de barras
+        function gerarCodigosBarras() {
+            console.log('📊 Iniciando geração de códigos de barras...');
             
-            var tipo = imgElement.getAttribute('data-type');
-            var valor = imgElement.getAttribute('data-value');
+            let totalBarcodes = 0;
+            let barcodesGerados = 0;
             
-            console.log(`✓ Código de barras carregado (${barcodesLoaded}/${totalBarcodes}):`, {
-                tipo: tipo,
-                valor: valor
+            // Contar total de barcodes a gerar
+            document.querySelectorAll('.barcode-container[data-value]').forEach(container => {
+                if (container.dataset.value && container.dataset.value.trim() !== '') {
+                    totalBarcodes++;
+                }
             });
             
-            imgElement.style.imageRendering = 'crisp-edges';
-            imgElement.style.imageRendering = 'pixelated';
+            console.log(`Total de códigos de barras a gerar: ${totalBarcodes}`);
             
-            var container = imgElement.closest('.barcode-container');
-            var fallback = container.querySelector('.sem-barcode');
-            if (fallback && fallback.style.display !== 'none') {
-                fallback.style.display = 'none';
-            }
-            
-            // Verificar se todos os códigos de barras foram carregados
-            if (barcodesLoaded >= totalBarcodes) {
-                allBarcodesLoaded = true;
-                console.log('✅ Todos os códigos de barras carregados!');
-                if (!autoPrintTriggered) {
-                    triggerAutoPrint();
-                }
-            }
-        }
-
-        function handleBarcodeError(imgElement) {
-            barcodesLoaded++;
-            updateLoadingProgress();
-            
-            var tipo = imgElement.getAttribute('data-type');
-            var valor = imgElement.getAttribute('data-value');
-            
-            console.error(`✗ Erro ao carregar código de barras (${barcodesLoaded}/${totalBarcodes}):`, {
-                tipo: tipo,
-                valor: valor
-            });
-            
-            imgElement.style.display = 'none';
-            
-            var container = imgElement.closest('.barcode-container');
-            var fallback = container.querySelector('.sem-barcode');
-            
-            if (fallback) {
-                fallback.style.display = 'flex';
-                
-                var textos = {
-                    'op': 'SEM CÓDIGO OP',
-                    'produto': 'SEM PRODUTO',
-                    'lote': 'SEM LOTE'
-                };
-                
-                if (textos[tipo]) {
-                    fallback.textContent = textos[tipo];
-                }
-            }
-            
-            // Verificar se todos foram processados (mesmo com erro)
-            if (barcodesLoaded >= totalBarcodes) {
-                allBarcodesLoaded = true;
-                console.log('✅ Todos os códigos de barras processados!');
-                if (!autoPrintTriggered) {
-                    triggerAutoPrint();
-                }
-            }
-        }
-        
-        function updateLoadingProgress() {
+            // Atualizar loading details
             const loadingDetails = document.getElementById('loadingDetails');
             if (loadingDetails) {
-                const progress = Math.round((barcodesLoaded / totalBarcodes) * 100);
-                loadingDetails.innerHTML = `
-                    Carregando códigos de barras...<br>
-                    <small>${barcodesLoaded} de ${totalBarcodes} (${progress}%)</small>
-                `;
+                loadingDetails.textContent = `Gerando 0/${totalBarcodes} códigos de barras...`;
+            }
+            
+            // Para cada container de barcode
+            document.querySelectorAll('.barcode-container[data-value]').forEach((container, index) => {
+                const barcodeValue = container.dataset.value;
+                const barcodeType = container.dataset.barcodeType;
+                const canvas = container.querySelector('.barcode-canvas');
+                const fallback = container.querySelector('.sem-barcode');
+                
+                if (!barcodeValue || barcodeValue.trim() === '') {
+                    // Mostrar fallback se não houver valor
+                    if (canvas) canvas.style.display = 'none';
+                    if (fallback) fallback.style.display = 'flex';
+                    barcodesGerados++;
+                    atualizarProgresso(barcodesGerados, totalBarcodes);
+                    return;
+                }
+                
+                // Valores específicos para cada tipo
+                let options = {
+                    format: "CODE128",
+                    width: 2,
+                    height: 40,
+                    displayValue: false,
+                    margin: 0,
+                    background: "#ffffff",
+                    lineColor: "#000000",
+                    valid: function(valid) {
+                        if (!valid && fallback) {
+                            canvas.style.display = 'none';
+                            fallback.style.display = 'flex';
+                        }
+                        barcodesGerados++;
+                        atualizarProgresso(barcodesGerados, totalBarcodes);
+                    }
+                };
+                
+                // Ajustes específicos por tipo
+                if (barcodeType === 'lote') {
+                    options.fontSize = 0;
+                    options.marginTop = 0;
+                    options.marginBottom = 0;
+                }
+                
+                try {
+                    if (canvas) {
+                        // Usar JsBarcode para gerar no canvas
+                        JsBarcode(canvas, barcodeValue, options);
+                        
+                        // Esconder fallback
+                        if (fallback) fallback.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error(`Erro ao gerar barcode ${barcodeType}:`, error);
+                    if (canvas) canvas.style.display = 'none';
+                    if (fallback) fallback.style.display = 'flex';
+                    barcodesGerados++;
+                    atualizarProgresso(barcodesGerados, totalBarcodes);
+                }
+            });
+            
+            return totalBarcodes;
+        }
+        
+        function atualizarProgresso(atual, total) {
+            const loadingDetails = document.getElementById('loadingDetails');
+            if (loadingDetails) {
+                loadingDetails.textContent = `Gerando ${atual}/${total} códigos de barras...`;
+            }
+            
+            // Verificar se todos foram gerados
+            if (atual >= total) {
+                console.log('✅ Todos os códigos de barras gerados!');
+                if (loadingDetails) {
+                    loadingDetails.textContent = '✅ Todos os códigos de barras gerados!';
+                }
             }
         }
         
         function triggerAutoPrint() {
-            if (autoPrintTriggered) return;
-            
-            autoPrintTriggered = true;
             console.log('🎯 Iniciando processo de impressão automática...');
             
             // Mostrar etiquetas
@@ -1059,47 +871,63 @@ function exibirTexto($texto) {
                 container.style.display = 'block';
             }
             
-            // Esconder loading screen com animação
-            const loadingScreen = document.getElementById('loadingScreen');
-            if (loadingScreen) {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    
-                    // Aguardar um breve momento para renderização e depois imprimir
+            // Gerar códigos de barras
+            const totalBarcodes = gerarCodigosBarras();
+            
+            // Aguardar um pouco para garantir que os barcodes foram renderizados
+            setTimeout(() => {
+                // Esconder loading screen com animação
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        
+                        // Aguardar mais um pouco para renderização completa
+                        setTimeout(() => {
+                            console.log('🖨️ Abrindo caixa de diálogo de impressão...');
+                            
+                            // Forçar redesenho dos canvases
+                            document.querySelectorAll('.barcode-canvas').forEach(canvas => {
+                                if (canvas.style.display !== 'none') {
+                                    const ctx = canvas.getContext('2d');
+                                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                                    ctx.putImageData(imageData, 0, 0);
+                                }
+                            });
+                            
+                            // Imprimir
+                            window.print();
+                        }, 500);
+                    }, 500);
+                } else {
                     setTimeout(() => {
                         console.log('🖨️ Abrindo caixa de diálogo de impressão...');
                         window.print();
-                    }, 500);
-                }, 500);
-            } else {
-                // Fallback: imprimir diretamente
-                setTimeout(() => {
-                    console.log('🖨️ Abrindo caixa de diálogo de impressão...');
-                    window.print();
-                }, 1000);
-            }
+                    }, 1000);
+                }
+            }, Math.max(500, totalBarcodes * 10)); // Tempo baseado na quantidade de barcodes
         }
         
         function redirectToEtiquetas() {
-            console.log('↩️ Redirecionando para etiquetas.php...');
-            // Limpar a session se necessário
-            fetch('limpar_sessao.php').catch(err => console.error('Erro ao limpar sessão:', err));
+            console.log('↩️ Redirecionando para etiquetas_plasma.php...');
             
             // Redirecionar de volta
             setTimeout(() => {
-                window.location.href = 'etiquetas.php';
-            }, 500);
+                window.location.href = 'etiquetas_plasma.php';
+            }, 1000);
         }
 
+        // Eventos de impressão
         window.addEventListener('beforeprint', function() {
             console.log('📄 Preparando para impressão...');
             const totalEtiquetas = document.querySelectorAll('.etiqueta-container').length;
             console.log(`Total de etiquetas: ${totalEtiquetas}`);
             
-            // Melhorar contraste para impressão
-            document.querySelectorAll('img.barcode').forEach(function(img) {
-                img.style.filter = 'contrast(1.2)';
+            // Garantir que os barcodes estão visíveis
+            document.querySelectorAll('.barcode-canvas').forEach(canvas => {
+                canvas.style.visibility = 'visible';
+                canvas.style.opacity = '1';
             });
         });
 
@@ -1129,48 +957,28 @@ function exibirTexto($texto) {
         window.onload = function() {
             console.log('🚀 Página de impressão carregada!');
             
-            // Contar total de códigos de barras
-            totalBarcodes = document.querySelectorAll('img.barcode').length;
             const totalEtiquetas = document.querySelectorAll('.etiqueta-container').length;
-            console.log(`Total de códigos de barras a carregar: ${totalBarcodes}`);
             console.log(`Total de etiquetas: ${totalEtiquetas}`);
             
-            updateLoadingProgress();
+            // Iniciar impressão automática após 1 segundo
+            setTimeout(triggerAutoPrint, 1000);
             
-            // Configurar eventos para os códigos de barras
-            document.querySelectorAll('img.barcode').forEach(function(img) {
-                if (img.complete) {
-                    if (img.naturalHeight === 0) {
-                        handleBarcodeError(img);
-                    } else {
-                        handleBarcodeLoad(img);
-                    }
-                }
-                
-                img.addEventListener('load', function() {
-                    handleBarcodeLoad(this);
-                });
-                img.addEventListener('error', function() {
-                    handleBarcodeError(this);
-                });
-            });
-            
-            // Timeout de segurança: se após 10 segundos não carregou tudo, imprimir mesmo assim
+            // Timeout de segurança: imprimir mesmo que não tenha carregado tudo
             setTimeout(() => {
-                if (!autoPrintTriggered) {
-                    console.log('⏰ Timeout de segurança - Imprimindo mesmo sem todos os códigos carregados');
-                    triggerAutoPrint();
-                }
-            }, 10000);
-            
-            // Redirecionar se o usuário tentar sair sem imprimir
-            window.addEventListener('beforeunload', function(e) {
-                if (!autoPrintTriggered) {
-                    // Tentar redirecionar para etiquetas.php
-                    redirectToEtiquetas();
-                }
-            });
+                triggerAutoPrint();
+            }, 10000); // 10 segundos de timeout
         };
+        
+        // Fallback para navegadores que não suportam canvas
+        function verificarSuporteCanvas() {
+            const canvas = document.createElement('canvas');
+            return !!(canvas.getContext && canvas.getContext('2d'));
+        }
+        
+        if (!verificarSuporteCanvas()) {
+            console.warn('⚠️ Canvas não suportado. Usando fallback para imagens SVG.');
+            // Implementar fallback SVG se necessário
+        }
     </script>
 </body>
 </html>

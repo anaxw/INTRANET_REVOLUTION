@@ -487,20 +487,11 @@ $totalOps = count($_SESSION['ops'] ?? []);
             <?php endif; ?>
 
             <div class="botoes-direita">
-                <?php if ($totalOps > 0): ?>
-                    <?php
-                    // Calcular total de cópias
-                    $totalCopias = 0;
-                    foreach ($_SESSION['ops'] as $op) {
-                        $totalCopias += $op['quantidade'] ?? 1;
-                    }
-                    ?>
-                    <!-- MODIFICAÇÃO: Usar target blank mas com script para fechar depois -->
-                    <a href="etiquetas_imp.php" class="btn-imprimir" id="btn-imprimir" target="_blank">
-                        <i class="fa fa-print" aria-hidden="true"></i>
-                        Imprimir (<?php echo $totalCopias; ?> cópias)
-                    </a>
-                <?php endif; ?>
+                <!-- Botão sempre presente, apenas controlamos visibilidade -->
+                <a href="etiquetas_imp.php" class="btn-imprimir" id="btn-imprimir" target="_blank" style="display: none;">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    Imprimir (<span id="total-copias">0</span> cópias)
+                </a>
             </div>
         </div>
 

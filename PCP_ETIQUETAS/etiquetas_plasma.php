@@ -111,13 +111,15 @@ function corrigirCaracteresEspeciais($texto)
         'Ãƒ' => 'À',
         'Ã•' => 'Õ',
         'Ã‚' => 'Â',
-    ];aaaaaaaaaaaaaaa
+    ];
 
     foreach ($problemasComuns as $errado => $correto) {
         $texto = str_replace($errado, $correto, $texto);
     }
 
     return $texto;
+}
+
 // ================= FUNÇÃO BUSCAR DADOS CRUZADOS =================
 function buscarDadosCruzados($pdo_firebird, $pdo_sqlserver, $opNumero)
 {
@@ -366,25 +368,19 @@ $totalOps = count($_SESSION['ops_cruzadas'] ?? []);
             <?php endif; ?>
 
             <div class="botoes-direita">
-                <?php if ($totalOps > 0): ?>
-                    <?php
-                    $totalCopias = 0;
-                    foreach ($_SESSION['ops_cruzadas'] as $op) {
-                        $totalCopias += $op['quantidade'] ?? 1;
-                    }
-                    ?>
-                    <a href="etiquetas_imp_plasma.php" class="btn-imprimir" id="btn-imprimir" target="_blank">
-                        <i class="fa fa-print" aria-hidden="true"></i>
-                        Imprimir
-                    </a>
-                <?php endif; ?>
+                <!-- Botão sempre presente, apenas controlamos visibilidade -->
+                <a href="etiquetas_imp_plasma.php" class="btn-imprimir" id="btn-imprimir" target="_blank" style="display: none;">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    Imprimir (<span id="total-copias">0</span> cópias)
+                </a>
             </div>
         </div>
 
         <!-- CONTÊINER DA TABELA -->
         <div class="container-tabela">
             <div class="titulo-tabela">
-                <i class="fas fa-ticket" style="color: #fdb525; margin-right: 10px;"></i> Sistema de Etiquetas - Plasma / Laser
+                <i class="fas fa-ticket" style="color: #fdb525; margin-right: 10px;"></i> Sistema de Etiquetas - Dados Cruzados
+                <small style="font-size: 12px; color: #666; margin-left: 10px;">(Firebird + SQL Server)</small>
             </div>
 
             <!-- FORMULÁRIOS -->
@@ -536,6 +532,7 @@ $totalOps = count($_SESSION['ops_cruzadas'] ?? []);
                 </table>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -602,7 +599,7 @@ $totalOps = count($_SESSION['ops_cruzadas'] ?? []);
             divMensagem.className = `mensagem-ajax ${tipo}`;
             divMensagem.textContent = mensagem;
             divMensagem.style.position = 'fixed';
-            divMensagem.style.top = '20px';
+            divMensagem.style.top = '94px';
             divMensagem.style.right = '20px';
             divMensagem.style.zIndex = '9999';
 
