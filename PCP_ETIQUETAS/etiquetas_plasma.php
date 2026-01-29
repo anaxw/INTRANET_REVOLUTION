@@ -117,8 +117,7 @@ function corrigirCaracteresEspeciais($texto)
         $texto = str_replace($errado, $correto, $texto);
     }
 
-    return $texto;aaaaaaaaaaaaaaaaa
-}
+    return $texto;
 // ================= FUNÇÃO BUSCAR DADOS CRUZADOS =================
 function buscarDadosCruzados($pdo_firebird, $pdo_sqlserver, $opNumero)
 {
