@@ -117,9 +117,8 @@ function corrigirCaracteresEspeciais($texto)
         $texto = str_replace($errado, $correto, $texto);
     }
 
-    return $texto;
+    return $texto;aaaaaaaaaaaaaaaaa
 }
-
 // ================= FUNÇÃO BUSCAR DADOS CRUZADOS =================
 function buscarDadosCruzados($pdo_firebird, $pdo_sqlserver, $opNumero)
 {
@@ -377,7 +376,7 @@ $totalOps = count($_SESSION['ops_cruzadas'] ?? []);
                     ?>
                     <a href="etiquetas_imp_plasma.php" class="btn-imprimir" id="btn-imprimir" target="_blank">
                         <i class="fa fa-print" aria-hidden="true"></i>
-                        Imprimir (<?php echo $totalCopias; ?> cópias)
+                        Imprimir
                     </a>
                 <?php endif; ?>
             </div>
