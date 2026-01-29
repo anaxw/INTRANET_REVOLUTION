@@ -111,7 +111,7 @@ function corrigirCaracteresEspeciais($texto)
         'Ãƒ' => 'À',
         'Ã•' => 'Õ',
         'Ã‚' => 'Â',
-    ];
+    ];aaaaaaaaaaaaaaa
 
     foreach ($problemasComuns as $errado => $correto) {
         $texto = str_replace($errado, $correto, $texto);
