@@ -1,1 +1,0 @@
-print("Ola Mundo, eu me chamo ana rita")

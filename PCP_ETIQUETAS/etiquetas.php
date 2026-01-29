@@ -770,7 +770,7 @@ $totalOps = count($_SESSION['ops'] ?? []);
             divMensagem.className = `mensagem-ajax ${tipo}`;
             divMensagem.textContent = mensagem;
             divMensagem.style.position = 'fixed';
-            divMensagem.style.top = '20px';
+            divMensagem.style.top = '94px';
             divMensagem.style.right = '20px';
             divMensagem.style.zIndex = '9999';
 
