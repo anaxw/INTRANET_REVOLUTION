@@ -53,31 +53,36 @@ try {
 
     // Construir a query base
     $sql = "SELECT 
-                ln.codigo, 
-                ln.id_neocredit, 
-                ln.razao_social, 
-                ln.documento, 
-                ln.risco, 
-                ln.classificacao_risco, 
-                ln.lcred_aprovado, 
-                ln.validade_cred, 
-                ln.status, 
-                ln.score, 
-                ln.situ,
-                COALESCE((
-                    SELECT ln.lcred_aprovado - COALESCE(SUM(ld.valor_distribuido), 0)
-                    FROM lcred_distribuicao ld
-                    WHERE ld.codigo_cliente = ln.codigo 
-                    AND ld.status_distribuicao = 'ATIVA'
-                ), ln.lcred_aprovado) as saldo_disponivel,
-                COALESCE((
-                    SELECT SUM(ld.valor_distribuido)
-                    FROM lcred_distribuicao ld
-                    WHERE ld.codigo_cliente = ln.codigo 
-                    AND ld.status_distribuicao = 'ATIVA'
-                ), 0) as total_distribuido
-            FROM lcred_neocredit ln
-            WHERE 1=1";
+            ln.codigo, 
+            ln.id_neocredit, 
+            ln.razao_social, 
+            ln.documento, 
+            ln.risco, 
+            ln.classificacao_risco, 
+            ln.lcred_aprovado, 
+            ln.validade_cred, 
+            ln.status, 
+            ln.score, 
+            ln.situ,
+            ln.codic_bm,
+            ln.codic_bot,
+            ln.codic_ls,
+            ln.codic_rp,
+            ln.codic_vt_rnd,
+            COALESCE((
+                SELECT ln.lcred_aprovado - COALESCE(SUM(ld.valor_distribuido), 0)
+                FROM lcred_distribuicao ld
+                WHERE ld.codigo_cliente = ln.codigo 
+                AND ld.status_distribuicao = 'ATIVA'
+            ), ln.lcred_aprovado) as saldo_disponivel,
+            COALESCE((
+                SELECT SUM(ld.valor_distribuido)
+                FROM lcred_distribuicao ld
+                WHERE ld.codigo_cliente = ln.codigo 
+                AND ld.status_distribuicao = 'ATIVA'
+            ), 0) as total_distribuido
+        FROM lcred_neocredit ln
+        WHERE 1=1";
 
     $params = [];
     $tipos = [];
@@ -153,6 +158,11 @@ try {
             max-width: 300px;
             width: 100%;
             margin: 0 auto;
+            transition: max-width 0.3s ease;
+        }
+
+        .search-container.com-botao-limpar {
+            max-width: 390px;
         }
 
         .search-input-group {
@@ -192,6 +202,7 @@ try {
             display: flex;
             align-items: center;
             gap: 8px;
+            min-width: 140px;
         }
 
         .filtro-data-label {
@@ -208,7 +219,8 @@ try {
             font-size: 13px;
             background: rgba(255, 255, 255, 0.95);
             color: #333;
-            min-width: 120px;
+            flex: 1;
+            min-width: 0;
         }
 
         .filtro-data-input:focus {
@@ -239,6 +251,7 @@ try {
             align-items: center;
             gap: 8px;
             white-space: nowrap;
+            min-width: fit-content;
         }
 
         .btn-buscar:hover {
@@ -260,6 +273,7 @@ try {
             align-items: center;
             gap: 8px;
             white-space: nowrap;
+            min-width: fit-content;
         }
 
         .btn-limpar:hover {
@@ -344,9 +358,539 @@ try {
             border-left: 4px solid #fdb525;
         }
 
+        /* Estilos para botões desabilitados */
+        .btn-acao:disabled {
+            opacity: 0.5;
+            cursor: not-allowed !important;
+            background-color: #95a5a6 !important;
+        }
+
+        .btn-acao:disabled:hover {
+            transform: none !important;
+            background-color: #95a5a6 !important;
+        }
+
+        .btn-acao:disabled .fas {
+            color: #7f8c8d !important;
+        }
+
+        /* Estilos para botões de ação */
+        .col-acoes .acoes-container {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+
+        .btn-acao {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s;
+            color: white;
+            background-color: #fdb525;
+        }
+
+        .btn-acao:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo específico para botão de distribuição */
+        .btn-finalizar {
+            background-color: #fdb525 !important;
+        }
+
+        .btn-finalizar:hover {
+            background-color: #ffc64d !important;
+        }
+
+        /* Estilo específico para botão de informações */
+        .btn-info {
+            background-color: #3498db !important;
+        }
+
+        .btn-info:hover {
+            background-color: #2980b9 !important;
+        }
+
+        /* Botão de informações quando finalizado */
+        .btn-info-finalizado {
+            background-color: #7f8c8d !important;
+            opacity: 0.7;
+        }
+
+        .btn-info-finalizado:hover {
+            background-color: #95a5a6 !important;
+            transform: none;
+            cursor: default;
+        }
+
+        /* Modal de Informações - MESMO ESTILO DO MODAL INSERIR DA BALANÇA */
+        .modal-informacoes {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-informacoes-content {
+            background-color: #fff;
+            margin: 50px auto;
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal-info {
+            color: #95a5a6;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+
+        .close-modal-info:hover {
+            color: #e74c3c;
+            background-color: #f8f9fa;
+        }
+
+        .modal-informacoes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-informacoes-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-informacoes-body {
+            padding: 10px 0;
+        }
+
+        /* Estilo do formulário - igual ao modal de inserir da balança */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #34495e;
+            font-size: 13px;
+        }
+
+        .campo-obrigatorio::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s;
+            background: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #fdb525;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(253, 181, 37, 0.1);
+        }
+
+        .form-control:disabled {
+            background-color: #f5f5f5;
+            color: #495057;
+            cursor: not-allowed;
+        }
+
+        textarea.form-control {
+            min-height: 80px;
+            resize: vertical;
+            line-height: 1.4;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* Classes para status (mantidas do seu código original) */
+        .risco-alto {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        .risco-medio {
+            color: #f39c12;
+            font-weight: 700;
+        }
+
+        .risco-baixo {
+            color: #27ae60;
+            font-weight: 700;
+        }
+
+        .score-alto {
+            color: #27ae60;
+        }
+
+        .score-medio {
+            color: #f39c12;
+        }
+
+        .score-baixo {
+            color: #e74c3c;
+        }
+
+        .status-aprovado {
+            color: #27ae60;
+            font-weight: 700;
+        }
+
+        .status-derivar {
+            color: #f39c12;
+            font-weight: 700;
+        }
+
+        .status-negado {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        .situacao-aberto {
+            color: #3498db;
+        }
+
+        .situacao-finalizado {
+            color: #27ae60;
+        }
+
+        .valor-monetario-info {
+            font-weight: 700;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .saldo-disponivel {
+            color: #27ae60;
+        }
+
+        .saldo-esgotado {
+            color: #e74c3c;
+        }
+
+        .limite-restante {
+            color: #f39c12;
+        }
+
+        .score-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.05);
+            margin-left: 5px;
+        }
+
+        /* Distribuição por unidades */
+        .unidades-distribuidas {
+            background: #e8f4fd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #cfe2ff;
+        }
+
+        .unidades-distribuidas h4 {
+            margin: 0 0 10px 0;
+            color: #0d6efd;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .unidade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #b6d4fe;
+        }
+
+        .unidade-item:last-child {
+            border-bottom: none;
+        }
+
+        .unidade-nome {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #495057;
+            font-size: 13px;
+        }
+
+        .unidade-valor {
+            font-weight: 700;
+            color: #2c3e50;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Badge para distribuição existente */
+        .distribuicao-badge {
+            background: #27ae60;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Estilos dos botões no modal */
+        .modal-informacoes-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(127, 140, 141, 0.2);
+        }
+
+        /* Layout de duas colunas para campos */
+        .campos-duas-colunas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .campos-duas-colunas {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Estilo para campos somente leitura */
+        .campo-readonly {
+            background-color: #f8f9fa;
+            border-color: #e9ecef;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        /* Alerta para crédito finalizado no modal */
+        .alerta-finalizado {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .alerta-finalizado i {
+            color: #721c24;
+            font-size: 24px;
+        }
+
+        .alerta-finalizado-texto h3 {
+            margin: 0 0 5px 0;
+            color: #721c24;
+            font-size: 16px;
+        }
+
+        .alerta-finalizado-texto p {
+            margin: 0;
+            color: #721c24;
+            font-size: 14px;
+        }
+
+        /* Alerta para excedente */
+        .alerta-excedente {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #856404;
+            font-weight: 600;
+        }
+
+        .alerta-excedente i {
+            color: #f39c12;
+        }
+
+        /* Layout de três colunas para campos */
+        .campos-tres-colunas {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .campos-tres-colunas {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Layout de razão social com largura total */
+        .campos-duas-colunas-razao {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .search-container {
+                max-width: 100%;
+            }
+
+            .search-container.com-botao-limpar {
+                max-width: 100%;
+            }
+
+            .modal-informacoes-content {
+                width: 95%;
+                margin: 20px auto;
+                padding: 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
         @media (max-width: 992px) {
             .search-container {
                 flex-wrap: wrap;
+                padding: 10px;
+                gap: 10px;
             }
 
             .search-input-group {
@@ -357,16 +901,28 @@ try {
 
             .filtro-data-group {
                 flex: 1;
-                min-width: 140px;
+                min-width: calc(50% - 5px);
+                order: 2;
             }
 
             .botoes-filtro-container {
-                order: 2;
+                order: 3;
                 width: 100%;
                 justify-content: center;
                 margin-top: 8px;
                 display: flex;
                 gap: 8px;
+            }
+
+            /* Ajuste para os botões na coluna de ações em telas menores */
+            .col-acoes .acoes-container {
+                gap: 5px;
+            }
+
+            .btn-acao {
+                min-width: 35px;
+                height: 35px;
+                font-size: 14px;
             }
         }
 
@@ -382,25 +938,88 @@ try {
             }
 
             .filtro-data-group {
-                min-width: 100px;
+                min-width: 100%;
+                margin-bottom: 8px;
             }
 
             .filtro-data-label {
                 font-size: 11px;
-                margin-bottom: 2px;
-                white-space: nowrap;
+                min-width: 50px;
             }
 
             .filtro-data-input {
-                min-width: 100%;
+                min-width: 0;
                 padding: 5px 8px;
                 font-size: 12px;
+                flex: 1;
             }
 
             .btn-buscar,
             .btn-limpar {
                 padding: 6px 12px;
                 font-size: 12px;
+                flex: 1;
+            }
+
+            .modal-informacoes-content {
+                width: 95%;
+                margin: 20px auto;
+                padding: 20px;
+                max-height: 90vh;
+            }
+
+            /* Ajuste para os botões em telas muito pequenas */
+            .col-acoes .acoes-container {
+                flex-direction: row;
+                /* Mantém lado a lado mesmo em mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-container {
+                padding: 6px;
+            }
+
+            .filtro-data-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .filtro-data-label {
+                width: 100%;
+            }
+
+            .filtro-data-input {
+                width: 100%;
+            }
+
+            .botoes-filtro-container {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .btn-buscar,
+            .btn-limpar {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Ajuste final para botões em telas muito pequenas */
+            .col-acoes .acoes-container {
+                gap: 3px;
+            }
+
+            .btn-acao {
+                min-width: 32px;
+                height: 32px;
+                font-size: 13px;
+            }
+
+            .modal-informacoes-content {
+                padding: 15px;
+                width: 98%;
+                margin: 10px auto;
             }
         }
     </style>
@@ -411,18 +1030,7 @@ try {
         <header class="header-principal">
             <img src="imgs/noroaco.png" alt="Logo NOROAÇO" class="logo-noroaco">
 
-            <form method="POST" action="" class="search-container">
-                <!-- <div class="search-input-group">
-                    <i class="fas fa-search"></i>
-                    <input type="text"
-                        id="busca_geral"
-                        name="busca_geral"
-                        class="search-input"
-                        placeholder="Buscar por código, razão social, documento, risco..."
-                        value="<?php echo htmlspecialchars($buscaGeral, ENT_QUOTES, 'UTF-8'); ?>"
-                        autocomplete="off">
-                </div> -->
-
+            <form method="POST" action="" class="search-container <?php echo $temFiltroAplicado ? 'com-botao-limpar' : ''; ?>">
                 <div class="filtro-data-group">
                     <label for="filtro_status" class="filtro-data-label">Status:</label>
                     <select id="filtro_status" name="filtro_status" class="filtro-data-input">
@@ -449,17 +1057,6 @@ try {
         <div class="container-tabela">
             <div class="titulo-tabela">
                 <i class="fa-solid fa-coins"></i> Gerenciador de Crédito - Neocredit (Aprovação)
-                <?php if ($temFiltroAplicado): ?>
-                    <span style="font-size: 12px; color: #7f8c8d; margin-left: 10px;">
-                        (<?php echo $totalRegistros; ?> resultados)
-                        <?php if (!empty($filtroStatus) && $filtroStatus !== 'todos'): ?>
-                            | Status: <?php echo $filtroStatus === 'A' ? 'Abertos' : 'Finalizados'; ?>
-                        <?php endif; ?>
-                        <?php if (!empty($buscaGeral)): ?>
-                            | Busca: "<?php echo htmlspecialchars($buscaGeral, ENT_QUOTES, 'UTF-8'); ?>"
-                        <?php endif; ?>
-                    </span>
-                <?php endif; ?>
             </div>
 
             <?php if (isset($error)): ?>
@@ -596,15 +1193,18 @@ try {
                                 $situacaoClass = '';
                                 $situacaoIcon = '';
                                 $situacaoText = '';
+                                $situacaoDisplay = '';
 
                                 if ($situacao === 'A') {
                                     $situacaoClass = 'situacao-aberto';
                                     $situacaoIcon = 'fa-spinner';
                                     $situacaoText = '';
+                                    $situacaoDisplay = '';
                                 } elseif ($situacao === 'F') {
                                     $situacaoClass = 'situacao-finalizado';
                                     $situacaoIcon = 'fa-check-circle';
                                     $situacaoText = '';
+                                    $situacaoDisplay = '';
                                 }
 
                                 // Processar destaque de busca
@@ -621,7 +1221,7 @@ try {
                                 $validadeDisplay = $validadeFormatada;
                                 $statusDisplay = $credito['status'];
                                 $scoreDisplay = $credito['score'];
-                                $situacaoDisplay = $situacaoText;
+                                $situacaoDisplayText = $situacaoDisplay;
 
                                 if ($temBusca) {
                                     $buscaLower = strtolower($buscaGeral);
@@ -634,7 +1234,7 @@ try {
                                     $creditoStr = $creditoFormatado;
                                     $statusStr = strtolower($credito['status']);
                                     $scoreStr = (string)$credito['score'];
-                                    $situacaoStr = strtolower($situacaoText);
+                                    $situacaoStr = strtolower($situacaoDisplay);
 
                                     if (stripos($codigoStr, $buscaGeral) !== false) {
                                         $codigoDisplay = preg_replace("/(" . preg_quote($buscaGeral, '/') . ")/i", '<span class="destaque-busca">$1</span>', $codigoStr);
@@ -664,7 +1264,7 @@ try {
                                         $scoreDisplay = preg_replace("/(" . preg_quote($buscaGeral, '/') . ")/i", '<span class="destaque-busca">$1</span>', $credito['score']);
                                     }
                                     if (stripos($situacaoStr, $buscaLower) !== false) {
-                                        $situacaoDisplay = preg_replace("/(" . preg_quote($buscaGeral, '/') . ")/i", '<span class="destaque-busca">$1</span>', $situacaoText);
+                                        $situacaoDisplayText = preg_replace("/(" . preg_quote($buscaGeral, '/') . ")/i", '<span class="destaque-busca">$1</span>', $situacaoDisplay);
                                     }
                                 }
 
@@ -692,7 +1292,13 @@ try {
                                     'tem_distribuicao' => $temDistribuicao,
                                     'distribuicao_existente' => $distribuicaoExistente,
                                     'situacao_class' => $situacaoClass,
-                                    'situacao_text' => $situacaoText
+                                    'situacao_text' => $situacaoText,
+                                    // ADICIONE ESTAS LINHAS PARA OS CÓDIGOS DAS UNIDADES
+                                    'codic_bm' => $credito['codic_bm'] ?? null,
+                                    'codic_bot' => $credito['codic_bot'] ?? null,
+                                    'codic_ls' => $credito['codic_ls'] ?? null,
+                                    'codic_rp' => $credito['codic_rp'] ?? null,
+                                    'codic_vt_rnd' => $credito['codic_vt_rnd'] ?? null
                                 ]), ENT_QUOTES, 'UTF-8');
                                 ?>
                                 <tr data-dados='<?php echo $dadosModal; ?>' id="cliente-<?php echo $credito['codigo']; ?>" class="<?php echo $classeLinha; ?>">
@@ -741,21 +1347,43 @@ try {
                                     <td class="situacao-col">
                                         <?php if ($situacao === 'A'): ?>
                                             <i class="fas fa-spinner fa-spin situacao-spinner" title="Em Aberto"></i>
-                                            <span class="situacao-texto situacao-aberto"><?php echo $situacaoDisplay; ?></span>
+                                            <span class="situacao-texto situacao-aberto"><?php echo $situacaoDisplayText; ?></span>
                                         <?php elseif ($situacao === 'F'): ?>
                                             <i class="fas fa-check-circle situacao-check" title="Finalizado"></i>
-                                            <span class="situacao-texto situacao-finalizado"><?php echo $situacaoDisplay; ?></span>
+                                            <span class="situacao-texto situacao-finalizado"><?php echo $situacaoDisplayText; ?></span>
                                         <?php else: ?>
                                             <?php echo htmlspecialchars($credito['situ']); ?>
                                         <?php endif; ?>
                                     </td>
                                     <td class="col-acoes">
                                         <div class="acoes-container">
-                                            <button class="btn-acao btn-finalizar"
-                                                onclick="abrirModalTelaCheia(this)"
-                                                title="Distribuir limite por unidade">
-                                                <i class="fas fa-check"></i>
-                                            </button>
+                                            <?php if ($situacao === 'A'): ?>
+                                                <button class="btn-acao btn-finalizar"
+                                                    onclick="abrirModalTelaCheia(this)"
+                                                    title="Distribuir limite por unidade">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            <?php else: ?>
+                                                <button class="btn-acao btn-finalizar" disabled
+                                                    style="opacity: 0.5; cursor: not-allowed;"
+                                                    title="Crédito finalizado - operação não permitida">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            <?php endif; ?>
+
+                                            <!-- Botão de informações - AGORA FICA AO LADO -->
+                                            <?php if ($situacao === 'A'): ?>
+                                                <button class="btn-acao btn-info"
+                                                    onclick="abrirModalInformacoes(this)"
+                                                    title="Finalizar sem Atulizar Limite">
+                                                    <i class="fas fa-close"></i>
+                                                </button>
+                                            <?php else: ?>
+                                                <button class="btn-acao btn-info btn-info-finalizado" disabled
+                                                    title="Crédito finalizado - apenas visualização">
+                                                    <i class="fas fa-close"></i>
+                                                </button>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -767,6 +1395,7 @@ try {
         </div>
     </div>
 
+    <!-- Modal de Distribuição (existente) -->
     <div id="modalTelaCheia" class="modal-tela-cheia">
         <div class="modal-tela-cheia-content">
             <button class="close-modal-tela-cheia" onclick="fecharModalTelaCheia()" title="Fechar">
@@ -822,6 +1451,24 @@ try {
         </div>
     </div>
 
+    <!-- Modal de Informações - COM ESTILO DO MODAL INSERIR DA BALANÇA (CAMPOS EM FORMULÁRIO) -->
+    <div id="modalInformacoes" class="modal-informacoes">
+        <div class="modal-informacoes-content">
+            <button class="close-modal-info" onclick="fecharModalInformacoes()">&times;</button>
+
+            <div class="modal-informacoes-header">
+                <div class="modal-informacoes-title">
+                    <i class="fas fa-building" style="color: #fdb525;"></i>
+                    Informações do Cliente
+                </div>
+            </div>
+
+            <div class="modal-informacoes-body" id="modalInfoConteudo">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
     <script>
         const UNIDADES = [{
                 id: 'barra_mansa',
@@ -855,22 +1502,59 @@ try {
 
         // Função para limpar filtros
         function limparFiltros() {
-            document.getElementById('busca_geral').value = '';
+            // Remover a classe que aumenta o tamanho do container
+            const searchContainer = document.querySelector('.search-container');
+            if (searchContainer) {
+                searchContainer.classList.remove('com-botao-limpar');
+            }
+
+            // Submeter o formulário limpo
             document.getElementById('filtro_status').value = 'todos';
+            // Se tiver campo de busca geral, descomente a linha abaixo:
+            // document.getElementById('busca_geral').value = '';
             document.querySelector('form').submit();
         }
 
+        // ===== FUNÇÕES PARA MODAL DE DISTRIBUIÇÃO =====
         function abrirModalTelaCheia(botao) {
+            // Verificar se o botão está desabilitado
+            if (botao.disabled) {
+                alert('Este crédito está finalizado. Não é possível distribuir limite.');
+                return;
+            }
+
             const linha = botao.closest('tr');
             if (!linha) return;
 
             dadosClienteModalTelaCheia = JSON.parse(linha.getAttribute('data-dados'));
             distribuicaoModalTelaCheia = {};
 
+            // Verificar se a situação é "F" (Finalizado)
+            if (dadosClienteModalTelaCheia.situ === 'F') {
+                alert('Este crédito está finalizado. Não é possível distribuir limite.');
+                return;
+            }
+
             carregarInformacoesEmpresa();
             carregarAnaliseCredito();
             carregarLimiteGrande();
             carregarDistribuicaoUnidades();
+
+            // Desabilitar o botão de salvar se a situação for "F"
+            const btnSalvar = document.getElementById('btnSalvarDistribuicao');
+            if (btnSalvar) {
+                if (dadosClienteModalTelaCheia.situ === 'F') {
+                    btnSalvar.disabled = true;
+                    btnSalvar.style.opacity = '0.5';
+                    btnSalvar.style.cursor = 'not-allowed';
+                    btnSalvar.title = 'Crédito finalizado - operação não permitida';
+                } else {
+                    btnSalvar.disabled = false;
+                    btnSalvar.style.opacity = '1';
+                    btnSalvar.style.cursor = 'pointer';
+                    btnSalvar.title = 'Salvar distribuição';
+                }
+            }
 
             document.getElementById('modalTelaCheia').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -922,48 +1606,48 @@ try {
             if (scoreNum < 500) scoreClass = 'score-baixo';
 
             const html = `
-        <div class="analise-grid">
-            <div class="card-analise">
-                <div class="card-analise-titulo">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Risco
+                <div class="analise-grid">
+                    <div class="card-analise">
+                        <div class="card-analise-titulo">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Risco
+                        </div>
+                        <div class="card-analise-valor ${dadosClienteModalTelaCheia.risco_class}">
+                            ${dadosClienteModalTelaCheia.risco || 'N/A'}
+                        </div>
+                    </div>
+                    
+                    <div class="card-analise">
+                        <div class="card-analise-titulo">
+                            <i class="fas fa-chart-bar"></i>
+                            Classificação de Risco
+                        </div>
+                        <div class="card-analise-valor">
+                            ${dadosClienteModalTelaCheia.classificacao_risco || 'N/A'}
+                        </div>
+                    </div>
+                    
+                    <div class="card-analise">
+                        <div class="card-analise-titulo">
+                            <i class="fas fa-clipboard-check"></i>
+                            Status
+                        </div>
+                        <div class="card-analise-valor ${dadosClienteModalTelaCheia.status_class}">
+                            ${dadosClienteModalTelaCheia.status || 'N/A'}
+                        </div>
+                    </div>
+                    
+                    <div class="card-analise">
+                        <div class="card-analise-titulo">
+                            <i class="fas fa-star"></i>
+                            Score
+                        </div>
+                        <div class="card-analise-valor">
+                            <span class="score-badge ${scoreClass}" style="font-size: 16px; padding: 8px 15px;">${dadosClienteModalTelaCheia.score || '0'}</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-analise-valor ${dadosClienteModalTelaCheia.risco_class}">
-                    ${dadosClienteModalTelaCheia.risco || 'N/A'}
-                </div>
-            </div>
-            
-            <div class="card-analise">
-                <div class="card-analise-titulo">
-                    <i class="fas fa-chart-bar"></i>
-                    Classificação de Risco
-                </div>
-                <div class="card-analise-valor">
-                    ${dadosClienteModalTelaCheia.classificacao_risco || 'N/A'}
-                </div>
-            </div>
-            
-            <div class="card-analise">
-                <div class="card-analise-titulo">
-                    <i class="fas fa-clipboard-check"></i>
-                    Status
-                </div>
-                <div class="card-analise-valor ${dadosClienteModalTelaCheia.status_class}">
-                    ${dadosClienteModalTelaCheia.status || 'N/A'}
-                </div>
-            </div>
-            
-            <div class="card-analise">
-                <div class="card-analise-titulo">
-                    <i class="fas fa-star"></i>
-                    Score
-                </div>
-                <div class="card-analise-valor">
-                    <span class="score-badge ${scoreClass}" style="font-size: 16px; padding: 8px 15px;">${dadosClienteModalTelaCheia.score || '0'}</span>
-                </div>
-            </div>
-        </div>
-    `;
+            `;
 
             document.getElementById('analiseCreditoConteudo').innerHTML = html;
         }
@@ -1010,6 +1694,21 @@ try {
         }
 
         function carregarDistribuicaoUnidades() {
+            // Verificar se o crédito está finalizado
+            if (dadosClienteModalTelaCheia.situ === 'F') {
+                const html = `
+                    <div class="alerta-finalizado">
+                        <i class="fas fa-ban"></i>
+                        <div class="alerta-finalizado-texto">
+                            <h3>Crédito Finalizado</h3>
+                            <p>Este crédito está finalizado. Não é possível realizar distribuições.</p>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('distribuicaoUnidadesConteudo').innerHTML = html;
+                return;
+            }
+
             const saldoDisponivel = parseFloat(dadosClienteModalTelaCheia.saldo_disponivel) || 0;
             const totalAprovado = parseFloat(dadosClienteModalTelaCheia.lcred_aprovado_numero) || 0;
             const totalDistribuidoExistente = parseFloat(dadosClienteModalTelaCheia.total_distribuido) || 0;
@@ -1021,11 +1720,28 @@ try {
                 });
             }
 
+            // Função auxiliar para formatar o codic - APENAS quando for null
+            const formatarCodic = (codic) => {
+                return codic === null || codic === '' || codic === undefined ? '(-)' : `(${codic})`;
+            };
+
             let html = '<div class="distribuicao-linha-horizontal">';
+
+            // Mapear os códigos das unidades
+            const codics = {
+                'barra_mansa': dadosClienteModalTelaCheia.codic_bm,
+                'botucatu': dadosClienteModalTelaCheia.codic_bot,
+                'lins': dadosClienteModalTelaCheia.codic_ls,
+                'rio_preto': dadosClienteModalTelaCheia.codic_rp,
+                'votuporanga': dadosClienteModalTelaCheia.codic_vt_rnd
+            };
 
             UNIDADES.forEach(unidade => {
                 const valorExistente = distribuicaoExistente[unidade.id] || 0;
                 const valorInicial = valorExistente > 0 ? formatarNumeroBR(valorExistente) : '';
+
+                // Obter o codic para a unidade atual
+                const codic = formatarCodic(codics[unidade.id]);
 
                 if (valorExistente > 0) {
                     distribuicaoModalTelaCheia[unidade.id] = valorExistente;
@@ -1035,7 +1751,7 @@ try {
                     <div class="item-unidade-linha">
                         <div class="nome-unidade-linha">
                             <i class="${unidade.icone}"></i>
-                            ${unidade.nome}
+                            ${unidade.nome} ${codic}
                         </div>
                         <div class="input-unidade-grupo-linha">
                             <span class="input-unidade-prefix-linha">R$</span>
@@ -1046,7 +1762,8 @@ try {
                                    placeholder="0,00"
                                    value="${valorInicial}"
                                    oninput="formatarValorDistribuicaoTelaCheia(this)"
-                                   onkeyup="validarDistribuicaoTelaCheia()">
+                                   onkeyup="validarDistribuicaoTelaCheia()"
+                                   ${dadosClienteModalTelaCheia.situ === 'F' ? 'disabled style="background-color: #f5f5f5;"' : ''}>
                         </div>
                         <div class="info-unidade-linha">
                             <span id="dist_porcentagem_${unidade.id}" class="porcentagem-linha">0%</span>
@@ -1076,6 +1793,11 @@ try {
         }
 
         function formatarValorDistribuicaoTelaCheia(input) {
+            // Verificar se o crédito está finalizado
+            if (dadosClienteModalTelaCheia && dadosClienteModalTelaCheia.situ === 'F') {
+                return;
+            }
+
             let valor = input.value.replace(/\D/g, '');
             valor = valor.replace(/^0+/, '');
 
@@ -1116,6 +1838,18 @@ try {
         }
 
         function validarDistribuicaoTelaCheia() {
+            // Se o crédito estiver finalizado, desabilitar tudo
+            if (dadosClienteModalTelaCheia && dadosClienteModalTelaCheia.situ === 'F') {
+                const btnSalvar = document.getElementById('btnSalvarDistribuicao');
+                if (btnSalvar) {
+                    btnSalvar.disabled = true;
+                    btnSalvar.style.opacity = '0.5';
+                    btnSalvar.style.cursor = 'not-allowed';
+                    btnSalvar.title = 'Crédito finalizado - operação não permitida';
+                }
+                return 0;
+            }
+
             const totalDistribuido = calcularTotalDistribuidoTelaCheia();
             const totalAprovado = parseFloat(dadosClienteModalTelaCheia.lcred_aprovado_numero) || 0;
             const saldoRestante = totalAprovado - totalDistribuido;
@@ -1171,6 +1905,12 @@ try {
         }
 
         function salvarDistribuicaoTelaCheia() {
+            // Verificar se o crédito está finalizado
+            if (dadosClienteModalTelaCheia && dadosClienteModalTelaCheia.situ === 'F') {
+                alert('Este crédito está finalizado. Não é possível salvar distribuições.');
+                return;
+            }
+
             const totalDistribuido = calcularTotalDistribuidoTelaCheia();
             const totalAprovado = parseFloat(dadosClienteModalTelaCheia.lcred_aprovado_numero) || 0;
             const saldoRestante = totalAprovado - totalDistribuido;
@@ -1253,6 +1993,288 @@ try {
             distribuicaoModalTelaCheia = {};
         }
 
+        // ===== FUNÇÕES PARA MODAL DE INFORMAÇÕES =====
+        function abrirModalInformacoes(botao) {
+            // Verificar se o botão está desabilitado
+            if (botao.disabled) {
+                alert('Este crédito está finalizado. Apenas visualização disponível.');
+            }
+
+            const linha = botao.closest('tr');
+            if (!linha) return;
+
+            const dadosCliente = JSON.parse(linha.getAttribute('data-dados'));
+            carregarInformacoesModal(dadosCliente);
+
+            document.getElementById('modalInformacoes').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function carregarInformacoesModal(dados) {
+            // Formatar dados para exibição
+            const documentoClass = dados.documento_limpo.length === 11 ? 'documento-cpf' : 'documento-cnpj';
+            const saldoClass = dados.saldo_disponivel <= 0 ? 'saldo-esgotado' :
+                dados.saldo_disponivel < dados.lcred_aprovado_numero ? 'limite-restante' : 'saldo-disponivel';
+
+            // Determinar situação
+            let situacaoTexto = '';
+            let situacaoIcon = '';
+            if (dados.situ === 'A') {
+                situacaoTexto = 'Aberto';
+                situacaoIcon = 'fa-spinner fa-spin';
+            } else if (dados.situ === 'F') {
+                situacaoTexto = 'Finalizado';
+                situacaoIcon = 'fa-check-circle';
+            } else {
+                situacaoTexto = dados.situ;
+                situacaoIcon = 'fa-question-circle';
+            }
+
+            // Determinar classe CSS para classificação baseada no valor
+            let classificacaoClass = '';
+            if (dados.classificacao_risco) {
+                const classificacao = dados.classificacao_risco.toLowerCase();
+                if (classificacao.includes('alto') || classificacao.includes('a')) {
+                    classificacaoClass = 'risco-alto';
+                } else if (classificacao.includes('médio') || classificacao.includes('medio') || classificacao.includes('m')) {
+                    classificacaoClass = 'risco-medio';
+                } else if (classificacao.includes('baixo') || classificacao.includes('b')) {
+                    classificacaoClass = 'risco-baixo';
+                }
+            }
+
+            // Função para formatar codic - APENAS quando for null
+            const formatarCodic = (codic) => {
+                return codic === null || codic === '' || codic === undefined ? '(-)' : codic;
+            };
+
+            // Montar HTML das unidades distribuídas (se houver) com os códigos
+            let unidadesHTML = '';
+            if (dados.tem_distribuicao && dados.distribuicao_existente && dados.distribuicao_existente.length > 0) {
+                // Mapear nomes das unidades para os códigos
+                const codicsUnidades = {
+                    'barra_mansa': {
+                        nome: 'Barra Mansa',
+                        codic: dados.codic_bm
+                    },
+                    'botucatu': {
+                        nome: 'Botucatu',
+                        codic: dados.codic_bot
+                    },
+                    'lins': {
+                        nome: 'Lins',
+                        codic: dados.codic_ls
+                    },
+                    'rio_preto': {
+                        nome: 'Rio Preto',
+                        codic: dados.codic_rp
+                    },
+                    'votuporanga': {
+                        nome: 'Votuporanga',
+                        codic: dados.codic_vt_rnd
+                    }
+                };
+
+                unidadesHTML = `
+                    <div class="unidades-distribuidas">
+                        <h4><i class="fas fa-share-alt"></i> Limite Distribuído por Unidade</h4>
+                        ${dados.distribuicao_existente.map(unidade => {
+                            const unidadeInfo = codicsUnidades[unidade.unidade] || { nome: unidade.nome_unidade, codic: null };
+                            const codic = formatarCodic(unidadeInfo.codic);
+                            const codicDisplay = codic === '(-)' ? '(-)' : `(${codic})`;
+                            return `
+                                <div class="unidade-item">
+                                    <div class="unidade-nome">
+                                        <i class="fas fa-industry"></i>
+                                        ${unidadeInfo.nome} ${codicDisplay}
+                                    </div>
+                                    <div class="unidade-valor">
+                                        R$ ${parseFloat(unidade.valor_distribuido).toLocaleString('pt-BR', {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        })}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
+
+            // Adicionar seção para mostrar todos os códigos das unidades
+            const codicsHTML = `
+                <div class="campos-duas-colunas" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="info_codic_bm">Código Barra Mansa</label>
+                        <input type="text" 
+                               id="info_codic_bm" 
+                               class="form-control campo-readonly" 
+                               value="${formatarCodic(dados.codic_bm)}" 
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="info_codic_bot">Código Botucatu</label>
+                        <input type="text" 
+                               id="info_codic_bot" 
+                               class="form-control campo-readonly" 
+                               value="${formatarCodic(dados.codic_bot)}" 
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="info_codic_ls">Código Lins</label>
+                        <input type="text" 
+                               id="info_codic_ls" 
+                               class="form-control campo-readonly" 
+                               value="${formatarCodic(dados.codic_ls)}" 
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="info_codic_rp">Código Rio Preto</label>
+                        <input type="text" 
+                               id="info_codic_rp" 
+                               class="form-control campo-readonly" 
+                               value="${formatarCodic(dados.codic_rp)}" 
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="info_codic_vt_rnd">Código Votuporanga</label>
+                        <input type="text" 
+                               id="info_codic_vt_rnd" 
+                               class="form-control campo-readonly" 
+                               value="${formatarCodic(dados.codic_vt_rnd)}" 
+                               readonly>
+                    </div>
+                </div>
+            `;
+
+            const html = `
+                <form id="formInfoCliente">
+                    <!-- PRIMEIRA LINHA: Razão Social com largura total -->
+                    <div class="campos-duas-colunas-razao">
+                        <div class="form-group">
+                            <label for="info_razao_social">Razão Social</label>
+                            <input type="text" 
+                                   id="info_razao_social" 
+                                   class="form-control campo-readonly" 
+                                   value="${dados.razao_social}" 
+                                   readonly>
+                        </div>
+                    </div>
+
+                    <!-- SEGUNDA LINHA: ID Neocredit, Documento e Validade lado a lado (3 colunas) -->
+                    <div class="campos-tres-colunas">
+                        <div class="form-group">
+                            <label for="info_id_neocredit">ID Neocredit</label>
+                            <input type="text" 
+                                   id="info_id_neocredit" 
+                                   class="form-control campo-readonly" 
+                                   value="${dados.id_neocredit || 'N/A'}" 
+                                   readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="info_documento">Documento</label>
+                            <input type="text" 
+                                   id="info_documento" 
+                                   class="form-control campo-readonly ${documentoClass}" 
+                                   value="${dados.documento}" 
+                                   readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="info_validade">Validade</label>
+                            <input type="text" 
+                                   id="info_validade" 
+                                   class="form-control campo-readonly" 
+                                   value="${dados.validade_cred}" 
+                                   readonly>
+                        </div>
+                    </div>
+
+                    <!-- TERCEIRA LINHA: Risco, Classificação e Status lado a lado (3 colunas) -->
+                    <div class="campos-tres-colunas">
+                        <div class="form-group">
+                            <label for="info_risco">Risco</label>
+                            <input type="text" 
+                                   id="info_risco" 
+                                   class="form-control campo-readonly ${dados.risco_class}" 
+                                   value="${dados.risco}" 
+                                   readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="info_classificacao">Classificação</label>
+                            <input type="text" 
+                                   id="info_classificacao" 
+                                   class="form-control campo-readonly ${classificacaoClass}" 
+                                   value="${dados.classificacao_risco}" 
+                                   readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="info_status">Status</label>
+                            <input type="text" 
+                                   id="info_status" 
+                                   class="form-control campo-readonly ${dados.status_class}" 
+                                   value="${dados.status}" 
+                                   readonly>
+                        </div>
+                    </div>
+
+                    <!-- QUARTA LINHA: Score e Limite Aprovado lado a lado (2 colunas) -->
+                    <div class="campos-duas-colunas">
+                        <div class="form-group">
+                            <label for="info_score">Score</label>
+                            <input type="text" 
+                                   id="info_score" 
+                                   class="form-control campo-readonly" 
+                                   value="${dados.score}" 
+                                   readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="info_credito_aprovado">Limite Aprovado</label>
+                            <input type="text" 
+                                   id="info_credito_aprovado" 
+                                   class="form-control campo-readonly valor-monetario-info" 
+                                   value="${dados.lcred_aprovado}" 
+                                   readonly>
+                        </div>
+                    </div>
+                    
+                    ${dados.saldo_disponivel < 0 ? `
+                        <div class="alerta-excedente">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            ATENÇÃO: Limite excedido em ${formatarMoeda(Math.abs(dados.saldo_disponivel))}
+                        </div>
+                    ` : ''}
+                    
+                    ${unidadesHTML}
+                    ${codicsHTML}
+                    
+                    <!-- Informação de situação -->
+                    <div class="form-group" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <label>Situação do Crédito</label>
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: ${dados.situ === 'F' ? '#d4edda' : '#d1ecf1'}; border-radius: 6px; border: 1px solid ${dados.situ === 'F' ? '#c3e6cb' : '#bee5eb'};">
+                            <i class="fas ${dados.situ === 'F' ? 'fa-check-circle' : 'fa-spinner'} ${dados.situ === 'A' ? 'fa-spin' : ''}" 
+                               style="color: ${dados.situ === 'F' ? '#28a745' : '#17a2b8'}; font-size: 20px;"></i>
+                            <div>
+                                <strong style="color: ${dados.situ === 'F' ? '#155724' : '#0c5460'};">
+                                    ${dados.situ === 'F' ? 'CRÉDITO FINALIZADO' : 'CRÉDITO EM ABERTO'}
+                                </strong>
+                                <div style="color: ${dados.situ === 'F' ? '#155724' : '#0c5460'}; font-size: 13px;">
+                                    ${dados.situ === 'F' ? 'Este crédito está finalizado. Todas as ações estão desabilitadas.' : 'Este crédito está disponível para distribuição.'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            `;
+
+            document.getElementById('modalInfoConteudo').innerHTML = html;
+        }
+
+        function fecharModalInformacoes() {
+            document.getElementById('modalInformacoes').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== FUNÇÕES UTILITÁRIAS =====
         function formatarMoeda(valor) {
             const num = parseFloat(valor) || 0;
             const sinal = num < 0 ? '-' : '';
@@ -1272,10 +2294,16 @@ try {
             });
         }
 
+        // ===== EVENT LISTENERS =====
         window.onclick = function(event) {
             const modalTelaCheia = document.getElementById('modalTelaCheia');
+            const modalInfo = document.getElementById('modalInformacoes');
+
             if (event.target === modalTelaCheia) {
                 fecharModalTelaCheia();
+            }
+            if (event.target === modalInfo) {
+                fecharModalInformacoes();
             }
         };
 
@@ -1284,12 +2312,23 @@ try {
                 if (document.getElementById('modalTelaCheia').style.display === 'block') {
                     fecharModalTelaCheia();
                 }
+                if (document.getElementById('modalInformacoes').style.display === 'block') {
+                    fecharModalInformacoes();
+                }
             }
         });
 
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Sistema de distribuição de crédito carregado.');
             console.log('Total de registros: <?php echo $totalRegistros; ?>');
+
+            // Adicionar ou remover a classe com-botao-limpar baseado no estado do filtro
+            const searchContainer = document.querySelector('.search-container');
+            const temFiltroAplicado = <?php echo $temFiltroAplicado ? 'true' : 'false'; ?>;
+
+            if (temFiltroAplicado && searchContainer) {
+                searchContainer.classList.add('com-botao-limpar');
+            }
 
             // Auto-focus no campo de busca em desktop
             const buscaInput = document.getElementById('busca_geral');

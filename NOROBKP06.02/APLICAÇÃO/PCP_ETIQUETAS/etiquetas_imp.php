@@ -1,15 +1,47 @@
 <?php
-session_start();
+// ================= CONFIGURAÇÃO DE SESSÃO =================
+// Configurar timeout da sessão
+ini_set('session.gc_maxlifetime', 300);
+ini_set('session.cookie_lifetime', 300);
+session_set_cookie_params(300);
+
+// Iniciar sessão
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Configurações de codificação
 ini_set('default_charset', 'UTF-8');
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
 
+// Headers para evitar cache
 header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Pragma: no-cache');
 header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
 
-// Verificar se TCPDF existe e incluir corretamente
+// Verificar se há OPs na sessão
+if (!isset($_SESSION['ops']) || empty($_SESSION['ops'])) {
+    // Verificar de onde veio
+    $referer = $_SERVER['HTTP_REFERER'] ?? '';
+    if (strpos($referer, 'etiquetas.php') !== false) {
+        // Se veio de etiquetas.php, pode ser problema de sessão
+        echo "<script>
+            alert('Nenhuma OP encontrada para impressão.\\n\\nA sessão pode ter expirado ou as OPs foram removidas.\\n\\nVoltando para a página anterior...');
+            setTimeout(function() {
+                window.history.back();
+            }, 1000);
+        </script>";
+        exit;
+    } else {
+        // Redirecionar para a página principal
+        header('Location: etiquetas.php');
+        exit;
+    }
+}
+
+// Verificar qual TCPDF está disponível
 $tcpdfPath = __DIR__ . '/tcpdf/';
 if (!file_exists($tcpdfPath . 'tcpdf.php')) {
     die("TCPDF não encontrado em: $tcpdfPath");
@@ -18,7 +50,7 @@ if (!file_exists($tcpdfPath . 'tcpdf.php')) {
 // Incluir TCPDF
 require_once($tcpdfPath . 'tcpdf.php');
 
-// Verificar qual arquivo de códigos de barras existe
+// Verificar arquivo de códigos de barras
 $barcode1D = $tcpdfPath . 'tcpdf_barcodes_1d.php';
 $barcode2D = $tcpdfPath . 'tcpdf_barcodes_2d.php';
 
@@ -32,6 +64,7 @@ if (file_exists($barcode1D)) {
     die("Arquivo de códigos de barras do TCPDF não encontrado!");
 }
 
+// ================= FUNÇÕES AUXILIARES =================
 function garantirUTF8($string) {
     if (is_string($string)) {
         $string = str_replace("\xEF\xBB\xBF", '', $string);
@@ -63,12 +96,7 @@ function prepararDadosUTF8($dados) {
     return $dados;
 }
 
-if (!isset($_SESSION['ops']) || empty($_SESSION['ops'])) {
-    // Redirecionar de volta se não houver OPs
-    header('Location: etiquetas.php');
-    exit;
-}
-
+// Preparar dados das OPs
 $listaOps = prepararDadosUTF8($_SESSION['ops']);
 
 function getBarcodeValue($valor, $tipo = 'geral') {
@@ -125,13 +153,13 @@ function gerarBarcodeBase64($texto, $tipo = 'geral') {
     
     $texto_limpo = trim((string)$texto);
     
-    // Configurações otimizadas para melhor definição
+    // Configurações otimizadas
     $config = [
-        'largura_modulo' => 2.5,  // Largura de cada módulo (barra/space) em pixels
-        'altura' => 75,           // Altura do código de barras em pixels
-        'cor' => [0, 0, 0],       // Cor preta [R, G, B]
-        'resolucao' => 300,       // Resolução DPI (pontos por polegada)
-        'tipo' => 'C128'          // Tipo de código de barras (Code 128)
+        'largura_modulo' => 2.5,
+        'altura' => 75,
+        'cor' => [0, 0, 0],
+        'resolucao' => 300,
+        'tipo' => 'C128'
     ];
     
     // Ajustar configurações baseado no tipo
@@ -154,19 +182,15 @@ function gerarBarcodeBase64($texto, $tipo = 'geral') {
         // Criar objeto de código de barras
         if ($barcodeClass === 'TCPDFBarcode') {
             $barcodeobj = new TCPDFBarcode($texto_limpo, $config['tipo']);
-            // Gerar PNG com configurações otimizadas
             $barcode_data = $barcodeobj->getBarcodePngData(
-                $config['largura_modulo'],  // Largura do módulo
-                $config['altura'],          // Altura
-                $config['cor'],             // Cor
-                true                        // Texto abaixo do código (se aplicável)
+                $config['largura_modulo'],
+                $config['altura'],
+                $config['cor'],
+                true
             );
         } else {
-            // Para TCPDF2DBarcode (2D), usar CODE128 para códigos de barras 1D
             $barcodeobj = new TCPDF2DBarcode($texto_limpo, 'CODE128');
             
-            // Para 2D, precisamos gerar de forma diferente
-            // Tentar método alternativo se disponível
             if (method_exists($barcodeobj, 'getBarcodePngData')) {
                 $barcode_data = $barcodeobj->getBarcodePngData(
                     $config['largura_modulo'],
@@ -174,7 +198,6 @@ function gerarBarcodeBase64($texto, $tipo = 'geral') {
                     $config['cor']
                 );
             } else {
-                // Método alternativo para 2D
                 $barcode_data = $barcodeobj->getBarcodePNGData(
                     $config['largura_modulo'],
                     $config['altura'],
@@ -189,28 +212,22 @@ function gerarBarcodeBase64($texto, $tipo = 'geral') {
             if (function_exists('imagecreatefromstring')) {
                 $im = imagecreatefromstring($barcode_data);
                 if ($im !== false) {
-                    // Criar nova imagem com melhor qualidade
                     $largura = imagesx($im);
                     $altura = imagesy($im);
                     
-                    // Criar nova imagem com fundo branco (melhor para impressão)
                     $nova_im = imagecreatetruecolor($largura, $altura);
                     $branco = imagecolorallocate($nova_im, 255, 255, 255);
                     imagefill($nova_im, 0, 0, $branco);
                     
-                    // Copiar código de barras mantendo transparência
                     imagecopy($nova_im, $im, 0, 0, 0, 0, $largura, $altura);
                     
-                    // Salvar em buffer com melhor qualidade
                     ob_start();
-                    imagepng($nova_im, null, 9, PNG_ALL_FILTERS); // Nível máximo de compressão
+                    imagepng($nova_im, null, 9, PNG_ALL_FILTERS);
                     $barcode_data_melhorado = ob_get_clean();
                     
-                    // Liberar memória
                     imagedestroy($im);
                     imagedestroy($nova_im);
                     
-                    // Usar a versão melhorada
                     $barcode_data = $barcode_data_melhorado;
                 }
             }
@@ -219,7 +236,7 @@ function gerarBarcodeBase64($texto, $tipo = 'geral') {
         }
     } catch (Exception $e) {
         error_log("Erro ao gerar código de barras: " . $e->getMessage());
-        // Tentar com configurações mais simples em caso de erro
+        
         try {
             if ($barcodeClass === 'TCPDFBarcode') {
                 $barcodeobj = new TCPDFBarcode($texto_limpo, 'C128');
@@ -246,8 +263,25 @@ function exibirTexto($texto) {
     $texto = garantirUTF8((string)$texto);
     return htmlspecialchars($texto, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
-?>
 
+// Gerar todos os códigos de barras antecipadamente (para otimização)
+$barcodesPreGerados = [];
+foreach ($listaOps as $index => $opItem) {
+    $op_numero = $opItem['seqop'] ?? '';
+    $codigo = $opItem['cod_produto'] ?? '';
+    $lote = $opItem['lote'] ?? '';
+    
+    $codigo_op = getBarcodeValue($op_numero, 'op');
+    $codigo_produto = getBarcodeValue($codigo, 'produto');
+    $codigo_lote = getBarcodeValue($lote, 'lote');
+    
+    $barcodesPreGerados[$index] = [
+        'op' => gerarBarcodeBase64($codigo_op, 'op'),
+        'produto' => gerarBarcodeBase64($codigo_produto, 'produto'),
+        'lote' => gerarBarcodeBase64($codigo_lote, 'lote')
+    ];
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -769,7 +803,7 @@ function exibirTexto($texto) {
             <br>Aguarde um momento enquanto carregamos todos os códigos de barras.
         </div>
         <div class="loading-details" id="loadingDetails">
-            Carregando códigos de barras...
+            Preparando <?php echo count($listaOps); ?> OPs para impressão...
         </div>
     </div>
 
@@ -778,10 +812,10 @@ function exibirTexto($texto) {
         <?php
         $contadorTotal = 0;
         $contadorOP = 0;
-        foreach ($listaOps as $opItem):
+        foreach ($listaOps as $index => $opItem):
             $quantidade = isset($opItem['quantidade']) ? (int)$opItem['quantidade'] : 1;
             
-            // Gerar os códigos de barras UMA VEZ por OP (otimização)
+            // Obter dados
             $op_numero = isset($opItem['seqop']) ? exibirTexto($opItem['seqop']) : '';
             $codigo = isset($opItem['cod_produto']) ? exibirTexto($opItem['cod_produto']) : '';
             $lote = isset($opItem['lote']) ? exibirTexto($opItem['lote']) : '';
@@ -789,17 +823,13 @@ function exibirTexto($texto) {
             $cliente_nome = isset($opItem['nome_cliente']) ? exibirTexto($opItem['nome_cliente']) : '';
             $cidade = isset($opItem['cidade']) ? exibirTexto($opItem['cidade']) : 'CIDADE NÃO INFORMADA';
             
-            $codigo_op = getBarcodeValue($opItem['seqop'] ?? '', 'op');
-            $codigo_produto = getBarcodeValue($opItem['cod_produto'] ?? '', 'produto');
-            $codigo_lote = getBarcodeValue($opItem['lote'] ?? '', 'lote');
+            // Obter códigos de barras pré-gerados
+            $barcode_op = $barcodesPreGerados[$index]['op'] ?? '';
+            $barcode_produto = $barcodesPreGerados[$index]['produto'] ?? '';
+            $barcode_lote = $barcodesPreGerados[$index]['lote'] ?? '';
             
-            $loteNulo = empty($codigo_lote) || ($opItem['lote'] ?? '') == 'LOTE NÃO DEFINIDO';
+            $loteNulo = empty($lote) || $lote == 'LOTE NÃO DEFINIDO';
             $cidadeNula = $cidade == 'CIDADE NÃO INFORMADA';
-            
-            // Gerar códigos de barras em base64 (apenas uma vez)
-            $barcode_op = gerarBarcodeBase64($codigo_op, 'op');
-            $barcode_produto = gerarBarcodeBase64($codigo_produto, 'produto');
-            $barcode_lote = gerarBarcodeBase64($codigo_lote, 'lote');
             
             // Gerar múltiplas cópias da mesma OP
             for ($copia = 1; $copia <= $quantidade; $copia++):
@@ -864,10 +894,9 @@ function exibirTexto($texto) {
                                 <?php if (!empty($barcode_op)): ?>
                                     <img src="<?php echo $barcode_op; ?>"
                                         class="barcode"
-                                        alt="Código de Barras OP: <?php echo $codigo_op; ?>"
+                                        alt="Código de Barras OP: <?php echo $op_numero; ?>"
                                         data-type="op"
-                                        data-value="<?php echo htmlspecialchars($codigo_op, ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-original="<?php echo $op_numero; ?>"
+                                        data-value="<?php echo htmlspecialchars($op_numero, ENT_QUOTES, 'UTF-8'); ?>"
                                         onerror="handleBarcodeError(this)"
                                         onload="handleBarcodeLoad(this)"
                                         style="filter: contrast(1.1);">
@@ -885,10 +914,9 @@ function exibirTexto($texto) {
                                 <?php if (!empty($barcode_produto)): ?>
                                     <img src="<?php echo $barcode_produto; ?>"
                                         class="barcode"
-                                        alt="Código de Produto: <?php echo $codigo_produto; ?>"
+                                        alt="Código de Produto: <?php echo $codigo; ?>"
                                         data-type="produto"
-                                        data-value="<?php echo htmlspecialchars($codigo_produto, ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-original="<?php echo $codigo; ?>"
+                                        data-value="<?php echo htmlspecialchars($codigo, ENT_QUOTES, 'UTF-8'); ?>"
                                         onerror="handleBarcodeError(this)"
                                         onload="handleBarcodeLoad(this)"
                                         style="filter: contrast(1.1);">
@@ -902,22 +930,15 @@ function exibirTexto($texto) {
                         <div class="side-card" data-type="lote">
                             <div class="side-card-title">LOTE</div>
                             <div class="side-card-value <?php echo $loteNulo ? 'dado-nulo' : ''; ?>">
-                                <?php 
-                                if ($loteNulo) {
-                                    echo 'LOTE NÃO DEFINIDO';
-                                } else {
-                                    echo $lote;
-                                }
-                                ?>
+                                <?php echo $loteNulo ? 'LOTE NÃO DEFINIDO' : $lote; ?>
                             </div>
                             <div class="barcode-container">
                                 <?php if (!empty($barcode_lote)): ?>
                                     <img src="<?php echo $barcode_lote; ?>"
                                         class="barcode"
-                                        alt="Código de Lote: <?php echo $codigo_lote; ?>"
+                                        alt="Código de Lote: <?php echo $lote; ?>"
                                         data-type="lote"
-                                        data-value="<?php echo htmlspecialchars($codigo_lote, ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-original="<?php echo $lote; ?>"
+                                        data-value="<?php echo htmlspecialchars($lote, ENT_QUOTES, 'UTF-8'); ?>"
                                         onerror="handleBarcodeError(this)"
                                         onload="handleBarcodeLoad(this)"
                                         style="filter: contrast(1.1);">
@@ -1059,21 +1080,20 @@ function exibirTexto($texto) {
                 container.style.display = 'block';
             }
             
-            // Esconder loading screen com animação
+            // Esconder loading screen
             const loadingScreen = document.getElementById('loadingScreen');
             if (loadingScreen) {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
                     
-                    // Aguardar um breve momento para renderização e depois imprimir
+                    // Aguardar e imprimir
                     setTimeout(() => {
                         console.log('🖨️ Abrindo caixa de diálogo de impressão...');
                         window.print();
                     }, 500);
                 }, 500);
             } else {
-                // Fallback: imprimir diretamente
                 setTimeout(() => {
                     console.log('🖨️ Abrindo caixa de diálogo de impressão...');
                     window.print();
@@ -1083,13 +1103,11 @@ function exibirTexto($texto) {
         
         function redirectToEtiquetas() {
             console.log('↩️ Redirecionando para etiquetas.php...');
-            // Limpar a session se necessário
-            fetch('limpar_sessao.php').catch(err => console.error('Erro ao limpar sessão:', err));
             
-            // Redirecionar de volta
+            // Redirecionar
             setTimeout(() => {
                 window.location.href = 'etiquetas.php';
-            }, 500);
+            }, 1000);
         }
 
         window.addEventListener('beforeprint', function() {
@@ -1106,11 +1124,11 @@ function exibirTexto($texto) {
         window.addEventListener('afterprint', function() {
             console.log('✅ Impressão concluída ou cancelada. Redirecionando...');
             
-            // Aguardar um momento e redirecionar
+            // Aguardar e redirecionar
             setTimeout(redirectToEtiquetas, 1000);
         });
 
-        // Capturar Ctrl+P para redirecionar após imprimir
+        // Capturar Ctrl+P
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.key === 'p') {
                 e.preventDefault();
@@ -1118,7 +1136,7 @@ function exibirTexto($texto) {
                 window.print();
             }
             
-            // Escape para cancelar e voltar
+            // Escape para cancelar
             if (e.key === 'Escape') {
                 console.log('⎋ Usuário pressionou Escape - Cancelando impressão');
                 redirectToEtiquetas();
@@ -1155,7 +1173,7 @@ function exibirTexto($texto) {
                 });
             });
             
-            // Timeout de segurança: se após 10 segundos não carregou tudo, imprimir mesmo assim
+            // Timeout de segurança
             setTimeout(() => {
                 if (!autoPrintTriggered) {
                     console.log('⏰ Timeout de segurança - Imprimindo mesmo sem todos os códigos carregados');
@@ -1166,7 +1184,6 @@ function exibirTexto($texto) {
             // Redirecionar se o usuário tentar sair sem imprimir
             window.addEventListener('beforeunload', function(e) {
                 if (!autoPrintTriggered) {
-                    // Tentar redirecionar para etiquetas.php
                     redirectToEtiquetas();
                 }
             });

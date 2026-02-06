@@ -44,7 +44,8 @@
         .container-tabela {
             flex: 1;
             padding: 15px;
-            overflow: auto;
+            overflow-x: hidden;
+            overflow-y: hidden;
             background: #f8f9fa;
         }
 
@@ -65,9 +66,90 @@
             margin-right: 8px;
         }
 
+                /* ESTILOS PARA BOTÕES DESABILITADOS */
+        .btn-acao:disabled {
+            opacity: 0.5;
+            cursor: not-allowed !important;
+            background-color: #95a5a6 !important;
+        }
+
+        .btn-acao:disabled:hover {
+            transform: none !important;
+            background-color: #95a5a6 !important;
+            box-shadow: none !important;
+        }
+
+        .btn-acao:disabled .fas {
+            color: #7f8c8d !important;
+        }
+
+        /* Tooltip para botões desabilitados */
+        .btn-acao:disabled::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .btn-acao:disabled:hover::after {
+            opacity: 1;
+        }
+
+        /* Estilo específico para botão de distribuição */
+        .btn-finalizar {
+            background-color: #fdb525 !important;
+            position: relative;
+        }
+
+        .btn-finalizar:hover:not(:disabled) {
+            background-color: #ffc64d !important;
+        }
+
+        /* Estilo específico para botão de informações */
+        .btn-info {
+            background-color: #3498db !important;
+            position: relative;
+        }
+
+        .btn-info:hover:not(:disabled) {
+            background-color: #2980b9 !important;
+        }
+
+        /* Indicador visual para créditos finalizados na linha */
+        .credito-finalizado {
+            background-color: #f8f9fa !important;
+        }
+
+        .credito-finalizado td {
+            opacity: 0.8;
+        }
+
+        /* Badge para crédito finalizado */
+        .badge-finalizado {
+            background-color: #28a745;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
         .tabela-container {
             width: 100%;
             overflow-x: auto;
+            overflow-y: hidden;
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -788,6 +870,75 @@
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
             background: white;
         }
+
+        /* Adicione ao seu estilo CSS existente */
+.campos-tres-colunas {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .campos-tres-colunas {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Ajuste para o campo ID Neocredit ser menor */
+#info_id_neocredit {
+    max-width: 200px; /* Ou o valor que preferir */
+}
+
+/* Estilo específico para os campos */
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #34495e;
+    font-size: 13px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s;
+    background: #f8f9fa;
+    color: #2c3e50;
+}
+
+.campo-readonly {
+    background-color: #f8f9fa;
+    border-color: #e9ecef;
+    color: #495057;
+    font-weight: 500;
+}
+
+.valor-monetario-info {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+/* Classes para status */
+.risco-alto {
+    color: #e74c3c !important;
+    font-weight: 700;
+}
+
+.risco-medio {
+    color: #f39c12 !important;
+    font-weight: 700;
+}
+
+.risco-baixo {
+    color: #27ae60 !important;
+    font-weight: 700;
+}
 
         .input-unidade-linha.erro {
             border-color: #dc3545;

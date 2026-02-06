@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 6.10.1
+// Version     : 6.9.4
 // Begin       : 2002-08-03
-// Last Update : 2025-11-21
+// Last Update : 2025-04-18
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
@@ -104,7 +104,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 6.10.1
+ * @version 6.9.4
  */
 
 // TCPDF configuration
@@ -128,7 +128,7 @@ require_once(dirname(__FILE__).'/include/tcpdf_static.php');
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 6.10.1
+ * @version 6.9.4
  * @author Nicola Asuni - info@tecnick.com
  * @IgnoreAnnotation("protected")
  * @IgnoreAnnotation("public")
@@ -1811,13 +1811,6 @@ class TCPDF {
 	protected $custom_xmp_rdf = '';
 
 	/**
-	 * Custom XMP RDF pdfaextension data.
-	 * @protected
-	 * @since 6.9.0 (2025-02-11)
-	 */
-	protected $custom_xmp_rdf_pdfaExtension = '';
-
-	/**
 	 * Overprint mode array.
 	 * (Check the "Entries in a Graphics State Parameter Dictionary" on PDF 32000-1:2008).
 	 * @protected
@@ -2910,7 +2903,9 @@ class TCPDF {
 		$this->compress = false;
 		if (function_exists('gzcompress')) {
 			if ($compress) {
-                $this->compress = true;
+				if ( !$this->pdfa_mode) {
+					$this->compress = true;
+				}
 			}
 		}
 	}
@@ -4938,32 +4933,6 @@ class TCPDF {
 	}
 
 	/**
-	 * Embed the attached files.
-	 * @since 6.9.000 (2025-02-11)
-	 * @public
-	 */
-	public function EmbedFile($opt) {
-		if (!$this->pdfa_mode || ($this->pdfa_mode && $this->pdfa_version == 3)) {
-			if ((($opt['Subtype'] == 'FileAttachment')) AND (!TCPDF_STATIC::empty_string($opt['FS']))
-				AND (@TCPDF_STATIC::file_exists($opt['FS']) OR TCPDF_STATIC::isValidURL($opt['FS']))
-				AND (!isset($this->embeddedfiles[basename($opt['FS'])]))) {
-				$this->embeddedfiles[basename($opt['FS'])] = array('f' => ++$this->n, 'n' => ++$this->n, 'file' => $opt['FS']);
-			}
-		}
-	}
-
-	/**
-	 * Embed the attached files.
-	 * @since 6.9.000 (2025-02-11)
-	 * @public
-	 */
-	public function EmbedFileFromString($filename, $content) {
-		if (!$this->pdfa_mode || ($this->pdfa_mode && $this->pdfa_version == 3)) {
-			$this->embeddedfiles[$filename] = array('f' => ++$this->n, 'n' => ++$this->n, 'content' => $content );
-		}
-	}
-
-	/**
 	 * Embedd the attached files.
 	 * @since 4.4.000 (2008-12-07)
 	 * @protected
@@ -4976,12 +4945,7 @@ class TCPDF {
 		}
 		reset($this->embeddedfiles);
 		foreach ($this->embeddedfiles as $filename => $filedata) {
-			$data = false;
-			if (isset($filedata['file']) && !empty($filedata['file'])) {
-				$data = $this->getCachedFileContents($filedata['file']);
-			} elseif ($filedata['content'] && !empty($filedata['content'])) {
-				$data = $filedata['content'];
-			}
+		    $data = $this->getCachedFileContents($filedata['file']);
 			if ($data !== FALSE) {
 				$rawsize = strlen($data);
 				if ($rawsize > 0) {
@@ -4999,10 +4963,11 @@ class TCPDF {
 					$filter = '';
 					if ($this->compress) {
 						$data = gzcompress($data);
-						$filter .= ' /Filter /FlateDecode';
+						$filter = ' /Filter /FlateDecode';
 					}
+
 					if ($this->pdfa_version == 3) {
-						$filter .= ' /Subtype /text#2Fxml';
+						$filter = ' /Subtype /text#2Fxml';
 					}
 
 					$stream = $this->_getrawstream($data, $filedata['n']);
@@ -6922,8 +6887,8 @@ class TCPDF {
 			// fallback to avoid division by zero
 			$h = $h == 0 ? 1 : $h;
 			$ratio_wh = ($w / $h);
-			if (($y + $h) > $this->PageBreakTrigger + $this->bMargin) {
-				$h = $this->PageBreakTrigger + $this->bMargin - $y;
+			if (($y + $h) > $this->PageBreakTrigger) {
+				$h = $this->PageBreakTrigger - $y;
 				$w = ($h * $ratio_wh);
 			}
 			if ((!$this->rtl) AND (($x + $w) > ($this->w - $this->rMargin))) {
@@ -9666,17 +9631,6 @@ class TCPDF {
 	}
 
 	/**
-	 * Set additional XMP data to be added to the default XMP data for PDF/A extensions.
-	 * IMPORTANT: This data is added as-is without controls, so you have to validate your data before using this method!
-	 * @param string $xmp Custom XMP RDF data.
-	 * @since 6.9.0 (2025-02-14)
-	 * @public
-	 */
-	public function setExtraXMPPdfaextension($xmp) {
-		$this->custom_xmp_rdf_pdfaExtension = $xmp;
-	}
-
-	/**
 	 * Put XMP data object and return ID.
 	 * @return int The object ID.
 	 * @since 5.9.121 (2011-09-28)
@@ -9810,7 +9764,6 @@ class TCPDF {
 		$xmp .= "\t\t\t\t\t\t\t".'</rdf:Seq>'."\n";
 		$xmp .= "\t\t\t\t\t\t".'</pdfaSchema:property>'."\n";
 		$xmp .= "\t\t\t\t\t".'</rdf:li>'."\n";
-		$xmp .= $this->custom_xmp_rdf_pdfaExtension;
 		$xmp .= "\t\t\t\t".'</rdf:Bag>'."\n";
 		$xmp .= "\t\t\t".'</pdfaExtension:schemas>'."\n";
 		$xmp .= "\t\t".'</rdf:Description>'."\n";
@@ -9849,11 +9802,7 @@ class TCPDF {
 		}
 		// start catalog
 		$oid = $this->_newobj();
-		$out = '<< ';
-		if (!empty($this->efnames)) {
-			$out .= ' /AF [ '. implode(' ', $this->efnames) .' ]';
-		}
-		$out .= ' /Type /Catalog';
+		$out = '<< /Type /Catalog';
 		$out .= ' /Version /'.$this->PDFVersion;
 		//$out .= ' /Extensions <<>>';
 		$out .= ' /Pages 1 0 R';
@@ -16915,7 +16864,7 @@ class TCPDF {
 							$dom[$key]['height'] = $dom[$key]['style']['height'];
 						}
 						// check for text alignment
-						if (isset($dom[$key]['style']['text-align'][0])) {
+						if (isset($dom[$key]['style']['text-align'])) {
 							$dom[$key]['align'] = strtoupper($dom[$key]['style']['text-align'][0]);
 						}
 						// check for CSS border properties
@@ -17478,9 +17427,6 @@ class TCPDF {
 				}
 			}
 			if ($key == $maxel) break;
-			if ($dom[$key]['tag'] AND $dom[$key]['opening'] AND !empty($dom[$key]['attribute']['id'])) {
-				$this->setDestination($dom[$key]['attribute']['id']);
-			}
 			if ($dom[$key]['tag'] AND isset($dom[$key]['attribute']['pagebreak'])) {
 				// check for pagebreak
 				if (($dom[$key]['attribute']['pagebreak'] == 'true') OR ($dom[$key]['attribute']['pagebreak'] == 'left') OR ($dom[$key]['attribute']['pagebreak'] == 'right')) {
@@ -19205,7 +19151,7 @@ class TCPDF {
 				$imglink = '';
 				if (isset($this->HREF['url']) AND !TCPDF_STATIC::empty_string($this->HREF['url'])) {
 					$imglink = $this->HREF['url'];
-					if ($imglink[0] == '#' AND isset($imglink[1]) AND is_numeric($imglink[1])) {
+					if ($imglink[0] == '#' AND is_numeric($imglink[1])) {
 						// convert url to internal link
 						$lnkdata = explode(',', $imglink);
 						if (isset($lnkdata[0])) {
@@ -20066,7 +20012,7 @@ class TCPDF {
 					}
 				}
 				if (!$in_table_head) { // we are not inside a thead section
-					$this->cell_padding = isset($table_el['old_cell_padding']) ? $table_el['old_cell_padding'] : array('T' => 0, 'R' => 0, 'B' => 0, 'L' => 0);
+					$this->cell_padding = isset($table_el['old_cell_padding']) ? $table_el['old_cell_padding'] : null;
 					// reset row height
 					$this->resetLastH();
 					if (($this->page == ($this->numpages - 1)) AND ($this->pageopen[$this->numpages])) {
@@ -23265,11 +23211,8 @@ class TCPDF {
 			$error_message = sprintf('SVG Error: %s at line %d', xml_error_string(xml_get_error_code($parser)), xml_get_current_line_number($parser));
 			$this->Error($error_message);
 		}
-		
-		// free this XML parser (does nothing in PHP >= 8.0)
-		if (function_exists('xml_parser_free') && PHP_VERSION_ID < 80000) {
-		    xml_parser_free($parser);
-		}
+		// free this XML parser
+		xml_parser_free($parser);
 
 		// >= PHP 7.0.0 "explicitly unset the reference to parser to avoid memory leaks"
 		unset($parser);
@@ -23500,8 +23443,7 @@ class TCPDF {
 				$gradient['coords'][4] /= $w;
 			} elseif ($gradient['mode'] == 'percentage') {
 				foreach($gradient['coords'] as $key => $val) {
-					$val = floatval($val) / 100;
-					$gradient['coords'][$key] = $val;
+					$gradient['coords'][$key] = (intval($val) / 100);
 					if ($val < 0) {
 						$gradient['coords'][$key] = 0;
 					} elseif ($val > 1) {
@@ -23537,8 +23479,6 @@ class TCPDF {
 			$fill_color = TCPDF_COLORS::convertHTMLColorToDec($svgstyle['fill'], $this->spot_colors);
 			if ($svgstyle['fill-opacity'] != 1) {
 				$this->setAlpha($this->alpha['CA'], 'Normal', $svgstyle['fill-opacity'], false);
-			} elseif (preg_match('/rgba\(\d+%?,\s*\d+%?,\s*\d+%?,\s*(\d+(?:\.\d+)?)\)/i', $svgstyle['fill'], $rgba_matches)) {
-				$this->setAlpha($this->alpha['CA'], 'Normal', $rgba_matches[1], false);
 			}
 			$this->setFillColorArray($fill_color);
 			if ($svgstyle['fill-rule'] == 'evenodd') {
@@ -24738,7 +24678,7 @@ class TCPDF {
 	 */
 	protected function endSVGElementHandler($parser, $name) {
 		$name = $this->removeTagNamespace($name);
-		if ($this->svgdefsmode AND !in_array($name, array('defs', 'clipPath', 'linearGradient', 'radialGradient', 'stop'))) {
+		if ($this->svgdefsmode AND !in_array($name, array('defs', 'clipPath', 'linearGradient', 'radialGradient', 'stop'))) {;
 			if (end($this->svgdefs) !== FALSE) {
 				$last_svgdefs_id = key($this->svgdefs);
 				if (isset($this->svgdefs[$last_svgdefs_id]['attribs']['child_elements'])) {

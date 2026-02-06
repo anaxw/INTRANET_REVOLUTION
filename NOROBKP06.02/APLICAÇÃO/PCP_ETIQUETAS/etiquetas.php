@@ -16,20 +16,20 @@ mb_http_output('UTF-8');
 setlocale(LC_ALL, 'pt_BR.UTF-8', 'pt_BR', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 
-session_start();
-session_destroy();
-session_start();
+// ================= CONFIGURAÇÃO DE SESSÃO =================
+// Configurar timeout da sessão (1 hora)
+ini_set('session.gc_maxlifetime', 300);
+ini_set('session.cookie_lifetime', 300);
+session_set_cookie_params(300);
 
-// Garantir que a sessão também use UTF-8
-if (isset($_SESSION['ops'])) {
-    array_walk_recursive($_SESSION['ops'], function (&$value) {
-        if (is_string($value)) {
-            // Garantir UTF-8 na sessão
-            if (!mb_check_encoding($value, 'UTF-8')) {
-                $value = mb_convert_encoding($value, 'UTF-8', 'Windows-1252');
-            }
-        }
-    });
+// Iniciar sessão apenas se não estiver ativa
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Inicializar array de OPs se não existir
+if (!isset($_SESSION['ops'])) {
+    $_SESSION['ops'] = [];
 }
 
 // ================= CONEXÃO COM BANCO DE DADOS =================
@@ -45,10 +45,6 @@ try {
         PDO::ATTR_EMULATE_PREPARES   => false,
         PDO::ATTR_STRINGIFY_FETCHES  => false,
     ]);
-
-    // Firebird não suporta SET NAMES, o charset já está definido no DSN
-    // Não executar SET NAMES
-
 } catch (PDOException $e) {
     die("Erro na conexão: " . $e->getMessage());
 }
@@ -154,18 +150,13 @@ function corrigirCaracteresEspeciais($texto)
     return $texto;
 }
 
-// ================= NÃO LIMPAR OPs AO RECARREGAR =================
-// Removido: As OPs só serão limpas quando o usuário solicitar
-
 // ================= FUNÇÃO BUSCAR OP =================
-// ================= FUNÇÃO BUSCAR OP (ATUALIZADA) =================
 function buscarDadosOP(PDO $pdo, $opNumero)
 {
     $sql = "
         SELECT
             o.seqop,
             CAST(p.codacessog AS INTEGER) AS cod_produto,
-
             COALESCE(NULLIF(a.obs1, ''), pr.nome) AS produto_nome,
             c.nome AS nome_cliente,
             COALESCE(cid.nome, 'CIDADE NÃO INFORMADA') || ' - ' ||
@@ -233,8 +224,7 @@ function buscarDadosOP(PDO $pdo, $opNumero)
         $sql_simples = "
             SELECT
                 o.seqop,
-                CAST(p.codacessog AS INTEGER) AS cod_produto
-
+                CAST(p.codacessog AS INTEGER) AS cod_produto,
                 COALESCE(NULLIF(a.obs1, ''), pr.nome) AS produto_nome,
                 c.nome AS nome_cliente,
                 COALESCE(cid.nome, 'CIDADE NÃO INFORMADA') || ' - ' ||
@@ -296,16 +286,12 @@ function buscarDadosOP(PDO $pdo, $opNumero)
     return $resultado;
 }
 
-// ================= PROCESSAMENTO POST (MODIFICADO PARA AJAX) =================
+// ================= PROCESSAMENTO POST =================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    
     // Verificar se é uma requisição AJAX
     $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-
-    if (!isset($_SESSION['ops'])) {
-        $_SESSION['ops'] = [];
-    }
 
     /* ---- ADICIONAR OP ---- */
     if (isset($_POST['adicionar']) && !empty($_POST['op'])) {
@@ -326,7 +312,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($dados) {
             // Verificar se já existe no array
             foreach ($_SESSION['ops'] as $op) {
-                if ($op['seqop'] == $dados['seqop']) {
+                if (isset($op['seqop']) && $op['seqop'] == $dados['seqop']) {
                     $_SESSION['mensagem'] = "OP {$opNumero} já adicionada!";
                     $_SESSION['tipo_mensagem'] = 'warning';
 
@@ -416,10 +402,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     /* ---- REMOVER OP ---- */
     if (isset($_POST['remover'], $_POST['op_id'])) {
-        $_SESSION['ops'] = array_values(array_filter(
-            $_SESSION['ops'],
-            fn($op) => $op['id'] !== $_POST['op_id']
-        ));
+        $novoArray = [];
+        foreach ($_SESSION['ops'] as $op) {
+            if ($op['id'] !== $_POST['op_id']) {
+                $novoArray[] = $op;
+            }
+        }
+        $_SESSION['ops'] = $novoArray;
 
         if ($isAjax) {
             header('Content-Type: application/json; charset=utf-8');
@@ -469,6 +458,91 @@ $totalOps = count($_SESSION['ops'] ?? []);
     <title>NOROAÇO - Sistema de Etiquetas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="etiquetas.css">
+    <style>
+        /* Estilos adicionais para mensagens */
+        .mensagem-flutuante {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease-out;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .mensagem-flutuante.success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-left: 5px solid #27ae60;
+        }
+        
+        .mensagem-flutuante.warning {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border-left: 5px solid #e67e22;
+        }
+        
+        .mensagem-flutuante.error {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-left: 5px solid #c0392b;
+        }
+        
+        .mensagem-flutuante.info {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-left: 5px solid #2980b9;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        /* Mensagens AJAX */
+        .mensagem-ajax {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease-out;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .mensagem-ajax.success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .mensagem-ajax.warning {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+        
+        .mensagem-ajax.error {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .mensagem-ajax.info {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+    </style>
 </head>
 
 <body>
@@ -477,7 +551,7 @@ $totalOps = count($_SESSION['ops'] ?? []);
         <div class="header-principal">
             <img src="imgs/noroaco.png" alt="Logo Noroaco" class="logo-noroaco">
 
-            <!-- MENSAGENS DA SESSÃO (para quando não é AJAX) -->
+            <!-- MENSAGENS DA SESSÃO -->
             <?php if (isset($_SESSION['mensagem']) && empty($_SERVER['HTTP_X_REQUESTED_WITH'])): ?>
                 <div class="mensagem-flutuante mensagem-<?php echo $_SESSION['tipo_mensagem'] ?? 'info'; ?>">
                     <?php
@@ -489,10 +563,17 @@ $totalOps = count($_SESSION['ops'] ?? []);
             <?php endif; ?>
 
             <div class="botoes-direita">
-                <!-- Botão sempre presente, apenas controlamos visibilidade -->
-                <a href="etiquetas_imp.php" class="btn-imprimir" id="btn-imprimir" target="_blank" style="display: none;">
+                <!-- Botão de impressão -->
+                <a href="etiquetas_imp.php" class="btn-imprimir" id="btn-imprimir" target="_blank" 
+                   style="<?php echo $totalOps === 0 ? 'display: none;' : 'display: inline-flex;'; ?>">
                     <i class="fa fa-print" aria-hidden="true"></i>
-                    Imprimir (<span id="total-copias">0</span> cópias)
+                    Imprimir (<span id="total-copias"><?php 
+                        $totalCopias = 0;
+                        foreach ($_SESSION['ops'] as $op) {
+                            $totalCopias += ($op['quantidade'] ?? 1);
+                        }
+                        echo $totalCopias;
+                    ?></span> cópias)
                 </a>
             </div>
         </div>
@@ -505,7 +586,7 @@ $totalOps = count($_SESSION['ops'] ?? []);
 
             <!-- FORMULÁRIOS -->
             <div class="formulario-centralizado">
-                <!-- Formulário para adicionar OP (agora com AJAX) -->
+                <!-- Formulário para adicionar OP -->
                 <form method="POST" class="formulario-botoes" id="form-adicionar" accept-charset="UTF-8" onsubmit="return false;">
                     <input type="hidden" name="charset" value="UTF-8">
 
@@ -535,7 +616,7 @@ $totalOps = count($_SESSION['ops'] ?? []);
                     </button>
                 </form>
 
-                <!-- Formulário separado para limpar tudo (também com AJAX) -->
+                <!-- Formulário separado para limpar tudo -->
                 <form method="POST" id="form-limpar-tudo" style="display: inline;" accept-charset="UTF-8">
                     <input type="hidden" name="charset" value="UTF-8">
                     <button type="submit" name="limpar_tudo" class="btn-limpar-tudo" id="btn-limpar-tudo"
@@ -559,8 +640,6 @@ $totalOps = count($_SESSION['ops'] ?? []);
                             <th class="col-produto">Produto</th>
                             <th class="col-cliente">Cliente</th>
                             <th class="col-cidade">Cidade</th>
-                            <!-- Coluna Data oculta -->
-                            <th class="col-data" style="display: none;">Data</th>
                             <th class="col-acoes">Ações</th>
                         </tr>
                     </thead>
@@ -586,7 +665,7 @@ $totalOps = count($_SESSION['ops'] ?? []);
                                     ($op['cidade'] == 'CIDADE NÃO INFORMADA - UF NÃO INFORMADA' ||
                                         strpos($op['cidade'], 'NÃO INFORMADA') !== false)) ? 'dado-nulo' : '';
 
-                                // Preparar dados para exibição - já convertidos para UTF-8
+                                // Preparar dados para exibição
                                 $produtoTexto = isset($op['produto']) && !empty($op['produto']) ?
                                     $op['produto'] :
                                     'PRODUTO NÃO ENCONTRADO';
@@ -627,24 +706,17 @@ $totalOps = count($_SESSION['ops'] ?? []);
                                     </td>
                                     <td class="col-produto preserve-special-chars">
                                         <div class="texto-completo">
-                                            <?php
-                                            // Exibir diretamente - já está em UTF-8
-                                            echo htmlspecialchars($produtoTexto, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-                                            ?>
+                                            <?php echo htmlspecialchars($produtoTexto, ENT_QUOTES | ENT_HTML5, 'UTF-8'); ?>
                                         </div>
                                     </td>
                                     <td class="col-cliente preserve-special-chars">
                                         <div class="texto-completo">
-                                            <?php
-                                            echo htmlspecialchars($clienteTexto, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-                                            ?>
+                                            <?php echo htmlspecialchars($clienteTexto, ENT_QUOTES | ENT_HTML5, 'UTF-8'); ?>
                                         </div>
                                     </td>
                                     <td class="col-cidade <?php echo $cidadeClass; ?>">
                                         <?php echo htmlspecialchars($cidadeTexto, ENT_QUOTES | ENT_HTML5, 'UTF-8'); ?>
                                     </td>
-                                    <!-- Coluna Data oculta -->
-                                    <td class="col-data" style="display: none;"><?php echo $op['data'] ?? ''; ?></td>
                                     <td class="col-acoes">
                                         <div class="acoes-container">
                                             <button type="button" class="btn-acao btn-remover"
@@ -666,16 +738,10 @@ $totalOps = count($_SESSION['ops'] ?? []);
     <script>
         // Configurar UTF-8 no JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Configurar charset para formulários
-            document.querySelectorAll('form').forEach(form => {
-                form.setAttribute('accept-charset', 'UTF-8');
-            });
-
             const campoOP = document.getElementById('campo-op');
             const campoQuantidade = document.getElementById('campo-quantidade');
             const btnAdicionar = document.getElementById('btn-adicionar');
             const formLimparTudo = document.getElementById('form-limpar-tudo');
-            const btnLimparTudo = document.getElementById('btn-limpar-tudo');
             const btnImprimir = document.getElementById('btn-imprimir');
             const corpoTabela = document.getElementById('corpo-tabela');
 
@@ -704,23 +770,21 @@ $totalOps = count($_SESSION['ops'] ?? []);
                 });
             }
 
-            // Configurar botão de imprimir para abrir em nova janela e monitorar
+            // Configurar botão de imprimir
             if (btnImprimir) {
                 btnImprimir.addEventListener('click', function(e) {
-                    // Abrir em nova janela (não guia)
+                    // Abrir em nova janela
                     const janelaImpressao = window.open('etiquetas_imp.php', 'impressao_etiquetas',
                         'width=800,height=600,left=100,top=100,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes');
 
-                    // Tentar monitorar se a janela foi fechada
                     if (janelaImpressao) {
-                        // Focar na janela original
                         window.focus();
-
-                        // Verificar periodicamente se a janela ainda está aberta
+                        
+                        // Verificar periodicamente se a janela foi fechada
                         const verificarJanela = setInterval(function() {
                             if (janelaImpressao.closed) {
                                 clearInterval(verificarJanela);
-                                // A janela foi fechada, podemos fazer algo se necessário
+                                console.log('Janela de impressão fechada');
                             }
                         }, 1000);
                     }
@@ -865,7 +929,7 @@ $totalOps = count($_SESSION['ops'] ?? []);
             novaLinha.id = `linha-${opData.id}`;
             novaLinha.dataset.opId = opData.id;
 
-            const numeroLinha = totalOps; // Já é o total atualizado
+            const numeroLinha = totalOps;
 
             novaLinha.innerHTML = `
                 <td class="col-id">${String(numeroLinha).padStart(3, '0')}</td>
@@ -884,7 +948,6 @@ $totalOps = count($_SESSION['ops'] ?? []);
                     <div class="texto-completo">${escapeHtml(opData.nome_cliente)}</div>
                 </td>
                 <td class="col-cidade ${cidadeClass}">${escapeHtml(opData.cidade)}</td>
-                <td class="col-data" style="display: none;">${new Date().toLocaleString('pt-BR')}</td>
                 <td class="col-acoes">
                     <div class="acoes-container">
                         <button type="button" class="btn-acao btn-remover" 
@@ -1042,19 +1105,23 @@ $totalOps = count($_SESSION['ops'] ?? []);
             }
         }
 
-        // Função para escapar HTML (segurança)
+        // Função para escapar HTML
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
-        // Auto-fechar mensagens da sessão (se houver)
+        // Auto-fechar mensagens da sessão
         setTimeout(function() {
             const mensagens = document.querySelectorAll('.mensagem-flutuante');
             mensagens.forEach(msg => {
                 msg.style.opacity = '0';
-                setTimeout(() => msg.remove(), 500);
+                setTimeout(() => {
+                    if (msg.parentNode) {
+                        msg.parentNode.removeChild(msg);
+                    }
+                }, 500);
             });
         }, 3000);
 
@@ -1070,10 +1137,6 @@ $totalOps = count($_SESSION['ops'] ?? []);
         setTimeout(() => {
             window.dispatchEvent(new Event('resize'));
         }, 100);
-
-        // Teste de caracteres especiais
-        console.log('Caracteres especiais testados: á é í ó ú ç ã õ â ê ô à ü');
     </script>
 </body>
-
 </html>
