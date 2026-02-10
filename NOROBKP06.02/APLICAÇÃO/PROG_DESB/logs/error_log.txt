@@ -1,6 +1,0 @@
-[2026-01-29 15:16:19] ❌ ERRO CRÍTICO NO SISTEMA
-Mensagem: Método de requisição inválido
-Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
-Linha: 28
-
---------------------------------------------------------------------------------
