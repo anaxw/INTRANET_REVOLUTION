@@ -1,0 +1,1239 @@
+[04-Dec-2025 12:32:16 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[04-Dec-2025 12:32:16 Europe/Berlin] 🔍 Iniciando monitoramento da análise: 1205106
+[04-Dec-2025 12:32:16 Europe/Berlin] 📊 Tentativa 1/10 para análise 1205106
+[04-Dec-2025 12:32:17 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1205106/simplificada - HTTP: 500
+[04-Dec-2025 12:32:17 Europe/Berlin] ❌ Erro na tentativa 1: Erro interno do servidor (500) - tentar novamente
+[04-Dec-2025 12:32:25 Europe/Berlin] 📊 Tentativa 2/10 para análise 1205106
+[04-Dec-2025 12:32:25 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1205106/simplificada - HTTP: 200
+[04-Dec-2025 12:32:25 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:32:25 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[04-Dec-2025 12:32:33 Europe/Berlin] 📊 Tentativa 3/10 para análise 1205106
+[04-Dec-2025 12:32:33 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:32:33 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[04-Dec-2025 12:32:41 Europe/Berlin] 📊 Tentativa 4/10 para análise 1205106
+[04-Dec-2025 12:32:41 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:32:41 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[04-Dec-2025 12:32:49 Europe/Berlin] 📊 Tentativa 5/10 para análise 1205106
+[04-Dec-2025 12:32:49 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:32:49 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[04-Dec-2025 12:32:57 Europe/Berlin] 📊 Tentativa 6/10 para análise 1205106
+[04-Dec-2025 12:32:58 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1205106/simplificada - HTTP: 200
+[04-Dec-2025 12:32:58 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:32:58 Europe/Berlin] ⏰ Aguardando 16s para próxima tentativa
+[04-Dec-2025 12:33:14 Europe/Berlin] 📊 Tentativa 7/10 para análise 1205106
+[04-Dec-2025 12:33:14 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:33:14 Europe/Berlin] ⏰ Aguardando 16s para próxima tentativa
+[04-Dec-2025 12:33:30 Europe/Berlin] 📊 Tentativa 8/10 para análise 1205106
+[04-Dec-2025 12:33:31 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1205106/simplificada - HTTP: 200
+[04-Dec-2025 12:33:31 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:33:31 Europe/Berlin] ⏰ Aguardando 16s para próxima tentativa
+[04-Dec-2025 12:33:47 Europe/Berlin] 📊 Tentativa 9/10 para análise 1205106
+[04-Dec-2025 12:33:47 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[04-Dec-2025 12:33:47 Europe/Berlin] ⏰ Aguardando 24s para próxima tentativa
+[04-Dec-2025 12:34:11 Europe/Berlin] 📊 Tentativa 10/10 para análise 1205106
+[04-Dec-2025 12:34:11 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1205106/simplificada - HTTP: 200
+[04-Dec-2025 12:34:11 Europe/Berlin] 📋 Status principal: AGUARDANDO_PARECER | Status em campos: derivar
+[04-Dec-2025 12:34:11 Europe/Berlin] ✅ Análise considerada PRONTA - 4 campos importantes preenchidos
+[04-Dec-2025 12:34:11 Europe/Berlin] ✅ Análise 1205106 PRONTA - retornando dados completos
+[04-Dec-2025 12:34:11 Europe/Berlin] Tentativa 0 de conexão com BARRA_MANSA
+[04-Dec-2025 12:34:11 Europe/Berlin] Conexão estabelecida com BARRA_MANSA
+[04-Dec-2025 12:34:12 Europe/Berlin] Tentativa 0 de conexão com BOTUCATU
+[04-Dec-2025 12:34:12 Europe/Berlin] Conexão estabelecida com BOTUCATU
+[04-Dec-2025 12:34:13 Europe/Berlin] Tentativa 0 de conexão com NOROACO
+[04-Dec-2025 12:34:13 Europe/Berlin] Conexão estabelecida com NOROACO
+[04-Dec-2025 12:34:14 Europe/Berlin] Tentativa 0 de conexão com NOROMETAL
+[04-Dec-2025 12:34:14 Europe/Berlin] Conexão estabelecida com NOROMETAL
+[04-Dec-2025 12:34:14 Europe/Berlin] Tentativa 0 de conexão com RIO_PRETO
+[04-Dec-2025 12:34:14 Europe/Berlin] Conexão estabelecida com RIO_PRETO
+[09-Dec-2025 13:34:02 Europe/Berlin] CRÍTICO: Extensão Firebird não está instalada
+[09-Dec-2025 14:01:20 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[09-Dec-2025 14:01:20 Europe/Berlin] 🔍 Iniciando monitoramento da análise: 1224158
+[09-Dec-2025 14:01:20 Europe/Berlin] 📊 Tentativa 1/10 para análise 1224158
+[09-Dec-2025 14:01:21 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224158/simplificada - HTTP: 500
+[09-Dec-2025 14:01:21 Europe/Berlin] ❌ Erro na tentativa 1: Erro interno do servidor (500) - tentar novamente
+[09-Dec-2025 14:01:29 Europe/Berlin] 📊 Tentativa 2/10 para análise 1224158
+[09-Dec-2025 14:01:29 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224158/simplificada - HTTP: 200
+[09-Dec-2025 14:01:29 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[09-Dec-2025 14:01:29 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[09-Dec-2025 14:01:37 Europe/Berlin] 📊 Tentativa 3/10 para análise 1224158
+[09-Dec-2025 14:01:37 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[09-Dec-2025 14:01:37 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[09-Dec-2025 14:01:45 Europe/Berlin] 📊 Tentativa 4/10 para análise 1224158
+[09-Dec-2025 14:01:45 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[09-Dec-2025 14:01:45 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[09-Dec-2025 14:01:53 Europe/Berlin] 📊 Tentativa 5/10 para análise 1224158
+[09-Dec-2025 14:01:53 Europe/Berlin] 📋 Status principal: PROCESSANDO | Status em campos: N/A
+[09-Dec-2025 14:01:53 Europe/Berlin] ⏰ Aguardando 8s para próxima tentativa
+[09-Dec-2025 14:02:01 Europe/Berlin] 📊 Tentativa 6/10 para análise 1224158
+[09-Dec-2025 14:02:03 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224158/simplificada - HTTP: 200
+[09-Dec-2025 14:02:03 Europe/Berlin] 📋 Status principal: AGUARDANDO_PARECER | Status em campos: aprovar
+[09-Dec-2025 14:02:03 Europe/Berlin] ✅ Análise considerada PRONTA - 5 campos importantes preenchidos
+[09-Dec-2025 14:02:03 Europe/Berlin] ✅ Análise 1224158 PRONTA - retornando dados completos
+[09-Dec-2025 14:02:03 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 14:02:03 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 14:02:03 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 14:02:03 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 14:02:04 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 14:02:04 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 14:02:04 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 14:02:04 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 14:02:04 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 14:02:04 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 14:03:06 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 14:03:06 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 14:03:06 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 14:03:06 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 14:03:06 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 14:03:06 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 14:03:06 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 14:03:06 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 14:03:06 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 14:03:07 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 14:18:22 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[09-Dec-2025 14:18:22 Europe/Berlin] Tentativa 1/8 para análise 1224264
+[09-Dec-2025 14:18:23 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224264/simplificada - HTTP: 500
+[09-Dec-2025 14:18:23 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[09-Dec-2025 14:18:31 Europe/Berlin] Tentativa 2/8 para análise 1224264
+[09-Dec-2025 14:18:31 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224264/simplificada - HTTP: 200
+[09-Dec-2025 14:18:39 Europe/Berlin] Tentativa 3/8 para análise 1224264
+[09-Dec-2025 14:18:47 Europe/Berlin] Tentativa 4/8 para análise 1224264
+[09-Dec-2025 14:18:55 Europe/Berlin] Tentativa 5/8 para análise 1224264
+[09-Dec-2025 14:19:03 Europe/Berlin] Tentativa 6/8 para análise 1224264
+[09-Dec-2025 14:19:04 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224264/simplificada - HTTP: 200
+[09-Dec-2025 14:19:04 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 14:19:04 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 14:19:04 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 14:19:04 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 14:19:04 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 14:19:04 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 14:19:04 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 14:19:05 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 14:19:05 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 14:19:05 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 14:19:49 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 14:19:49 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 14:19:49 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 14:19:49 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 14:19:50 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 14:19:50 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 14:19:50 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 14:19:50 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 14:19:50 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 14:19:50 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 15:08:34 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[09-Dec-2025 15:08:34 Europe/Berlin] Tentativa 1/8 para análise 1224602
+[09-Dec-2025 15:08:34 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224602/simplificada - HTTP: 500
+[09-Dec-2025 15:08:34 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[09-Dec-2025 15:08:42 Europe/Berlin] Tentativa 2/8 para análise 1224602
+[09-Dec-2025 15:08:43 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224602/simplificada - HTTP: 200
+[09-Dec-2025 15:08:51 Europe/Berlin] Tentativa 3/8 para análise 1224602
+[09-Dec-2025 15:08:59 Europe/Berlin] Tentativa 4/8 para análise 1224602
+[09-Dec-2025 15:09:07 Europe/Berlin] Tentativa 5/8 para análise 1224602
+[09-Dec-2025 15:09:15 Europe/Berlin] Tentativa 6/8 para análise 1224602
+[09-Dec-2025 15:09:16 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224602/simplificada - HTTP: 200
+[09-Dec-2025 15:09:16 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 15:09:16 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 15:09:16 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 15:09:16 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 15:09:16 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 15:09:16 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 15:09:16 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 15:09:16 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 15:09:17 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 15:09:17 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 15:09:59 Europe/Berlin] Processando atualização para BARRA_MANSA: limite original=2100, limite inteiro=2100
+[09-Dec-2025 15:09:59 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 15:09:59 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 15:09:59 Europe/Berlin] Tentando atualizar: Unidade=BARRA_MANSA, CODIC=7100, LCRED=2100, Usuario=EFANECO
+[09-Dec-2025 15:09:59 Europe/Berlin] ERRO ao atualizar limite em BARRA_MANSA: There is already an active transaction
+[09-Dec-2025 15:09:59 Europe/Berlin] Erro ao atualizar BARRA_MANSA: There is already an active transaction
+[09-Dec-2025 15:09:59 Europe/Berlin] Processando atualização para BOTUCATU: limite original=2300, limite inteiro=2300
+[09-Dec-2025 15:09:59 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 15:09:59 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 15:09:59 Europe/Berlin] Tentando atualizar: Unidade=BOTUCATU, CODIC=4794, LCRED=2300, Usuario=EFANECO
+[09-Dec-2025 15:09:59 Europe/Berlin] ERRO ao atualizar limite em BOTUCATU: There is already an active transaction
+[09-Dec-2025 15:09:59 Europe/Berlin] Erro ao atualizar BOTUCATU: There is already an active transaction
+[09-Dec-2025 15:09:59 Europe/Berlin] Processando atualização para NOROACO: limite original=3600, limite inteiro=3600
+[09-Dec-2025 15:09:59 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 15:10:00 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 15:10:00 Europe/Berlin] Tentando atualizar: Unidade=NOROACO, CODIC=54588, LCRED=3600, Usuario=EFANECO
+[09-Dec-2025 15:10:00 Europe/Berlin] ERRO ao atualizar limite em NOROACO: There is already an active transaction
+[09-Dec-2025 15:10:00 Europe/Berlin] Erro ao atualizar NOROACO: There is already an active transaction
+[09-Dec-2025 15:10:00 Europe/Berlin] Processando atualização para NOROMETAL: limite original=2000, limite inteiro=2000
+[09-Dec-2025 15:10:00 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 15:10:00 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 15:10:00 Europe/Berlin] Tentando atualizar: Unidade=NOROMETAL, CODIC=11278, LCRED=2000, Usuario=EFANECO
+[09-Dec-2025 15:10:00 Europe/Berlin] ERRO ao atualizar limite em NOROMETAL: There is already an active transaction
+[09-Dec-2025 15:10:00 Europe/Berlin] Erro ao atualizar NOROMETAL: There is already an active transaction
+[09-Dec-2025 15:10:00 Europe/Berlin] Processando atualização para RIO_PRETO: limite original=2000, limite inteiro=2000
+[09-Dec-2025 15:10:00 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 15:10:00 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 15:10:00 Europe/Berlin] Tentando atualizar: Unidade=RIO_PRETO, CODIC=6546, LCRED=2000, Usuario=EFANECO
+[09-Dec-2025 15:10:00 Europe/Berlin] ERRO ao atualizar limite em RIO_PRETO: There is already an active transaction
+[09-Dec-2025 15:10:00 Europe/Berlin] Erro ao atualizar RIO_PRETO: There is already an active transaction
+[09-Dec-2025 15:18:22 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[09-Dec-2025 15:18:22 Europe/Berlin] Tentativa 1/8 para análise 1224669
+[09-Dec-2025 15:18:22 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224669/simplificada - HTTP: 500
+[09-Dec-2025 15:18:22 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[09-Dec-2025 15:18:30 Europe/Berlin] Tentativa 2/8 para análise 1224669
+[09-Dec-2025 15:18:31 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224669/simplificada - HTTP: 200
+[09-Dec-2025 15:18:39 Europe/Berlin] Tentativa 3/8 para análise 1224669
+[09-Dec-2025 15:18:47 Europe/Berlin] Tentativa 4/8 para análise 1224669
+[09-Dec-2025 15:18:55 Europe/Berlin] Tentativa 5/8 para análise 1224669
+[09-Dec-2025 15:19:03 Europe/Berlin] Tentativa 6/8 para análise 1224669
+[09-Dec-2025 15:19:04 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224669/simplificada - HTTP: 200
+[09-Dec-2025 15:19:12 Europe/Berlin] Tentativa 7/8 para análise 1224669
+[09-Dec-2025 15:19:20 Europe/Berlin] Tentativa 8/8 para análise 1224669
+[09-Dec-2025 15:19:20 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 15:19:20 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 15:19:20 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 15:19:20 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 15:19:20 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 15:19:20 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 15:19:20 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 15:19:21 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 15:19:21 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 15:19:21 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 15:19:50 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[09-Dec-2025 15:19:50 Europe/Berlin] Tentativa 1/8 para análise 1224674
+[09-Dec-2025 15:19:51 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224674/simplificada - HTTP: 500
+[09-Dec-2025 15:19:51 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[09-Dec-2025 15:19:59 Europe/Berlin] Tentativa 2/8 para análise 1224674
+[09-Dec-2025 15:19:59 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224674/simplificada - HTTP: 200
+[09-Dec-2025 15:20:07 Europe/Berlin] Tentativa 3/8 para análise 1224674
+[09-Dec-2025 15:20:15 Europe/Berlin] Tentativa 4/8 para análise 1224674
+[09-Dec-2025 15:20:23 Europe/Berlin] Tentativa 5/8 para análise 1224674
+[09-Dec-2025 15:20:31 Europe/Berlin] Tentativa 6/8 para análise 1224674
+[09-Dec-2025 15:20:32 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224674/simplificada - HTTP: 200
+[09-Dec-2025 15:20:32 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 15:20:32 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 15:20:33 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 15:20:33 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 15:20:33 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 15:20:33 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 15:20:33 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 15:20:33 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 15:20:33 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 15:20:33 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[09-Dec-2025 15:50:47 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[09-Dec-2025 15:50:47 Europe/Berlin] Tentativa 1/8 para análise 1224996
+[09-Dec-2025 15:50:48 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224996/simplificada - HTTP: 500
+[09-Dec-2025 15:50:48 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[09-Dec-2025 15:50:56 Europe/Berlin] Tentativa 2/8 para análise 1224996
+[09-Dec-2025 15:50:56 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224996/simplificada - HTTP: 200
+[09-Dec-2025 15:51:04 Europe/Berlin] Tentativa 3/8 para análise 1224996
+[09-Dec-2025 15:51:12 Europe/Berlin] Tentativa 4/8 para análise 1224996
+[09-Dec-2025 15:51:20 Europe/Berlin] Tentativa 5/8 para análise 1224996
+[09-Dec-2025 15:51:28 Europe/Berlin] Tentativa 6/8 para análise 1224996
+[09-Dec-2025 15:51:29 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/1224996/simplificada - HTTP: 200
+[09-Dec-2025 15:51:29 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[09-Dec-2025 15:51:29 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[09-Dec-2025 15:51:29 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[09-Dec-2025 15:51:29 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[09-Dec-2025 15:51:29 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[09-Dec-2025 15:51:29 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[09-Dec-2025 15:51:29 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[09-Dec-2025 15:51:30 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[09-Dec-2025 15:51:30 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[09-Dec-2025 15:51:30 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[13-Jan-2026 15:43:43 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[13-Jan-2026 15:43:43 Europe/Berlin] Tentativa 1/8 para análise 2106887
+[13-Jan-2026 15:43:43 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2106887/simplificada - HTTP: 500
+[13-Jan-2026 15:43:43 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 15:43:51 Europe/Berlin] Tentativa 2/8 para análise 2106887
+[13-Jan-2026 15:43:52 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2106887/simplificada - HTTP: 200
+[13-Jan-2026 15:44:00 Europe/Berlin] Tentativa 3/8 para análise 2106887
+[13-Jan-2026 15:44:08 Europe/Berlin] Tentativa 4/8 para análise 2106887
+[13-Jan-2026 15:44:16 Europe/Berlin] Tentativa 5/8 para análise 2106887
+[13-Jan-2026 15:44:24 Europe/Berlin] Tentativa 6/8 para análise 2106887
+[13-Jan-2026 15:44:24 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2106887/simplificada - HTTP: 200
+[13-Jan-2026 15:44:32 Europe/Berlin] Tentativa 7/8 para análise 2106887
+[13-Jan-2026 15:44:40 Europe/Berlin] Tentativa 8/8 para análise 2106887
+[13-Jan-2026 15:44:40 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[13-Jan-2026 15:44:40 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[13-Jan-2026 15:44:41 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[13-Jan-2026 15:44:41 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[13-Jan-2026 15:44:41 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[13-Jan-2026 15:44:41 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[13-Jan-2026 15:44:41 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[13-Jan-2026 15:44:41 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[13-Jan-2026 15:44:41 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[13-Jan-2026 15:44:42 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[13-Jan-2026 17:34:55 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[13-Jan-2026 17:34:55 Europe/Berlin] Tentativa 1/8 para análise 2108324
+[13-Jan-2026 17:34:56 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108324/simplificada - HTTP: 500
+[13-Jan-2026 17:34:56 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 17:35:04 Europe/Berlin] Tentativa 2/8 para análise 2108324
+[13-Jan-2026 17:35:04 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108324/simplificada - HTTP: 200
+[13-Jan-2026 17:35:13 Europe/Berlin] Tentativa 3/8 para análise 2108324
+[13-Jan-2026 17:35:21 Europe/Berlin] Tentativa 4/8 para análise 2108324
+[13-Jan-2026 17:35:29 Europe/Berlin] Tentativa 5/8 para análise 2108324
+[13-Jan-2026 17:35:37 Europe/Berlin] Tentativa 6/8 para análise 2108324
+[13-Jan-2026 17:35:38 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108324/simplificada - HTTP: 200
+[13-Jan-2026 17:35:46 Europe/Berlin] Tentativa 7/8 para análise 2108324
+[13-Jan-2026 17:35:54 Europe/Berlin] Tentativa 8/8 para análise 2108324
+[13-Jan-2026 17:35:54 Europe/Berlin] Tentativa 0 de conexão PDO com BARRA_MANSA
+[13-Jan-2026 17:35:54 Europe/Berlin] Conexão PDO estabelecida com BARRA_MANSA
+[13-Jan-2026 17:35:54 Europe/Berlin] Tentativa 0 de conexão PDO com BOTUCATU
+[13-Jan-2026 17:35:54 Europe/Berlin] Conexão PDO estabelecida com BOTUCATU
+[13-Jan-2026 17:35:55 Europe/Berlin] Tentativa 0 de conexão PDO com NOROACO
+[13-Jan-2026 17:35:55 Europe/Berlin] Conexão PDO estabelecida com NOROACO
+[13-Jan-2026 17:35:55 Europe/Berlin] Tentativa 0 de conexão PDO com NOROMETAL
+[13-Jan-2026 17:35:55 Europe/Berlin] Conexão PDO estabelecida com NOROMETAL
+[13-Jan-2026 17:35:55 Europe/Berlin] Tentativa 0 de conexão PDO com RIO_PRETO
+[13-Jan-2026 17:35:55 Europe/Berlin] Conexão PDO estabelecida com RIO_PRETO
+[13-Jan-2026 17:55:15 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 17:55:15 Europe/Berlin] POST Data: Array
+(
+    [documento] => 040.101.651-03
+)
+
+[13-Jan-2026 17:55:15 Europe/Berlin] Documento processado: 04010165103
+[13-Jan-2026 17:55:15 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 17:55:15 Europe/Berlin] Iniciando análise para documento: 04010165103
+[13-Jan-2026 17:55:16 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2108512,"status":"PROCESSANDO"}
+[13-Jan-2026 17:55:16 Europe/Berlin] ID da análise obtido: 2108512
+[13-Jan-2026 17:55:16 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 17:55:16 Europe/Berlin] Tentativa 1/8 para análise 2108512
+[13-Jan-2026 17:55:16 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108512/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 17:55:16 Europe/Berlin] Erro ao consultar análise 2108512: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 17:55:16 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 17:55:26 Europe/Berlin] Tentativa 2/8 para análise 2108512
+[13-Jan-2026 17:55:27 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108512/simplificada - HTTP: 200 - Response: {"id":2108512,"status":"PROCESSANDO","data_criacao":"2026-01-13T13:55:16.350603","data_atualizacao":"2026-01-13T13:55:16.350604","data_conclusao":null,"is_concluido":false,"campos":{"documento":"04010165103"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T13:55:19.032166"}]}
+[13-Jan-2026 17:55:27 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 17:55:47 Europe/Berlin] Tentativa 3/8 para análise 2108512
+[13-Jan-2026 17:55:47 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 17:56:17 Europe/Berlin] Tentativa 4/8 para análise 2108512
+[13-Jan-2026 17:56:18 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108512/simplificada - HTTP: 200 - Response: {"id":2108512,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T13:55:16.350603","data_atualizacao":"2026-01-13T13:55:16.350604","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUAN TAVARES DE MACEDO","risco":"Médio +","score":432.5,"status":"derivar","documento":"04010165103","limite_aprovado":0.0,"msg_erro_consulta":"CENPROT - Possui Protestos no valor de R$ 9935.79 | PROCESSOS JUDICIAIS - Réu em processos judiciais  | Conteve derivações. 🟡","classificacao_risco":"C
+[13-Jan-2026 17:56:18 Europe/Berlin] Status final encontrado na tentativa 4: derivar
+[13-Jan-2026 17:56:18 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 17:56:18 Europe/Berlin] Campos disponíveis: razao, risco, score, status, documento, limite_aprovado, msg_erro_consulta, classificacao_risco, resultado_completo_dp, resultado_completo_spc, resultado_completo_judicial, resultado_completo_protesto, resultado_sintegra_completo, data_validade_limite_credito, resultado_completo_indicador, resultado_completo_relacionamentos, 01KC1EREQJQ5CWYX9VH8DTN17F.resultado_completo_rf
+[13-Jan-2026 17:56:18 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUAN TAVARES DE MACEDO
+    [documento] => 04010165103
+    [risco] => Médio +
+    [score] => 432.5
+    [classificacao_risco] => Classe D
+    [limite_aprovado] => 0
+    [data_validade] => 13/04/2026
+    [status] => derivar
+)
+
+[13-Jan-2026 17:56:18 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:05:05 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 18:05:05 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 18:05:05 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 18:05:05 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 18:05:05 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 18:05:06 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2108635,"status":"PROCESSANDO"}
+[13-Jan-2026 18:05:06 Europe/Berlin] ID da análise obtido: 2108635
+[13-Jan-2026 18:05:06 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:05:06 Europe/Berlin] Tentativa 1/8 para análise 2108635
+[13-Jan-2026 18:05:06 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108635/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:05:06 Europe/Berlin] Erro ao consultar análise 2108635: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:05:06 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:05:16 Europe/Berlin] Tentativa 2/8 para análise 2108635
+[13-Jan-2026 18:05:17 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108635/simplificada - HTTP: 200 - Response: {"id":2108635,"status":"PROCESSANDO","data_criacao":"2026-01-13T14:05:05.946927","data_atualizacao":"2026-01-13T14:05:05.946929","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T14:05:08.931407"}]}
+[13-Jan-2026 18:05:17 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 18:05:37 Europe/Berlin] Tentativa 3/8 para análise 2108635
+[13-Jan-2026 18:05:37 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 18:06:07 Europe/Berlin] Tentativa 4/8 para análise 2108635
+[13-Jan-2026 18:06:08 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108635/simplificada - HTTP: 200 - Response: {"id":2108635,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T14:05:05.946927","data_atualizacao":"2026-01-13T14:05:05.946929","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 18:06:08 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 18:06:08 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 18:06:08 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 18:06:08 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:07:54 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 18:07:54 Europe/Berlin] POST Data: Array
+(
+    [documento] => 040.101.651-03
+)
+
+[13-Jan-2026 18:07:54 Europe/Berlin] Documento processado: 04010165103
+[13-Jan-2026 18:07:54 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 18:07:54 Europe/Berlin] Iniciando análise para documento: 04010165103
+[13-Jan-2026 18:07:54 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2108667,"status":"PROCESSANDO"}
+[13-Jan-2026 18:07:54 Europe/Berlin] ID da análise obtido: 2108667
+[13-Jan-2026 18:07:54 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:07:54 Europe/Berlin] Tentativa 1/8 para análise 2108667
+[13-Jan-2026 18:07:55 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108667/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:07:55 Europe/Berlin] Erro ao consultar análise 2108667: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:07:55 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:08:05 Europe/Berlin] Tentativa 2/8 para análise 2108667
+[13-Jan-2026 18:08:05 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108667/simplificada - HTTP: 200 - Response: {"id":2108667,"status":"PROCESSANDO","data_criacao":"2026-01-13T14:07:54.833774","data_atualizacao":"2026-01-13T14:07:54.833776","data_conclusao":null,"is_concluido":false,"campos":{"documento":"04010165103"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T14:07:57.073681"}]}
+[13-Jan-2026 18:08:05 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 18:08:26 Europe/Berlin] Tentativa 3/8 para análise 2108667
+[13-Jan-2026 18:08:26 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 18:08:56 Europe/Berlin] Tentativa 4/8 para análise 2108667
+[13-Jan-2026 18:08:56 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108667/simplificada - HTTP: 200 - Response: {"id":2108667,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T14:07:54.833774","data_atualizacao":"2026-01-13T14:07:54.833776","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUAN TAVARES DE MACEDO","risco":"Médio +","score":432.5,"status":"derivar","documento":"04010165103","limite_aprovado":0.0,"msg_erro_consulta":"CENPROT - Possui Protestos no valor de R$ 9935.79 | PROCESSOS JUDICIAIS - Réu em processos judiciais  | Conteve derivações. 🟡","classificacao_risco":"C
+[13-Jan-2026 18:08:56 Europe/Berlin] Status final encontrado na tentativa 4: derivar
+[13-Jan-2026 18:08:56 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 18:08:56 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUAN TAVARES DE MACEDO
+    [documento] => 04010165103
+    [risco] => Médio +
+    [score] => 432.5
+    [classificacao_risco] => Classe D
+    [limite_aprovado] => 0
+    [data_validade] => 13/04/2026
+    [status] => derivar
+)
+
+[13-Jan-2026 18:08:56 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:10:00 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 18:10:00 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 18:10:00 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 18:10:01 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 18:10:01 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 18:10:01 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2108689,"status":"PROCESSANDO"}
+[13-Jan-2026 18:10:01 Europe/Berlin] ID da análise obtido: 2108689
+[13-Jan-2026 18:10:01 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:10:01 Europe/Berlin] Tentativa 1/8 para análise 2108689
+[13-Jan-2026 18:10:02 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108689/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:10:02 Europe/Berlin] Erro ao consultar análise 2108689: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:10:02 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:10:12 Europe/Berlin] Tentativa 2/8 para análise 2108689
+[13-Jan-2026 18:10:12 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108689/simplificada - HTTP: 200 - Response: {"id":2108689,"status":"PROCESSANDO","data_criacao":"2026-01-13T14:10:01.542424","data_atualizacao":"2026-01-13T14:10:01.542425","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T14:10:05.073758"}]}
+[13-Jan-2026 18:10:12 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 18:10:32 Europe/Berlin] Tentativa 3/8 para análise 2108689
+[13-Jan-2026 18:10:32 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 18:11:02 Europe/Berlin] Tentativa 4/8 para análise 2108689
+[13-Jan-2026 18:11:03 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108689/simplificada - HTTP: 200 - Response: {"id":2108689,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T14:10:01.542424","data_atualizacao":"2026-01-13T14:10:01.542425","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 18:11:03 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 18:11:03 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 18:11:03 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 18:11:03 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:11:26 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 18:11:26 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 18:11:26 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 18:11:26 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 18:11:26 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 18:11:27 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2108709,"status":"PROCESSANDO"}
+[13-Jan-2026 18:11:27 Europe/Berlin] ID da análise obtido: 2108709
+[13-Jan-2026 18:11:27 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:11:27 Europe/Berlin] Tentativa 1/8 para análise 2108709
+[13-Jan-2026 18:11:27 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108709/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:11:27 Europe/Berlin] Erro ao consultar análise 2108709: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:11:27 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:11:37 Europe/Berlin] Tentativa 2/8 para análise 2108709
+[13-Jan-2026 18:11:38 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108709/simplificada - HTTP: 200 - Response: {"id":2108709,"status":"PROCESSANDO","data_criacao":"2026-01-13T14:11:27.334630","data_atualizacao":"2026-01-13T14:11:27.334632","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T14:11:29.714861"}]}
+[13-Jan-2026 18:11:38 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 18:11:58 Europe/Berlin] Tentativa 3/8 para análise 2108709
+[13-Jan-2026 18:11:58 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 18:12:28 Europe/Berlin] Tentativa 4/8 para análise 2108709
+[13-Jan-2026 18:12:29 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2108709/simplificada - HTTP: 200 - Response: {"id":2108709,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T14:11:27.334630","data_atualizacao":"2026-01-13T14:11:27.334632","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 18:12:29 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 18:12:29 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 18:12:29 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 18:12:29 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:34:54 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 18:34:54 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 18:34:54 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 18:34:55 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 18:34:55 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 18:34:58 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2109278,"status":"PROCESSANDO"}
+[13-Jan-2026 18:34:58 Europe/Berlin] ID da análise obtido: 2109278
+[13-Jan-2026 18:34:58 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:34:58 Europe/Berlin] Tentativa 1/8 para análise 2109278
+[13-Jan-2026 18:34:59 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:34:59 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:34:59 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:09 Europe/Berlin] Tentativa 2/8 para análise 2109278
+[13-Jan-2026 18:35:09 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:35:09 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:09 Europe/Berlin] Erro na tentativa 2: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:19 Europe/Berlin] Tentativa 3/8 para análise 2109278
+[13-Jan-2026 18:35:24 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:35:24 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:24 Europe/Berlin] Erro na tentativa 3: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:35 Europe/Berlin] Tentativa 4/8 para análise 2109278
+[13-Jan-2026 18:35:35 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:35:35 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:35 Europe/Berlin] Erro na tentativa 4: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:45 Europe/Berlin] Tentativa 5/8 para análise 2109278
+[13-Jan-2026 18:35:47 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:35:47 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:47 Europe/Berlin] Erro na tentativa 5: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:35:57 Europe/Berlin] Tentativa 6/8 para análise 2109278
+[13-Jan-2026 18:36:01 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:36:01 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:36:01 Europe/Berlin] Erro na tentativa 6: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:36:11 Europe/Berlin] Tentativa 7/8 para análise 2109278
+[13-Jan-2026 18:36:17 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:36:17 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:36:17 Europe/Berlin] Erro na tentativa 7: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:36:27 Europe/Berlin] Tentativa 8/8 para análise 2109278
+[13-Jan-2026 18:36:27 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109278/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 18:36:27 Europe/Berlin] Erro ao consultar análise 2109278: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:36:27 Europe/Berlin] Erro na tentativa 8: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:36:27 Europe/Berlin] ERRO no processamento: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:36:27 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:42:30 Europe/Berlin] Conexão com banco de dados estabelecida com sucesso
+[13-Jan-2026 18:42:33 Europe/Berlin] Conexão com banco de dados estabelecida com sucesso
+[13-Jan-2026 18:42:33 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 18:42:33 Europe/Berlin] POST Data: Array
+(
+    [documento] => 040.101.651-03
+)
+
+[13-Jan-2026 18:42:33 Europe/Berlin] Documento processado: 04010165103
+[13-Jan-2026 18:42:33 Europe/Berlin] Iniciando análise para documento: 04010165103
+[13-Jan-2026 18:42:36 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[13-Jan-2026 18:42:36 Europe/Berlin] ID da análise obtido: 2109553
+[13-Jan-2026 18:42:36 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:42:36 Europe/Berlin] Tentativa 1/8 para análise 2109553
+[13-Jan-2026 18:42:37 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:42:37 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:42:37 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:42:47 Europe/Berlin] Tentativa 2/8 para análise 2109553
+[13-Jan-2026 18:42:51 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:42:51 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:42:51 Europe/Berlin] Erro na tentativa 2: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:01 Europe/Berlin] Tentativa 3/8 para análise 2109553
+[13-Jan-2026 18:43:02 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:43:02 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:02 Europe/Berlin] Erro na tentativa 3: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:12 Europe/Berlin] Tentativa 4/8 para análise 2109553
+[13-Jan-2026 18:43:12 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:43:12 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:12 Europe/Berlin] Erro na tentativa 4: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:22 Europe/Berlin] Tentativa 5/8 para análise 2109553
+[13-Jan-2026 18:43:24 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:43:24 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:24 Europe/Berlin] Erro na tentativa 5: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:34 Europe/Berlin] Tentativa 6/8 para análise 2109553
+[13-Jan-2026 18:43:35 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:43:35 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:35 Europe/Berlin] Erro na tentativa 6: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:45 Europe/Berlin] Tentativa 7/8 para análise 2109553
+[13-Jan-2026 18:43:50 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:43:50 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:43:50 Europe/Berlin] Erro na tentativa 7: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:44:00 Europe/Berlin] Tentativa 8/8 para análise 2109553
+[13-Jan-2026 18:44:01 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109553/simplificada - HTTP: 500
+[13-Jan-2026 18:44:01 Europe/Berlin] Erro ao consultar análise 2109553: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:44:01 Europe/Berlin] Erro na tentativa 8: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:44:01 Europe/Berlin] ERRO no processamento: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:44:01 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:44:41 Europe/Berlin] Conexão com banco de dados estabelecida com sucesso
+[13-Jan-2026 18:44:44 Europe/Berlin] Conexão com banco de dados estabelecida com sucesso
+[13-Jan-2026 18:44:44 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 18:44:44 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 18:44:44 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 18:44:44 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 18:44:54 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[13-Jan-2026 18:44:54 Europe/Berlin] ID da análise obtido: 2109653
+[13-Jan-2026 18:44:54 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:44:54 Europe/Berlin] Tentativa 1/8 para análise 2109653
+[13-Jan-2026 18:44:54 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:44:54 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:44:54 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:04 Europe/Berlin] Tentativa 2/8 para análise 2109653
+[13-Jan-2026 18:45:05 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:45:05 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:05 Europe/Berlin] Erro na tentativa 2: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:15 Europe/Berlin] Tentativa 3/8 para análise 2109653
+[13-Jan-2026 18:45:17 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:45:17 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:17 Europe/Berlin] Erro na tentativa 3: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:27 Europe/Berlin] Tentativa 4/8 para análise 2109653
+[13-Jan-2026 18:45:30 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:45:30 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:30 Europe/Berlin] Erro na tentativa 4: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:40 Europe/Berlin] Tentativa 5/8 para análise 2109653
+[13-Jan-2026 18:45:42 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:45:42 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:42 Europe/Berlin] Erro na tentativa 5: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:52 Europe/Berlin] Tentativa 6/8 para análise 2109653
+[13-Jan-2026 18:45:53 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:45:53 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:45:53 Europe/Berlin] Erro na tentativa 6: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:46:03 Europe/Berlin] Tentativa 7/8 para análise 2109653
+[13-Jan-2026 18:46:05 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:46:05 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:46:05 Europe/Berlin] Erro na tentativa 7: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:46:15 Europe/Berlin] Tentativa 8/8 para análise 2109653
+[13-Jan-2026 18:46:17 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109653/simplificada - HTTP: 500
+[13-Jan-2026 18:46:17 Europe/Berlin] Erro ao consultar análise 2109653: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:46:17 Europe/Berlin] Erro na tentativa 8: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:46:17 Europe/Berlin] ERRO no processamento: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 18:46:17 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 18:57:09 Europe/Berlin] ================================================
+[13-Jan-2026 18:57:09 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 18:57:09
+[13-Jan-2026 18:57:09 Europe/Berlin] REQUEST METHOD: GET
+[13-Jan-2026 18:57:09 Europe/Berlin] Carregando página HTML
+[13-Jan-2026 18:57:12 Europe/Berlin] ================================================
+[13-Jan-2026 18:57:12 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 18:57:12
+[13-Jan-2026 18:57:12 Europe/Berlin] REQUEST METHOD: POST
+[13-Jan-2026 18:57:12 Europe/Berlin] === PROCESSANDO POST REQUEST ===
+[13-Jan-2026 18:57:12 Europe/Berlin] Ação: consultar documento
+[13-Jan-2026 18:57:12 Europe/Berlin] Documento processado: 04010165103
+[13-Jan-2026 18:57:12 Europe/Berlin] Iniciando análise para documento: 04010165103
+[13-Jan-2026 18:57:13 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[13-Jan-2026 18:57:13 Europe/Berlin] ID da análise obtido: 2109808
+[13-Jan-2026 18:57:13 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 18:57:13 Europe/Berlin] Tentativa 1/6 para análise 2109808
+[13-Jan-2026 18:57:14 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109808/simplificada - HTTP: 500
+[13-Jan-2026 18:57:14 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Erro na API
+[13-Jan-2026 18:57:19 Europe/Berlin] Tentativa 2/6 para análise 2109808
+[13-Jan-2026 18:57:19 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109808/simplificada - HTTP: 200
+[13-Jan-2026 18:57:24 Europe/Berlin] Tentativa 3/6 para análise 2109808
+[13-Jan-2026 18:57:25 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109808/simplificada - HTTP: 200
+[13-Jan-2026 18:57:30 Europe/Berlin] Tentativa 4/6 para análise 2109808
+[13-Jan-2026 18:57:30 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109808/simplificada - HTTP: 200
+[13-Jan-2026 18:57:35 Europe/Berlin] Tentativa 5/6 para análise 2109808
+[13-Jan-2026 18:57:36 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109808/simplificada - HTTP: 200
+[13-Jan-2026 18:57:41 Europe/Berlin] Tentativa 6/6 para análise 2109808
+[13-Jan-2026 18:57:41 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109808/simplificada - HTTP: 200
+[13-Jan-2026 18:57:42 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109808/simplificada - HTTP: 200
+[13-Jan-2026 18:57:42 Europe/Berlin] Dados extraídos com sucesso
+[13-Jan-2026 18:57:42 Europe/Berlin] Response: Array
+(
+    [success] => 1
+    [id_analise] => 2109808
+    [dados_api] => Array
+        (
+            [id] => 2109808
+            [status] => PROCESSANDO
+            [data_criacao] => 2026-01-13T14:57:13.360838
+            [data_atualizacao] => 2026-01-13T14:57:13.360839
+            [data_conclusao] => 
+            [is_concluido] => 
+            [campos] => Array
+                (
+                    [documento] => 04010165103
+                )
+
+            [fase_atual] => Análise PF 🚹
+            [historico_fases] => Array
+                (
+                    [0] => Array
+                        (
+                            [nome] => Análise PF 🚹
+                            [data_saida] => 
+                            [fase_atual] => 1
+                            [data_entrada] => 2026-01-13T14:57:16.031907
+                        )
+
+                )
+
+        )
+
+    [dados_formatados] => Array
+        (
+            [razao_social] => 
+            [documento] => 04010165103
+            [risco] => 
+            [classificacao_risco] => 
+            [limite_aprovado] => 0
+            [data_validade] => 
+            [status] => N/A
+        )
+
+    [documento] => 04010165103
+    [mensagem] => Consulta realizada com sucesso
+)
+
+[13-Jan-2026 18:57:42 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 19:07:15 Europe/Berlin] ================================================
+[13-Jan-2026 19:07:15 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 19:07:15
+[13-Jan-2026 19:07:15 Europe/Berlin] REQUEST METHOD: GET
+[13-Jan-2026 19:07:15 Europe/Berlin] Carregando página HTML
+[13-Jan-2026 19:07:15 Europe/Berlin] ✅ Conexão com banco OK!
+[13-Jan-2026 19:07:15 Europe/Berlin] ================================================
+[13-Jan-2026 19:07:15 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 19:07:15
+[13-Jan-2026 19:07:15 Europe/Berlin] REQUEST METHOD: POST
+[13-Jan-2026 19:07:15 Europe/Berlin] === PROCESSANDO POST REQUEST ===
+[13-Jan-2026 19:07:15 Europe/Berlin] Ação: testar_conexao
+[13-Jan-2026 19:07:15 Europe/Berlin] ✅ Conexão com banco OK!
+[13-Jan-2026 19:07:20 Europe/Berlin] ================================================
+[13-Jan-2026 19:07:20 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 19:07:20
+[13-Jan-2026 19:07:20 Europe/Berlin] REQUEST METHOD: POST
+[13-Jan-2026 19:07:20 Europe/Berlin] === PROCESSANDO POST REQUEST ===
+[13-Jan-2026 19:07:20 Europe/Berlin] Ação: consultar documento
+[13-Jan-2026 19:07:20 Europe/Berlin] Documento processado: 04010165103
+[13-Jan-2026 19:07:20 Europe/Berlin] Iniciando análise para documento: 04010165103
+[13-Jan-2026 19:07:20 Europe/Berlin] Iniciando análise para documento: 04010165103
+[13-Jan-2026 19:07:21 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[13-Jan-2026 19:07:21 Europe/Berlin] Resposta iniciar análise: Array
+(
+    [id] => 2109945
+    [status] => PROCESSANDO
+)
+
+[13-Jan-2026 19:07:21 Europe/Berlin] ID da análise obtido: 2109945
+[13-Jan-2026 19:07:21 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 19:07:21 Europe/Berlin] Tentativa 1/6 para análise 2109945
+[13-Jan-2026 19:07:21 Europe/Berlin] Consultando análise ID: 2109945
+[13-Jan-2026 19:07:21 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109945/simplificada - HTTP: 500
+[13-Jan-2026 19:07:21 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Erro na API
+[13-Jan-2026 19:07:26 Europe/Berlin] Tentativa 2/6 para análise 2109945
+[13-Jan-2026 19:07:26 Europe/Berlin] Consultando análise ID: 2109945
+[13-Jan-2026 19:07:27 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2109945/simplificada - HTTP: 200
+[13-Jan-2026 19:07:27 Europe/Berlin] Dados consulta análise: Array
+(
+    [id] => 2109945
+    [status] => PROCESSANDO
+    [data_criacao] => 2026-01-13T15:07:21.169644
+    [data_atualizacao] => 2026-01-13T15:07:21.169645
+    [data_conclusao] => 
+    [is_concluido] => 
+    [campos] => Array
+        (
+            [documento] => 04010165103
+        )
+
+    [fase_atual] => Análise PF 🚹
+    [historico_fases] => Array
+        (
+            [0] => Array
+                (
+                    [nome] => Análise PF 🚹
+                    [data_saida] => 
+                    [fase_atual] => 1
+                    [data_entrada] => 2026-01-13T15:07:23.594296
+                )
+
+        )
+
+)
+
+[13-Jan-2026 19:07:27 Europe/Berlin] ESTRUTURA COMPLETA DA API:
+[13-Jan-2026 19:07:27 Europe/Berlin] Array
+(
+    [id] => 2109945
+    [status] => PROCESSANDO
+    [data_criacao] => 2026-01-13T15:07:21.169644
+    [data_atualizacao] => 2026-01-13T15:07:21.169645
+    [data_conclusao] => 
+    [is_concluido] => 
+    [campos] => Array
+        (
+            [documento] => 04010165103
+        )
+
+    [fase_atual] => Análise PF 🚹
+    [historico_fases] => Array
+        (
+            [0] => Array
+                (
+                    [nome] => Análise PF 🚹
+                    [data_saida] => 
+                    [fase_atual] => 1
+                    [data_entrada] => 2026-01-13T15:07:23.594296
+                )
+
+        )
+
+)
+
+[13-Jan-2026 19:07:27 Europe/Berlin] Usando estrutura: dados_analise['campos']
+[13-Jan-2026 19:07:27 Europe/Berlin] CAMPOS EXTRAÍDOS:
+[13-Jan-2026 19:07:27 Europe/Berlin] Array
+(
+    [documento] => 04010165103
+)
+
+[13-Jan-2026 19:07:27 Europe/Berlin] Dados formatados extraídos: Array
+(
+    [razao_social] => N/A
+    [documento] => 04010165103
+    [risco] => N/A
+    [classificacao_risco] => N/A
+    [limite_aprovado] => 0
+    [data_validade] => N/A
+    [status] => PROCESSANDO
+)
+
+[13-Jan-2026 19:07:27 Europe/Berlin] Response final: Array
+(
+    [success] => 1
+    [id_analise] => 2109945
+    [dados_api] => Array
+        (
+            [id] => 2109945
+            [status] => PROCESSANDO
+            [data_criacao] => 2026-01-13T15:07:21.169644
+            [data_atualizacao] => 2026-01-13T15:07:21.169645
+            [data_conclusao] => 
+            [is_concluido] => 
+            [campos] => Array
+                (
+                    [documento] => 04010165103
+                )
+
+            [fase_atual] => Análise PF 🚹
+            [historico_fases] => Array
+                (
+                    [0] => Array
+                        (
+                            [nome] => Análise PF 🚹
+                            [data_saida] => 
+                            [fase_atual] => 1
+                            [data_entrada] => 2026-01-13T15:07:23.594296
+                        )
+
+                )
+
+        )
+
+    [dados_formatados] => Array
+        (
+            [razao_social] => N/A
+            [documento] => 04010165103
+            [risco] => N/A
+            [classificacao_risco] => N/A
+            [limite_aprovado] => 0
+            [data_validade] => N/A
+            [status] => PROCESSANDO
+        )
+
+    [documento] => 04010165103
+    [mensagem] => Consulta realizada com sucesso
+)
+
+[13-Jan-2026 19:07:27 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 19:14:42 Europe/Berlin] ================================================
+[13-Jan-2026 19:14:42 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 19:14:42
+[13-Jan-2026 19:14:42 Europe/Berlin] REQUEST METHOD: GET
+[13-Jan-2026 19:14:42 Europe/Berlin] Carregando página HTML
+[13-Jan-2026 19:14:42 Europe/Berlin] ✅ Conexão com banco OK!
+[13-Jan-2026 19:14:42 Europe/Berlin] ================================================
+[13-Jan-2026 19:14:42 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 19:14:42
+[13-Jan-2026 19:14:42 Europe/Berlin] REQUEST METHOD: POST
+[13-Jan-2026 19:14:42 Europe/Berlin] === PROCESSANDO POST REQUEST ===
+[13-Jan-2026 19:14:42 Europe/Berlin] Ação: testar_conexao
+[13-Jan-2026 19:14:42 Europe/Berlin] ✅ Conexão com banco OK!
+[13-Jan-2026 19:14:45 Europe/Berlin] ================================================
+[13-Jan-2026 19:14:45 Europe/Berlin] SCRIPT INICIADO em: 2026-01-13 19:14:45
+[13-Jan-2026 19:14:45 Europe/Berlin] REQUEST METHOD: POST
+[13-Jan-2026 19:14:45 Europe/Berlin] === PROCESSANDO POST REQUEST ===
+[13-Jan-2026 19:14:45 Europe/Berlin] Ação: consultar documento
+[13-Jan-2026 19:14:45 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 19:14:45 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 19:14:45 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 19:14:45 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200
+[13-Jan-2026 19:14:45 Europe/Berlin] Resposta iniciar análise: Array
+(
+    [id] => 2110054
+    [status] => PROCESSANDO
+)
+
+[13-Jan-2026 19:14:45 Europe/Berlin] ID da análise obtido: 2110054
+[13-Jan-2026 19:14:45 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 19:14:45 Europe/Berlin] Tentativa 1/6 para análise 2110054
+[13-Jan-2026 19:14:45 Europe/Berlin] Consultando análise ID: 2110054
+[13-Jan-2026 19:14:46 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110054/simplificada - HTTP: 500
+[13-Jan-2026 19:14:46 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Erro na API
+[13-Jan-2026 19:14:51 Europe/Berlin] Tentativa 2/6 para análise 2110054
+[13-Jan-2026 19:14:51 Europe/Berlin] Consultando análise ID: 2110054
+[13-Jan-2026 19:14:51 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110054/simplificada - HTTP: 200
+[13-Jan-2026 19:14:51 Europe/Berlin] Dados consulta análise (CRU): Array
+(
+    [id] => 2110054
+    [status] => PROCESSANDO
+    [data_criacao] => 2026-01-13T15:14:45.838467
+    [data_atualizacao] => 2026-01-13T15:14:45.838469
+    [data_conclusao] => 
+    [is_concluido] => 
+    [campos] => Array
+        (
+            [documento] => 17531134748
+        )
+
+    [fase_atual] => Análise PF 🚹
+    [historico_fases] => Array
+        (
+            [0] => Array
+                (
+                    [nome] => Análise PF 🚹
+                    [data_saida] => 
+                    [fase_atual] => 1
+                    [data_entrada] => 2026-01-13T15:14:47.842739
+                )
+
+        )
+
+)
+
+[13-Jan-2026 19:14:51 Europe/Berlin] Dados brutos tentativa 2: {"id":2110054,"status":"PROCESSANDO","data_criacao":"2026-01-13T15:14:45.838467","data_atualizacao":"2026-01-13T15:14:45.838469","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"An\u00e1lise PF \ud83d\udeb9","historico_fases":[{"nome":"An\u00e1lise PF \ud83d\udeb9","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T15:14:47.842739"}]}
+[13-Jan-2026 19:14:51 Europe/Berlin] === ESTRUTURA COMPLETA DOS DADOS DA API ===
+[13-Jan-2026 19:14:51 Europe/Berlin] {
+    "id": 2110054,
+    "status": "PROCESSANDO",
+    "data_criacao": "2026-01-13T15:14:45.838467",
+    "data_atualizacao": "2026-01-13T15:14:45.838469",
+    "data_conclusao": null,
+    "is_concluido": false,
+    "campos": {
+        "documento": "17531134748"
+    },
+    "fase_atual": "An\u00e1lise PF \ud83d\udeb9",
+    "historico_fases": [
+        {
+            "nome": "An\u00e1lise PF \ud83d\udeb9",
+            "data_saida": null,
+            "fase_atual": true,
+            "data_entrada": "2026-01-13T15:14:47.842739"
+        }
+    ]
+}
+[13-Jan-2026 19:14:51 Europe/Berlin] ==========================================
+[13-Jan-2026 19:14:51 Europe/Berlin] Estrutura encontrada: dados_analise['campos']
+[13-Jan-2026 19:14:51 Europe/Berlin] Campos disponíveis:
+[13-Jan-2026 19:14:51 Europe/Berlin]   documento: 17531134748
+[13-Jan-2026 19:14:51 Europe/Berlin] Documento encontrado no campo 'documento': 17531134748
+[13-Jan-2026 19:14:51 Europe/Berlin] Status definido como 'EM ANÁLISE' (padrão para análise com ID)
+[13-Jan-2026 19:14:51 Europe/Berlin] === RESULTADO FINAL EXTRAÍDO ===
+[13-Jan-2026 19:14:51 Europe/Berlin] Array
+(
+    [razao_social] => N/A
+    [documento] => 17531134748
+    [risco] => N/A
+    [classificacao_risco] => N/A
+    [limite_aprovado] => 0
+    [data_validade] => N/A
+    [status] => EM ANÁLISE
+)
+
+[13-Jan-2026 19:14:51 Europe/Berlin] =================================
+[13-Jan-2026 19:14:51 Europe/Berlin] Dados formatados extraídos: Array
+(
+    [razao_social] => N/A
+    [documento] => 17531134748
+    [risco] => N/A
+    [classificacao_risco] => N/A
+    [limite_aprovado] => 0
+    [data_validade] => N/A
+    [status] => EM ANÁLISE
+)
+
+[13-Jan-2026 19:14:51 Europe/Berlin] Response final: Array
+(
+    [success] => 1
+    [id_analise] => 2110054
+    [dados_api] => Array
+        (
+            [id] => 2110054
+            [status] => PROCESSANDO
+            [data_criacao] => 2026-01-13T15:14:45.838467
+            [data_atualizacao] => 2026-01-13T15:14:45.838469
+            [data_conclusao] => 
+            [is_concluido] => 
+            [campos] => Array
+                (
+                    [documento] => 17531134748
+                )
+
+            [fase_atual] => Análise PF 🚹
+            [historico_fases] => Array
+                (
+                    [0] => Array
+                        (
+                            [nome] => Análise PF 🚹
+                            [data_saida] => 
+                            [fase_atual] => 1
+                            [data_entrada] => 2026-01-13T15:14:47.842739
+                        )
+
+                )
+
+        )
+
+    [dados_formatados] => Array
+        (
+            [razao_social] => N/A
+            [documento] => 17531134748
+            [risco] => N/A
+            [classificacao_risco] => N/A
+            [limite_aprovado] => 0
+            [data_validade] => N/A
+            [status] => EM ANÁLISE
+        )
+
+    [documento] => 17531134748
+    [mensagem] => Consulta realizada com sucesso
+)
+
+[13-Jan-2026 19:14:51 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 19:15:26 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 19:15:26 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 19:15:26 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 19:15:27 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 19:15:27 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 19:15:28 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2110078,"status":"PROCESSANDO"}
+[13-Jan-2026 19:15:28 Europe/Berlin] ID da análise obtido: 2110078
+[13-Jan-2026 19:15:28 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 19:15:28 Europe/Berlin] Tentativa 1/8 para análise 2110078
+[13-Jan-2026 19:15:28 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110078/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 19:15:28 Europe/Berlin] Erro ao consultar análise 2110078: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 19:15:28 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 19:15:38 Europe/Berlin] Tentativa 2/8 para análise 2110078
+[13-Jan-2026 19:15:39 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110078/simplificada - HTTP: 200 - Response: {"id":2110078,"status":"PROCESSANDO","data_criacao":"2026-01-13T15:15:27.881369","data_atualizacao":"2026-01-13T15:15:27.881370","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T15:15:37.719819"}]}
+[13-Jan-2026 19:15:39 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 19:15:59 Europe/Berlin] Tentativa 3/8 para análise 2110078
+[13-Jan-2026 19:15:59 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 19:16:29 Europe/Berlin] Tentativa 4/8 para análise 2110078
+[13-Jan-2026 19:16:29 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110078/simplificada - HTTP: 200 - Response: {"id":2110078,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T15:15:27.881369","data_atualizacao":"2026-01-13T15:15:27.881370","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 19:16:29 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 19:16:29 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 19:16:29 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 19:16:29 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 20:05:27 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 20:05:27 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 20:05:27 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 20:05:27 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 20:05:27 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 20:05:28 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2110488,"status":"PROCESSANDO"}
+[13-Jan-2026 20:05:28 Europe/Berlin] ID da análise obtido: 2110488
+[13-Jan-2026 20:05:28 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 20:05:28 Europe/Berlin] Tentativa 1/8 para análise 2110488
+[13-Jan-2026 20:05:28 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110488/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 20:05:28 Europe/Berlin] Erro ao consultar análise 2110488: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:05:28 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:05:38 Europe/Berlin] Tentativa 2/8 para análise 2110488
+[13-Jan-2026 20:05:39 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110488/simplificada - HTTP: 200 - Response: {"id":2110488,"status":"PROCESSANDO","data_criacao":"2026-01-13T16:05:28.282626","data_atualizacao":"2026-01-13T16:05:28.282627","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T16:05:30.929012"}]}
+[13-Jan-2026 20:05:39 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 20:05:59 Europe/Berlin] Tentativa 3/8 para análise 2110488
+[13-Jan-2026 20:05:59 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 20:06:29 Europe/Berlin] Tentativa 4/8 para análise 2110488
+[13-Jan-2026 20:06:30 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110488/simplificada - HTTP: 200 - Response: {"id":2110488,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T16:05:28.282626","data_atualizacao":"2026-01-13T16:05:28.282627","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 20:06:30 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 20:06:30 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 20:06:30 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 20:06:30 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 20:25:48 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 20:25:48 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 20:25:48 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 20:25:48 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 20:25:48 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 20:25:49 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2110631,"status":"PROCESSANDO"}
+[13-Jan-2026 20:25:49 Europe/Berlin] ID da análise obtido: 2110631
+[13-Jan-2026 20:25:49 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 20:25:49 Europe/Berlin] Tentativa 1/8 para análise 2110631
+[13-Jan-2026 20:25:49 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110631/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 20:25:49 Europe/Berlin] Erro ao consultar análise 2110631: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:25:49 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:25:59 Europe/Berlin] Tentativa 2/8 para análise 2110631
+[13-Jan-2026 20:26:00 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110631/simplificada - HTTP: 200 - Response: {"id":2110631,"status":"PROCESSANDO","data_criacao":"2026-01-13T16:25:49.030198","data_atualizacao":"2026-01-13T16:25:49.030200","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T16:25:51.125381"}]}
+[13-Jan-2026 20:26:00 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 20:26:20 Europe/Berlin] Tentativa 3/8 para análise 2110631
+[13-Jan-2026 20:26:20 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 20:26:50 Europe/Berlin] Tentativa 4/8 para análise 2110631
+[13-Jan-2026 20:26:50 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110631/simplificada - HTTP: 200 - Response: {"id":2110631,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T16:25:49.030198","data_atualizacao":"2026-01-13T16:25:49.030200","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 20:26:50 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 20:26:50 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 20:26:50 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 20:26:50 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 20:26:55 Europe/Berlin] Dados recebidos para salvar:
+[13-Jan-2026 20:26:55 Europe/Berlin] Documento: 17531134748
+[13-Jan-2026 20:26:55 Europe/Berlin] Razão Social: LUCAS CERQUEIRA DOS SANTOS
+[13-Jan-2026 20:26:55 Europe/Berlin] Limite Aprovado: 12000
+[13-Jan-2026 20:26:55 Europe/Berlin] Validade: 2026-04-13
+[13-Jan-2026 20:26:55 Europe/Berlin] Status: aprovar
+[13-Jan-2026 20:26:55 Europe/Berlin] Erro ao salvar dados: SQLSTATE[42703]: Undefined column: 7 ERRO:  coluna "created_at" da relação "lcred_neocredit" não existe
+LINE 3: ...           lcred_aprovado, validade_cred, status, created_at...
+                                                             ^
+[13-Jan-2026 20:30:12 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 20:30:12 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 20:30:12 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 20:30:13 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 20:30:13 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 20:30:13 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2110664,"status":"PROCESSANDO"}
+[13-Jan-2026 20:30:13 Europe/Berlin] ID da análise obtido: 2110664
+[13-Jan-2026 20:30:13 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 20:30:13 Europe/Berlin] Tentativa 1/8 para análise 2110664
+[13-Jan-2026 20:30:14 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110664/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 20:30:14 Europe/Berlin] Erro ao consultar análise 2110664: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:30:14 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:30:24 Europe/Berlin] Tentativa 2/8 para análise 2110664
+[13-Jan-2026 20:30:24 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110664/simplificada - HTTP: 200 - Response: {"id":2110664,"status":"PROCESSANDO","data_criacao":"2026-01-13T16:30:13.562100","data_atualizacao":"2026-01-13T16:30:13.562101","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T16:30:16.474079"}]}
+[13-Jan-2026 20:30:24 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 20:30:44 Europe/Berlin] Tentativa 3/8 para análise 2110664
+[13-Jan-2026 20:30:44 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 20:31:14 Europe/Berlin] Tentativa 4/8 para análise 2110664
+[13-Jan-2026 20:31:16 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110664/simplificada - HTTP: 200 - Response: {"id":2110664,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T16:30:13.562100","data_atualizacao":"2026-01-13T16:30:13.562101","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 20:31:16 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 20:31:16 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 20:31:16 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 20:31:16 Europe/Berlin] === FIM PROCESSAMENTO POST ===
+[13-Jan-2026 20:31:26 Europe/Berlin] === TENTATIVA DE SALVAR DADOS ===
+[13-Jan-2026 20:31:26 Europe/Berlin] Documento: 17531134748
+[13-Jan-2026 20:31:26 Europe/Berlin] Razão Social: LUCAS CERQUEIRA DOS SANTOS
+[13-Jan-2026 20:31:26 Europe/Berlin] Limite Aprovado: 12000
+[13-Jan-2026 20:31:26 Europe/Berlin] Validade: 2026-04-13
+[13-Jan-2026 20:31:26 Europe/Berlin] Status: aprovar
+[13-Jan-2026 20:31:26 Europe/Berlin] ID Neocredit: 2110664
+[13-Jan-2026 20:31:26 Europe/Berlin] SQL a ser executado: INSERT INTO lcred_neocredit 
+                (id_neocredit, razao_social, documento, risco, classificacao_risco, 
+                 lcred_aprovado, validade_cred, status) 
+                VALUES 
+                (:id_neocredit, :razao_social, :documento, :risco, :classificacao_risco, 
+                 :lcred_aprovado, :validade_cred, :status)
+[13-Jan-2026 20:31:26 Europe/Berlin] Parâmetros: Array
+(
+    [:id_neocredit] => 2110664
+    [:razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [:documento] => 17531134748
+    [:risco] => Médio -
+    [:classificacao_risco] => Classe C
+    [:lcred_aprovado] => 12000
+    [:validade_cred] => 2026-04-13
+    [:status] => aprovar
+)
+
+[13-Jan-2026 20:31:26 Europe/Berlin] ✅ Dados salvos com sucesso! Código: 1
+[13-Jan-2026 20:31:26 Europe/Berlin] === FIM DO PROCESSAMENTO ===
+[13-Jan-2026 20:46:53 Europe/Berlin] === INÍCIO PROCESSAMENTO POST ===
+[13-Jan-2026 20:46:53 Europe/Berlin] POST Data: Array
+(
+    [documento] => 175.311.347-48
+)
+
+[13-Jan-2026 20:46:53 Europe/Berlin] Documento processado: 17531134748
+[13-Jan-2026 20:46:54 Europe/Berlin] Conexão com API testada com sucesso
+[13-Jan-2026 20:46:54 Europe/Berlin] Iniciando análise para documento: 17531134748
+[13-Jan-2026 20:46:54 Europe/Berlin] API Request: POST https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2722/integracao - HTTP: 200 - Response: {"id":2110841,"status":"PROCESSANDO"}
+[13-Jan-2026 20:46:54 Europe/Berlin] ID da análise obtido: 2110841
+[13-Jan-2026 20:46:54 Europe/Berlin] Aguardando resultado da análise...
+[13-Jan-2026 20:46:54 Europe/Berlin] Tentativa 1/8 para análise 2110841
+[13-Jan-2026 20:46:55 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110841/simplificada - HTTP: 500 - Response: {"detail":"Ocorreu um erro interno inesperado no servidor."}
+[13-Jan-2026 20:46:55 Europe/Berlin] Erro ao consultar análise 2110841: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:46:55 Europe/Berlin] Erro na tentativa 1: HTTP 500 - Ocorreu um erro interno inesperado no servidor.
+[13-Jan-2026 20:47:05 Europe/Berlin] Tentativa 2/8 para análise 2110841
+[13-Jan-2026 20:47:05 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110841/simplificada - HTTP: 200 - Response: {"id":2110841,"status":"PROCESSANDO","data_criacao":"2026-01-13T16:46:54.688276","data_atualizacao":"2026-01-13T16:46:54.688277","data_conclusao":null,"is_concluido":false,"campos":{"documento":"17531134748"},"fase_atual":"Análise PF 🚹","historico_fases":[{"nome":"Análise PF 🚹","data_saida":null,"fase_atual":true,"data_entrada":"2026-01-13T16:46:56.342585"}]}
+[13-Jan-2026 20:47:05 Europe/Berlin] Aguardando 20 segundos para próxima tentativa...
+[13-Jan-2026 20:47:25 Europe/Berlin] Tentativa 3/8 para análise 2110841
+[13-Jan-2026 20:47:25 Europe/Berlin] Aguardando 30 segundos para próxima tentativa...
+[13-Jan-2026 20:47:55 Europe/Berlin] Tentativa 4/8 para análise 2110841
+[13-Jan-2026 20:47:56 Europe/Berlin] API Request: GET https://app-api.neocredit.com.br/empresa-esteira-solicitacao/2110841/simplificada - HTTP: 200 - Response: {"id":2110841,"status":"AGUARDANDO_PARECER","data_criacao":"2026-01-13T16:46:54.688276","data_atualizacao":"2026-01-13T16:46:54.688277","data_conclusao":null,"is_concluido":false,"campos":{"razao":"LUCAS CERQUEIRA DOS SANTOS","risco":"Médio -","score":613.75,"status":"aprovar","documento":"17531134748","limite_aprovado":12000.0,"msg_erro_consulta":"Aprovado sem derivações. 🟢","classificacao_risco":"Classe C","resultado_completo_dp":"{\"IsEmployed\": true, \"Professions\": [{\"Area\": \"UNK
+[13-Jan-2026 20:47:56 Europe/Berlin] Limite encontrado na tentativa 4: 12000
+[13-Jan-2026 20:47:56 Europe/Berlin] Dados da análise recebidos: SIM
+[13-Jan-2026 20:47:56 Europe/Berlin] Dados formatados: Array
+(
+    [razao_social] => LUCAS CERQUEIRA DOS SANTOS
+    [documento] => 17531134748
+    [risco] => Médio -
+    [score] => 613.75
+    [classificacao_risco] => Classe C
+    [limite_aprovado] => 12000
+    [data_validade] => 13/04/2026
+    [status] => aprovar
+)
+
+[13-Jan-2026 20:47:56 Europe/Berlin] === FIM PROCESSAMENTO POST ===

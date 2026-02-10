@@ -1,0 +1,669 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 10px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-size: 14px;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container-principal {
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 20px);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header-principal {
+            background: #333;
+            height: 70px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            position: relative;
+            border-bottom: 3px solid #fdb525;
+        }
+
+        .logo-noroaco {
+            height: 45px;
+            width: auto;
+        }
+
+        /* MENSAGENS */
+        .mensagem-flutuante {
+            position: absolute;
+            top: 10px;
+            right: 50%;
+            transform: translateX(50%);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .mensagem-success {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+        }
+
+        .mensagem-error {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .mensagem-warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+        }
+
+        .mensagem-info {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50%) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(50%) translateY(0);
+            }
+        }
+
+        .botoes-direita {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-novo-registro {
+            background: linear-gradient(135deg, #fdb525 0%, #ffc64d 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(253, 181, 37, 0.2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .btn-novo-registro:hover {
+            background: linear-gradient(135deg, #ffc64d 0%, #fdb525 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(253, 181, 37, 0.3);
+        }
+
+        /* FORMULÁRIO CENTRALIZADO */
+        .formulario-centralizado {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 0 15px;
+        }
+
+        .formulario-adicionar {
+            display: flex;
+            gap: 10px;
+            max-width: 800px;
+            width: 100%;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .campo-op {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s;
+            min-height: 46px;
+            min-width: 200px;
+        }
+
+        .campo-op:focus {
+            outline: none;
+            border-color: #fdb525;
+            box-shadow: 0 0 0 3px rgba(253, 181, 37, 0.1);
+        }
+
+        .btn-adicionar {
+            background: linear-gradient(135deg, #fdb525 0%, #ffc64d 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            min-height: 46px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .btn-adicionar:hover {
+            background: linear-gradient(135deg, #ffc64d 0%, #fdb525 100%);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(253, 181, 37, 0.3);
+        }
+
+        /* BOTÃO IMPRIMIR */
+        .btn-imprimir {
+            background: linear-gradient(135deg, #fdb525 0%, #ffc64d 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(253, 181, 37, 0.2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .btn-imprimir:hover {
+            background: linear-gradient(135deg, #ffc64d 0%, #fdb525 100%);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(253, 181, 37, 0.3);
+        }
+
+        /* CONTROLES SUPERIORES */
+        .controles-superiores {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .contador-ops {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* CONTÊINER DA TABELA */
+        .container-tabela {
+            flex: 1;
+            padding: 15px;
+            overflow: auto;
+            background: #f8f9fa;
+        }
+
+        .titulo-tabela {
+            color: #2c3e50;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            border-left: 4px solid #fdb525;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* TABLE STYLES - ALINHADO COM O SISTEMA DE BALANÇA */
+        .tabela-container {
+            width: 100%;
+            overflow-x: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        th {
+            background: #333;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            border-right: 1px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            white-space: nowrap;
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #e9ecef;
+            color: #495057;
+            border-right: 1px solid #e9ecef;
+            vertical-align: middle;
+            height: 40px;
+            white-space: nowrap;
+            min-width: 50px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+        }
+
+        td:last-child {
+            border-right: none;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:nth-child(even):hover {
+            background-color: #e9ecef;
+        }
+
+        /* COLUNAS ESPECÍFICAS */
+        .col-id,
+        .col-data,
+        .col-acoes {
+            text-align: center !important;
+        }
+
+        .col-op {
+            text-align: left !important;
+            font-weight: 600 !important;
+        }
+
+        .col-id {
+            width: 60px;
+            min-width: 60px;
+            max-width: 60px;
+        }
+
+        .col-op-numero {
+            width: 100px;
+            min-width: 100px;
+            max-width: 100px;
+        }
+
+        .col-cod-produto {
+            width: 80px;
+            min-width: 80px;
+            max-width: 80px;
+        }
+
+        .col-lote {
+            width: 120px;
+            min-width: 120px;
+            max-width: 120px;
+        }
+
+        .col-produto {
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
+        }
+
+        .col-cliente {
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+        }
+
+        .col-cidade {
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+        }
+
+        .col-data {
+            width: 120px;
+            min-width: 120px;
+            max-width: 120px;
+        }
+
+        .col-acoes {
+            width: 120px;
+            min-width: 120px;
+            max-width: 120px;
+        }
+
+        /* ESTILOS ESPECIAIS PARA DADOS NULOS */
+        .dado-nulo {
+            color: #e74c3c !important;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .dado-aviso {
+            color: #f39c12 !important;
+            font-style: italic;
+        }
+
+        /* BOTÕES DE AÇÃO */
+        .acoes-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-acao {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            gap: 5px;
+        }
+
+        .btn-remover {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .btn-remover:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        /* LISTA VAZIA */
+        .lista-vazia {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+        }
+
+        .lista-vazia-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .lista-vazia h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .lista-vazia p {
+            font-size: 14px;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* RODAPÉ */
+        .rodape {
+            padding: 15px 20px;
+            background: #2c3e50;
+            color: white;
+            font-size: 13px;
+            border-top: 3px solid #fdb525;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .contador-registros {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .header-principal {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .formulario-adicionar {
+                flex-direction: column;
+            }
+
+            .campo-op,
+            .btn-adicionar,
+            .btn-imprimir,
+            .btn-novo-registro {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .btn-adicionar,
+            .btn-imprimir,
+            .btn-novo-registro {
+                justify-content: center;
+            }
+
+            .controles-superiores {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .botoes-direita {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .tabela-container {
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 6px 4px;
+                font-size: 11px;
+            }
+
+            .btn-acao {
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                margin: 5px;
+            }
+
+            .container-principal {
+                border-radius: 6px;
+            }
+
+            .header-principal {
+                padding: 10px;
+            }
+
+            .logo-noroaco {
+                height: 35px;
+            }
+
+            .titulo-tabela {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .tabela-container {
+                font-size: 11px;
+            }
+
+            th,
+            td {
+                padding: 4px 2px;
+                font-size: 10px;
+            }
+
+            .btn-acao {
+                width: 22px;
+                height: 22px;
+                padding: 0;
+                font-size: 10px;
+            }
+        }
+
+        /* ESTILOS ADICIONAIS DO SISTEMA DE BALANÇA */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 6px 15px;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 1000px;
+        }
+
+        .texto-ellipsis {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            display: block;
+        }
+
+        .celula-vazia {
+            color: #95a5a6;
+            font-style: italic;
+        }
+
+        .status-finalizado {
+            color: #28a745;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: rgba(40, 167, 69, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(40, 167, 69, 0.2);
+            white-space: nowrap;
+            font-size: 11px;
+        }
+
+        .status-aberto {
+            color: #ffc107;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: rgba(255, 193, 7, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            white-space: nowrap;
+        }
+
+        .campo-numerico {
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .campo-inteiro {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .registro-encontrado {
+            background-color: #fff9e6 !important;
+            border-left: 4px solid #fdb525;
+        }
+
+        .destaque-busca {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .mensagem-sem-registros {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .mensagem-sem-registros i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            display: block;
+            color: #bdc3c7;
+        }
