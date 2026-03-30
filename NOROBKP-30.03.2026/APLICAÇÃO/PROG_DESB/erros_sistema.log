@@ -1,0 +1,53 @@
+[19-Mar-2026 18:18:46 Europe/Berlin] Erro na consulta PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[19-Mar-2026 18:18:46 Europe/Berlin] SQL: SELECT 
+        COD,
+        PRODUTO,
+        ESPESSURA,
+        QUALIDADE,
+        TAMANHO,
+        MARCA,
+        MENOS4,
+        MENOS3,
+        MENOS2,
+        MENOS1,
+        MES_ATUAL,
+        MEDIA_ULTIMOS_3_MESES,
+        PROD_INTERNA,
+        ESTOQUE,
+        SOLIC_COMPRA_KG,
+        PEDIDOS_COMPRA_KG,
+        GIRO_ESTOQUE,
+        ESTOQUE_BLOCO_2,
+        PROD_INTERNA_UN,
+        PEDIDOS_COMPRA_UN,
+        SOLIC_COMPRA_UN
+    FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[19-Mar-2026 18:18:46 Europe/Berlin] ERRO CRÍTICO NO SISTEMA: Erro na consulta ao banco de dados: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[19-Mar-2026 18:20:03 Europe/Berlin] Erro na consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5  | SQL: SELECT 
+        COD,
+        PRODUTO,
+        ESPESSURA,
+        QUALIDADE,
+        TAMANHO,
+        MARCA,
+        MENOS4,
+        MENOS3,
+        MENOS2,
+        MENOS1,
+        MES_ATUAL,
+        MEDIA_ULTIMOS_3_MESES,
+        PROD_INTERNA,
+        ESTOQUE,
+        SOLIC_COMPRA_KG,
+        PEDIDOS_COMPRA_KG,
+        GIRO_ESTOQUE,
+        ESTOQUE_BLOCO_2,
+        PROD_INTERNA_UN,
+        PEDIDOS_COMPRA_UN,
+        SOLIC_COMPRA_UN
+    FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[19-Mar-2026 18:20:03 Europe/Berlin] ERRO CRÍTICO NO SISTEMA: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 

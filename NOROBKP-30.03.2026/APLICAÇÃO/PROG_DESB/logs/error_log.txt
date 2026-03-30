@@ -1,0 +1,48 @@
+[2026-01-29 15:16:19] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 28
+
+--------------------------------------------------------------------------------
+[2026-03-09 12:13:42] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 28
+
+--------------------------------------------------------------------------------
+[2026-03-09 12:16:52] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 28
+
+--------------------------------------------------------------------------------
+[2026-03-09 12:52:22] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 28
+
+--------------------------------------------------------------------------------
+[2026-03-09 12:54:53] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido. Use POST.
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 90
+
+--------------------------------------------------------------------------------
+[2026-03-09 14:21:04] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 28
+
+--------------------------------------------------------------------------------
+[2026-03-09 14:26:58] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 56
+
+--------------------------------------------------------------------------------
+[2026-03-09 14:26:59] ❌ ERRO CRÍTICO NO SISTEMA
+Mensagem: Método de requisição inválido
+Arquivo: C:\xampp\htdocs\PROG_DESB\conexoes\con_sic_noroaco.php
+Linha: 56
+
+--------------------------------------------------------------------------------

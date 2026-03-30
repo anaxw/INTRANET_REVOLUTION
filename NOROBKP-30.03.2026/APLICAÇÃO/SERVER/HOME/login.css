@@ -1,0 +1,183 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('https://giassiferroeaco.com.br/wp-content/uploads/2019/01/aco-x-ferro2.jpg') no-repeat center center fixed;
+	/*background: url('imgs/fundo.jpg') no-repeat center center fixed;*/
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+    
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Opacidade aumentada para escurecer mais */
+    z-index: 1;
+}
+
+.login-content {
+    position: relative;
+    z-index: 10;
+    width: 80%;
+    max-width: 300px;
+    background: white; /* Apenas o fundo transparente */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.caps-lock-msg {
+			color: red;
+			display: none;
+			margin-top: 8px;
+			text-align: center;
+			font-size: 13px;
+			font-weight: bold;
+		}
+
+.login-head img {
+    margin-bottom: 15px; /* ajuste conforme o espaçamento desejado */
+}
+
+.form-group {
+	text-align: left;
+	margin-bottom: 15px;	
+}
+    
+label.control-label {
+	font-size: 16px;
+    font-weight: bold;
+	color: #555;
+	color: #000;
+	font-family:Serif;
+}
+
+input.form-control {
+    width: 92%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+    margin-top: 6px; /* Adiciona espaçamento entre o label e o campo */
+    font-family:Serif;
+}
+    
+input.form-control:focus {
+	border-color: rgb(238, 188, 4);
+	box-shadow: 0 0 5px rgba(76, 161, 175, 0.3);
+	outline: none;
+}
+    
+.btn-container {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+}
+    
+.btn-primary {
+	background: #fdb525;
+	border: none;
+	padding: 12px;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+	width: 40%;
+	text-align: center;
+	margin-top: 8px;
+	font-family:Serif;
+}
+    
+.btn-primary:hover {
+	background: #ffc64d;
+}
+
+/* Estilos do Modal de Mensagens - Versão Corrigida */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.mensagem-modal {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    
+    /* Centralização absoluta */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Mantenha o restante do seu CSS como está */
+.mensagem-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.mensagem-icon .fa-exclamation-triangle {
+    color: #fdb525;
+}
+
+.mensagem-icon .fa-check-circle {
+    color: #28a745;
+}
+
+.mensagem-icon .fa-times-circle {
+    color: #dc3545;
+}
+
+.mensagem-conteudo h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.mensagem-conteudo p {
+    margin: 0;
+    color: #555;
+    font-size: 16px;
+}
+
+.mensagem-botoes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#mensagem-btn-ok {
+    width: 100px;
+    padding: 8px;
+    background: #fdb525;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#mensagem-btn-ok:hover {
+    background: #ffc64d;
+}

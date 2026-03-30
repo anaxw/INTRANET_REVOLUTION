@@ -1,0 +1,4 @@
+[2026-03-27 20:58:27] [info] CEP original: '38740-310' -> formatado: '38740-310'
+[2026-03-27 20:58:27] [info] Telefone original: '(34) 8831-6918' -> formatado: '(034)8831-6918'
+[2026-03-27 20:59:48] [info] CEP original: '38740-310' -> formatado: '38740-310'
+[2026-03-27 20:59:48] [info] Telefone original: '(34) 8831-6918' -> formatado: '(034)8831-6918'

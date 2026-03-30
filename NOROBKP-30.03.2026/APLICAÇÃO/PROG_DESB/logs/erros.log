@@ -1,0 +1,477 @@
+[20-Mar-2026 09:19:16 America/Sao_Paulo] === INICIANDO CONSULTA PRINCIPAL ===
+[20-Mar-2026 09:19:16 America/Sao_Paulo] SELECT * FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Erro de conexão com o banco: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 5 NAMES 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] ERRO NA CONSULTA PRINCIPAL: Erro ao conectar ao banco de dados. Contate o administrador.
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 2: Usando CAST nas datas
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[20-Mar-2026 09:19:17 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 2 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 3: Formato americano YYYY-MM-DD
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[20-Mar-2026 09:19:17 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 3 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 4: Usando EXECUTE PROCEDURE
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Executando SQL: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[20-Mar-2026 09:19:17 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] SQL que causou erro: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 4 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 5: Datas sem aspas
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[20-Mar-2026 09:19:17 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[20-Mar-2026 09:19:17 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[20-Mar-2026 09:19:17 America/Sao_Paulo] Tentativa 5 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[23-Mar-2026 10:33:35 America/Sao_Paulo] === INICIANDO CONSULTA PRINCIPAL ===
+[23-Mar-2026 10:33:35 America/Sao_Paulo] SELECT * FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[23-Mar-2026 10:33:35 America/Sao_Paulo] Erro de conexão com o banco: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 5 NAMES 
+[23-Mar-2026 10:33:35 America/Sao_Paulo] ERRO NA CONSULTA PRINCIPAL: Erro ao conectar ao banco de dados. Contate o administrador.
+[23-Mar-2026 10:33:35 America/Sao_Paulo] Tentativa 2: Usando CAST nas datas
+[23-Mar-2026 10:33:35 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[23-Mar-2026 10:33:35 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[23-Mar-2026 10:33:35 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[23-Mar-2026 10:33:35 America/Sao_Paulo] Tentativa 2 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[23-Mar-2026 10:33:35 America/Sao_Paulo] Tentativa 3: Formato americano YYYY-MM-DD
+[23-Mar-2026 10:33:35 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[23-Mar-2026 10:33:36 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[23-Mar-2026 10:33:36 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[23-Mar-2026 10:33:36 America/Sao_Paulo] Tentativa 3 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[23-Mar-2026 10:33:36 America/Sao_Paulo] Tentativa 4: Usando EXECUTE PROCEDURE
+[23-Mar-2026 10:33:36 America/Sao_Paulo] Executando SQL: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[23-Mar-2026 10:33:36 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[23-Mar-2026 10:33:36 America/Sao_Paulo] SQL que causou erro: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[23-Mar-2026 10:33:36 America/Sao_Paulo] Tentativa 4 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[23-Mar-2026 10:33:36 America/Sao_Paulo] Tentativa 5: Datas sem aspas
+[23-Mar-2026 10:33:36 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[23-Mar-2026 10:33:36 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[23-Mar-2026 10:33:36 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[23-Mar-2026 10:33:36 America/Sao_Paulo] Tentativa 5 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[25-Mar-2026 17:08:04 America/Sao_Paulo] === INICIANDO CONSULTA PRINCIPAL ===
+[25-Mar-2026 17:08:04 America/Sao_Paulo] SELECT * FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[25-Mar-2026 17:08:04 America/Sao_Paulo] Erro de conexão com o banco: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 5 NAMES 
+[25-Mar-2026 17:08:04 America/Sao_Paulo] ERRO NA CONSULTA PRINCIPAL: Erro ao conectar ao banco de dados. Contate o administrador.
+[25-Mar-2026 17:08:04 America/Sao_Paulo] Tentativa 2: Usando CAST nas datas
+[25-Mar-2026 17:08:04 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[25-Mar-2026 17:08:04 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[25-Mar-2026 17:08:04 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[25-Mar-2026 17:08:04 America/Sao_Paulo] Tentativa 2 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[25-Mar-2026 17:08:04 America/Sao_Paulo] Tentativa 3: Formato americano YYYY-MM-DD
+[25-Mar-2026 17:08:04 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[25-Mar-2026 17:08:05 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[25-Mar-2026 17:08:05 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[25-Mar-2026 17:08:05 America/Sao_Paulo] Tentativa 3 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[25-Mar-2026 17:08:05 America/Sao_Paulo] Tentativa 4: Usando EXECUTE PROCEDURE
+[25-Mar-2026 17:08:05 America/Sao_Paulo] Executando SQL: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[25-Mar-2026 17:08:05 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[25-Mar-2026 17:08:05 America/Sao_Paulo] SQL que causou erro: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[25-Mar-2026 17:08:05 America/Sao_Paulo] Tentativa 4 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[25-Mar-2026 17:08:05 America/Sao_Paulo] Tentativa 5: Datas sem aspas
+[25-Mar-2026 17:08:05 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[25-Mar-2026 17:08:05 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[25-Mar-2026 17:08:05 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[25-Mar-2026 17:08:05 America/Sao_Paulo] Tentativa 5 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[26-Mar-2026 08:40:49 America/Sao_Paulo] === INICIANDO CONSULTA PRINCIPAL ===
+[26-Mar-2026 08:40:49 America/Sao_Paulo] SELECT * FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[26-Mar-2026 08:40:49 America/Sao_Paulo] Erro de conexão com o banco: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 5 NAMES 
+[26-Mar-2026 08:40:49 America/Sao_Paulo] ERRO NA CONSULTA PRINCIPAL: Erro ao conectar ao banco de dados. Contate o administrador.
+[26-Mar-2026 08:40:49 America/Sao_Paulo] Tentativa 2: Usando CAST nas datas
+[26-Mar-2026 08:40:49 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[26-Mar-2026 08:40:49 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[26-Mar-2026 08:40:49 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 
+                     CAST('01.02.2026' AS DATE), 
+                     CAST('01.03.2026' AS DATE))
+[26-Mar-2026 08:40:49 America/Sao_Paulo] Tentativa 2 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[26-Mar-2026 08:40:49 America/Sao_Paulo] Tentativa 3: Formato americano YYYY-MM-DD
+[26-Mar-2026 08:40:49 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[26-Mar-2026 08:40:50 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[26-Mar-2026 08:40:50 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '2026-02-01', '2026-03-01')
+[26-Mar-2026 08:40:50 America/Sao_Paulo] Tentativa 3 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[26-Mar-2026 08:40:50 America/Sao_Paulo] Tentativa 4: Usando EXECUTE PROCEDURE
+[26-Mar-2026 08:40:50 America/Sao_Paulo] Executando SQL: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[26-Mar-2026 08:40:50 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[26-Mar-2026 08:40:50 America/Sao_Paulo] SQL que causou erro: EXECUTE PROCEDURE PROC_DESB_CHAPAS(215, 2, '01.02.2026', '01.03.2026')
+[26-Mar-2026 08:40:50 America/Sao_Paulo] Tentativa 4 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Malformed string At procedure 'SP_ARQ_PEDIDO_COMPRA_PROD' line: 106, col: 2
+At procedure 'PROC_DESB_CHAPAS' line: 57, col: 5 
+[26-Mar-2026 08:40:50 America/Sao_Paulo] Tentativa 5: Datas sem aspas
+[26-Mar-2026 08:40:50 America/Sao_Paulo] Executando SQL: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[26-Mar-2026 08:40:50 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[26-Mar-2026 08:40:50 America/Sao_Paulo] SQL que causou erro: SELECT * FROM PROC_DESB_CHAPAS(215, 2, 01.02.2026, 01.03.2026)
+[26-Mar-2026 08:40:50 America/Sao_Paulo] Tentativa 5 falhou: Erro ao executar consulta: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 40 0 
+[26-Mar-2026 08:44:27 America/Sao_Paulo] Erro de conexão: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 5 NAMES 
+[26-Mar-2026 08:44:27 America/Sao_Paulo] ERRO NA CONSULTA PRINCIPAL: Erro ao conectar ao banco de dados: SQLSTATE[HY000]: General error: -104 Dynamic SQL Error SQL error code = -104 Token unknown - line 1, column 5 NAMES 
+[26-Mar-2026 08:46:50 America/Sao_Paulo] SUCESSO! Registros retornados: 1
+[26-Mar-2026 08:46:50 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 08:46:50 America/Sao_Paulo] SQL: SELECT FIRST 200
+            v.seqlanc AS SEQETIQUETA,
+            p.nome AS NOME_PRODUTO,
+            p.codigo AS CODIGO_PRODUTO,
+            cd.QTDE_CARREGADO AS QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            f.codic AS COD_FORNEC,
+            f.nome AS NOME_FORNECEDOR,
+            n.seqnota AS SEQNOTA,
+            c.SeqCarreg AS SEQCARREG,
+            cd.SEQPRODCARREG AS SEQPRODCARREG,
+            COALESCE(l.certificado, '') AS CERTIFICADO
+        FROM Carga_Carregamento c
+        INNER JOIN arqes01 p ON p.codigo = c.cod_produto
+        INNER JOIN ArqEs05 i ON i.seqlanc = c.nro_docu
+        INNER JOIN arqes04 n ON n.seqnota = i.seqnota
+        INNER JOIN ArqCad f ON n.Tipof = f.Tipoc AND n.Codif = f.Codic
+        INNER JOIN Carga_Prod_Carregados cd ON c.seqcarreg = cd.seqcarrega
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        LEFT OUTER JOIN vd_etiqueta v ON v.cod_link = cd.SEQPRODCARREG AND v.Origem IN ('NFC', 'NCR')
+        WHERE n.sit_conferencia = 2
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        AND cd.QTDE_CARREGADO > 0
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 08:46:50 America/Sao_Paulo] Erro na consulta de bobinas: Erro ao executar consulta: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 08:46:50 America/Sao_Paulo] Etiquetas encontradas: 3
+[26-Mar-2026 09:29:03 America/Sao_Paulo] SUCESSO! Registros retornados: 1
+[26-Mar-2026 09:29:03 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 09:29:03 America/Sao_Paulo] SQL: SELECT FIRST 200
+            v.seqlanc AS SEQETIQUETA,
+            p.nome AS NOME_PRODUTO,
+            p.codigo AS CODIGO_PRODUTO,
+            cd.QTDE_CARREGADO AS QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            f.codic AS COD_FORNEC,
+            f.nome AS NOME_FORNECEDOR,
+            n.seqnota AS SEQNOTA,
+            c.SeqCarreg AS SEQCARREG,
+            cd.SEQPRODCARREG AS SEQPRODCARREG,
+            COALESCE(l.certificado, '') AS CERTIFICADO
+        FROM Carga_Carregamento c
+        INNER JOIN arqes01 p ON p.codigo = c.cod_produto
+        INNER JOIN ArqEs05 i ON i.seqlanc = c.nro_docu
+        INNER JOIN arqes04 n ON n.seqnota = i.seqnota
+        INNER JOIN ArqCad f ON n.Tipof = f.Tipoc AND n.Codif = f.Codic
+        INNER JOIN Carga_Prod_Carregados cd ON c.seqcarreg = cd.seqcarrega
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        LEFT OUTER JOIN vd_etiqueta v ON v.cod_link = cd.SEQPRODCARREG AND v.Origem IN ('NFC', 'NCR')
+        WHERE n.sit_conferencia = 2
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        AND cd.QTDE_CARREGADO > 0
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 09:29:03 America/Sao_Paulo] Erro na consulta de bobinas: Erro ao executar consulta: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 09:29:04 America/Sao_Paulo] Etiquetas encontradas: 3
+[26-Mar-2026 09:34:38 America/Sao_Paulo] SUCESSO! Registros retornados: 1
+[26-Mar-2026 09:34:38 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 09:34:38 America/Sao_Paulo] SQL: SELECT FIRST 200
+            v.seqlanc AS SEQETIQUETA,
+            p.nome AS NOME_PRODUTO,
+            p.codigo AS CODIGO_PRODUTO,
+            cd.QTDE_CARREGADO AS QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            f.codic AS COD_FORNEC,
+            f.nome AS NOME_FORNECEDOR,
+            n.seqnota AS SEQNOTA,
+            c.SeqCarreg AS SEQCARREG,
+            cd.SEQPRODCARREG AS SEQPRODCARREG,
+            COALESCE(l.certificado, '') AS CERTIFICADO
+        FROM Carga_Carregamento c
+        INNER JOIN arqes01 p ON p.codigo = c.cod_produto
+        INNER JOIN ArqEs05 i ON i.seqlanc = c.nro_docu
+        INNER JOIN arqes04 n ON n.seqnota = i.seqnota
+        INNER JOIN ArqCad f ON n.Tipof = f.Tipoc AND n.Codif = f.Codic
+        INNER JOIN Carga_Prod_Carregados cd ON c.seqcarreg = cd.seqcarrega
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        LEFT OUTER JOIN vd_etiqueta v ON v.cod_link = cd.SEQPRODCARREG AND v.Origem IN ('NFC', 'NCR')
+        WHERE n.sit_conferencia = 2
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        AND cd.QTDE_CARREGADO > 0
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 09:34:38 America/Sao_Paulo] Erro na consulta de bobinas: Erro ao executar consulta: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 09:34:38 America/Sao_Paulo] Etiquetas encontradas: 3
+[26-Mar-2026 09:39:24 America/Sao_Paulo] SUCESSO! Registros retornados: 1
+[26-Mar-2026 09:39:24 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 09:39:24 America/Sao_Paulo] SQL: SELECT FIRST 200
+            v.seqlanc AS SEQETIQUETA,
+            p.nome AS NOME_PRODUTO,
+            p.codigo AS CODIGO_PRODUTO,
+            cd.QTDE_CARREGADO AS QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            f.codic AS COD_FORNEC,
+            f.nome AS NOME_FORNECEDOR,
+            n.seqnota AS SEQNOTA,
+            c.SeqCarreg AS SEQCARREG,
+            cd.SEQPRODCARREG AS SEQPRODCARREG,
+            COALESCE(l.certificado, '') AS CERTIFICADO
+        FROM Carga_Carregamento c
+        INNER JOIN arqes01 p ON p.codigo = c.cod_produto
+        INNER JOIN ArqEs05 i ON i.seqlanc = c.nro_docu
+        INNER JOIN arqes04 n ON n.seqnota = i.seqnota
+        INNER JOIN ArqCad f ON n.Tipof = f.Tipoc AND n.Codif = f.Codic
+        INNER JOIN Carga_Prod_Carregados cd ON c.seqcarreg = cd.seqcarrega
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        LEFT OUTER JOIN vd_etiqueta v ON v.cod_link = cd.SEQPRODCARREG AND v.Origem IN ('NFC', 'NCR')
+        WHERE n.sit_conferencia = 2
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        AND cd.QTDE_CARREGADO > 0
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 09:39:24 America/Sao_Paulo] Erro na consulta de bobinas: Erro ao executar consulta: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown L.CERTIFICADO At line 12, column 22 
+[26-Mar-2026 09:39:24 America/Sao_Paulo] Etiquetas encontradas: 3
+[26-Mar-2026 10:15:45 America/Sao_Paulo] 2026-03-26 10:15:45 - Iniciando consulta principal
+[26-Mar-2026 10:15:45 America/Sao_Paulo] 2026-03-26 10:15:45 - SQL Principal: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '28.02.2026')
+[26-Mar-2026 10:15:45 America/Sao_Paulo] 2026-03-26 10:15:45 - Iniciando consulta principal
+[26-Mar-2026 10:15:45 America/Sao_Paulo] 2026-03-26 10:15:45 - SQL Principal: SELECT * FROM PROC_DESB_CHAPAS(215, 2, '01.02.2026', '28.02.2026')
+[26-Mar-2026 10:15:55 America/Sao_Paulo] 2026-03-26 10:15:55 - SUCESSO! Registros retornados: 1
+[26-Mar-2026 10:15:55 America/Sao_Paulo] 2026-03-26 10:15:55 - Primeiro registro: Array
+(
+    [0] => COD
+    [1] => PRODUTO
+    [2] => ESPESSURA
+    [3] => QUALIDADE
+    [4] => TAMANHO
+    [5] => MARCA
+    [6] => MES_ATUAL
+    [7] => MENOS1
+    [8] => MENOS2
+    [9] => MENOS3
+    [10] => MENOS4
+    [11] => MEDIA_ULTIMOS_3_MESES
+    [12] => PROD_INTERNA
+    [13] => ESTOQUE
+    [14] => PEDIDOS_COMPRA_KG
+    [15] => SOLIC_COMPRA_KG
+    [16] => GIRO_ESTOQUE
+    [17] => ESTOQUE_BLOCO_2
+    [18] => PROD_INTERNA_UN
+    [19] => PEDIDOS_COMPRA_UN
+    [20] => SOLIC_COMPRA_UN
+)
+
+[26-Mar-2026 10:15:55 America/Sao_Paulo] 2026-03-26 10:15:55 - Iniciando consulta de bobinas
+[26-Mar-2026 10:15:55 America/Sao_Paulo] 2026-03-26 10:15:55 - SQL Bobinas: SELECT FIRST 100 
+            cd.SEQPRODCARREG,
+            p.codigo AS CODIGO_PRODUTO,
+            p.nome AS NOME_PRODUTO,
+            cd.QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            COALESCE(l.certificado, '') AS CERTIFICADO,
+            'SEM_NOTA' AS SEQNOTA,
+            'SEM_FORNECEDOR' AS NOME_FORNECEDOR
+        FROM Carga_Prod_Carregados cd
+        INNER JOIN arqes01 p ON p.codigo = cd.cod_produto
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        WHERE cd.QTDE_CARREGADO > 0
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 10:15:55 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown CD.COD_PRODUTO At line 11, column 44 
+[26-Mar-2026 10:15:55 America/Sao_Paulo] SQL: SELECT FIRST 100 
+            cd.SEQPRODCARREG,
+            p.codigo AS CODIGO_PRODUTO,
+            p.nome AS NOME_PRODUTO,
+            cd.QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            COALESCE(l.certificado, '') AS CERTIFICADO,
+            'SEM_NOTA' AS SEQNOTA,
+            'SEM_FORNECEDOR' AS NOME_FORNECEDOR
+        FROM Carga_Prod_Carregados cd
+        INNER JOIN arqes01 p ON p.codigo = cd.cod_produto
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        WHERE cd.QTDE_CARREGADO > 0
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 10:15:55 America/Sao_Paulo] 2026-03-26 10:15:55 - ERRO NA CONSULTA DE BOBINAS: Erro ao executar consulta: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown CD.COD_PRODUTO At line 11, column 44 
+[26-Mar-2026 10:15:55 America/Sao_Paulo] 2026-03-26 10:15:55 - Iniciando consulta de etiquetas
+[26-Mar-2026 10:15:55 America/Sao_Paulo] 2026-03-26 10:15:55 - Etiquetas encontradas: 3
+[26-Mar-2026 10:15:56 America/Sao_Paulo] 2026-03-26 10:15:56 - SUCESSO! Registros retornados: 1
+[26-Mar-2026 10:15:56 America/Sao_Paulo] 2026-03-26 10:15:56 - Primeiro registro: Array
+(
+    [0] => COD
+    [1] => PRODUTO
+    [2] => ESPESSURA
+    [3] => QUALIDADE
+    [4] => TAMANHO
+    [5] => MARCA
+    [6] => MES_ATUAL
+    [7] => MENOS1
+    [8] => MENOS2
+    [9] => MENOS3
+    [10] => MENOS4
+    [11] => MEDIA_ULTIMOS_3_MESES
+    [12] => PROD_INTERNA
+    [13] => ESTOQUE
+    [14] => PEDIDOS_COMPRA_KG
+    [15] => SOLIC_COMPRA_KG
+    [16] => GIRO_ESTOQUE
+    [17] => ESTOQUE_BLOCO_2
+    [18] => PROD_INTERNA_UN
+    [19] => PEDIDOS_COMPRA_UN
+    [20] => SOLIC_COMPRA_UN
+)
+
+[26-Mar-2026 10:15:56 America/Sao_Paulo] 2026-03-26 10:15:56 - Iniciando consulta de bobinas
+[26-Mar-2026 10:15:56 America/Sao_Paulo] 2026-03-26 10:15:56 - SQL Bobinas: SELECT FIRST 100 
+            cd.SEQPRODCARREG,
+            p.codigo AS CODIGO_PRODUTO,
+            p.nome AS NOME_PRODUTO,
+            cd.QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            COALESCE(l.certificado, '') AS CERTIFICADO,
+            'SEM_NOTA' AS SEQNOTA,
+            'SEM_FORNECEDOR' AS NOME_FORNECEDOR
+        FROM Carga_Prod_Carregados cd
+        INNER JOIN arqes01 p ON p.codigo = cd.cod_produto
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        WHERE cd.QTDE_CARREGADO > 0
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 10:15:56 America/Sao_Paulo] ERRO PDO: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown CD.COD_PRODUTO At line 11, column 44 
+[26-Mar-2026 10:15:56 America/Sao_Paulo] SQL: SELECT FIRST 100 
+            cd.SEQPRODCARREG,
+            p.codigo AS CODIGO_PRODUTO,
+            p.nome AS NOME_PRODUTO,
+            cd.QTDE_CARREGADO,
+            cd.dt_inclusao AS DATA,
+            COALESCE(l.certificado, '') AS CERTIFICADO,
+            'SEM_NOTA' AS SEQNOTA,
+            'SEM_FORNECEDOR' AS NOME_FORNECEDOR
+        FROM Carga_Prod_Carregados cd
+        INNER JOIN arqes01 p ON p.codigo = cd.cod_produto
+        LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+        WHERE cd.QTDE_CARREGADO > 0
+        AND UPPER(p.nome) LIKE '%BOBINA%'
+        ORDER BY cd.dt_inclusao DESC
+[26-Mar-2026 10:15:56 America/Sao_Paulo] 2026-03-26 10:15:56 - ERRO NA CONSULTA DE BOBINAS: Erro ao executar consulta: SQLSTATE[HY000]: General error: -206 Dynamic SQL Error SQL error code = -206 Column unknown CD.COD_PRODUTO At line 11, column 44 
+[26-Mar-2026 10:15:56 America/Sao_Paulo] 2026-03-26 10:15:56 - Iniciando consulta de etiquetas
+[26-Mar-2026 10:15:56 America/Sao_Paulo] 2026-03-26 10:15:56 - Etiquetas encontradas: 3
+[26-Mar-2026 10:33:12 America/Sao_Paulo] 2026-03-26 10:33:12 - Iniciando consulta principal
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - Registros retornados: 1
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - Iniciando consulta de bobinas - SQL do IBExpert
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - SQL Bobinas: 
+            SELECT
+                (SELECT v.seqlanc FROM vd_etiqueta v
+                WHERE v.cod_link = cd.SEQPRODCARREG AND v.Origem IN ('NFC', 'NCR')) AS SEQETIQUETA,
+                p.nome AS NOME_PRODUTO,
+                p.codigo AS CODIGO_PRODUTO,
+                cd.QTDE_CARREGADO AS QTDE_CARREGADO,
+                cd.dt_inclusao AS DATA,
+                f.codic AS COD_FORNEC,
+                f.nome AS NOME_FORNECEDOR,
+                n.seqnota AS SEQNOTA,
+                c.SeqCarreg AS SEQCARREG,
+                cd.SEQPRODCARREG AS SEQPRODCARREG
+            FROM Carga_Carregamento c
+            INNER JOIN arqes01 p ON p.codigo = c.cod_produto
+            INNER JOIN ArqEs05 i ON i.seqlanc = c.nro_docu
+            INNER JOIN arqes04 n ON n.seqnota = i.seqnota
+            INNER JOIN ArqCad f ON n.Tipof = f.Tipoc AND n.Codif = f.Codic
+            INNER JOIN Carga_Prod_Carregados cd ON c.seqcarreg = cd.seqcarrega
+            LEFT OUTER JOIN lote_estoque l ON l.SeqLote = cd.SeqLote
+            WHERE n.sit_conferencia = 2
+            AND p.nome LIKE '%BOBINA%'
+            ORDER BY cd.dt_inclusao DESC
+        
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - Bobinas encontradas: 735
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - Primeira bobina - Produto: BOBINA FQ 2.00X1200MM CIVIL 300
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - Primeira bobina - Qtde: 12680.000
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - Primeira bobina - SEQPRODCARREG: 10442.000000
+[26-Mar-2026 10:33:22 America/Sao_Paulo] 2026-03-26 10:33:22 - Etiquetas encontradas: 3
+[26-Mar-2026 11:33:46 America/Sao_Paulo] 2026-03-26 11:33:46 - Registros principais: 1
+[26-Mar-2026 11:33:46 America/Sao_Paulo] 2026-03-26 11:33:46 - Buscando bobinas...
+[26-Mar-2026 11:33:46 America/Sao_Paulo] 2026-03-26 11:33:46 - Bobinas encontradas: 735
+[26-Mar-2026 11:33:46 America/Sao_Paulo] 2026-03-26 11:33:46 - Primeira bobina - SEQETIQUETA: 5091 (tipo: integer)
+[26-Mar-2026 11:33:46 America/Sao_Paulo] 2026-03-26 11:33:46 - Primeira bobina - CODIGO_PRODUTO: 3026
+[26-Mar-2026 11:33:46 America/Sao_Paulo] 2026-03-26 11:33:46 - Primeira bobina - SEQNOTA: 111297
+[26-Mar-2026 11:33:46 America/Sao_Paulo] 2026-03-26 11:33:46 - Etiquetas encontradas: 3
+[26-Mar-2026 13:57:07 America/Sao_Paulo] 2026-03-26 13:57:07 - Registros principais: 1
+[26-Mar-2026 13:57:07 America/Sao_Paulo] 2026-03-26 13:57:07 - Buscando bobinas...
+[26-Mar-2026 13:57:07 America/Sao_Paulo] 2026-03-26 13:57:07 - Bobinas encontradas: 735
+[26-Mar-2026 13:57:07 America/Sao_Paulo] 2026-03-26 13:57:07 - Primeira bobina - SEQETIQUETA: 5091 (tipo: integer)
+[26-Mar-2026 13:57:07 America/Sao_Paulo] 2026-03-26 13:57:07 - Primeira bobina - CODIGO_PRODUTO: 3026
+[26-Mar-2026 13:57:07 America/Sao_Paulo] 2026-03-26 13:57:07 - Primeira bobina - SEQNOTA: 111297
+[26-Mar-2026 13:57:07 America/Sao_Paulo] 2026-03-26 13:57:07 - Etiquetas encontradas: 3
+[26-Mar-2026 14:10:46 America/Sao_Paulo] 2026-03-26 14:10:46 - Registros principais: 1
+[26-Mar-2026 14:10:46 America/Sao_Paulo] 2026-03-26 14:10:46 - Buscando bobinas...
+[26-Mar-2026 14:10:47 America/Sao_Paulo] 2026-03-26 14:10:47 - Bobinas encontradas: 735
+[26-Mar-2026 14:10:47 America/Sao_Paulo] 2026-03-26 14:10:47 - Primeira bobina - SEQETIQUETA: 5091 (tipo: integer)
+[26-Mar-2026 14:10:47 America/Sao_Paulo] 2026-03-26 14:10:47 - Primeira bobina - CODIGO_PRODUTO: 3026
+[26-Mar-2026 14:10:47 America/Sao_Paulo] 2026-03-26 14:10:47 - Primeira bobina - SEQNOTA: 111297
+[26-Mar-2026 14:10:47 America/Sao_Paulo] 2026-03-26 14:10:47 - Etiquetas encontradas: 3
+[26-Mar-2026 14:10:58 America/Sao_Paulo] 2026-03-26 14:10:58 - Registros principais: 1
+[26-Mar-2026 14:10:58 America/Sao_Paulo] 2026-03-26 14:10:58 - Buscando bobinas...
+[26-Mar-2026 14:10:58 America/Sao_Paulo] 2026-03-26 14:10:58 - Bobinas encontradas: 735
+[26-Mar-2026 14:10:58 America/Sao_Paulo] 2026-03-26 14:10:58 - Primeira bobina - SEQETIQUETA: 5091 (tipo: integer)
+[26-Mar-2026 14:10:58 America/Sao_Paulo] 2026-03-26 14:10:58 - Primeira bobina - CODIGO_PRODUTO: 3026
+[26-Mar-2026 14:10:58 America/Sao_Paulo] 2026-03-26 14:10:58 - Primeira bobina - SEQNOTA: 111297
+[26-Mar-2026 14:10:58 America/Sao_Paulo] 2026-03-26 14:10:58 - Etiquetas encontradas: 3
+[27-Mar-2026 10:20:39 America/Sao_Paulo] 2026-03-27 10:20:39 - Registros principais: 0
+[27-Mar-2026 10:20:39 America/Sao_Paulo] 2026-03-27 10:20:39 - Buscando bobinas...
+[27-Mar-2026 10:20:39 America/Sao_Paulo] 2026-03-27 10:20:39 - Bobinas encontradas: 737
+[27-Mar-2026 10:20:39 America/Sao_Paulo] 2026-03-27 10:20:39 - Primeira bobina - SEQETIQUETA: 5129 (tipo: integer)
+[27-Mar-2026 10:20:39 America/Sao_Paulo] 2026-03-27 10:20:39 - Primeira bobina - CODIGO_PRODUTO: 1237
+[27-Mar-2026 10:20:39 America/Sao_Paulo] 2026-03-27 10:20:39 - Primeira bobina - SEQNOTA: 111328
+[27-Mar-2026 10:20:39 America/Sao_Paulo] 2026-03-27 10:20:39 - Etiquetas encontradas: 3
+[27-Mar-2026 10:21:52 America/Sao_Paulo] 2026-03-27 10:21:52 - Registros principais: 1
+[27-Mar-2026 10:21:52 America/Sao_Paulo] 2026-03-27 10:21:52 - Buscando bobinas...
+[27-Mar-2026 10:21:52 America/Sao_Paulo] 2026-03-27 10:21:52 - Bobinas encontradas: 737
+[27-Mar-2026 10:21:52 America/Sao_Paulo] 2026-03-27 10:21:52 - Primeira bobina - SEQETIQUETA: 5129 (tipo: integer)
+[27-Mar-2026 10:21:52 America/Sao_Paulo] 2026-03-27 10:21:52 - Primeira bobina - CODIGO_PRODUTO: 1237
+[27-Mar-2026 10:21:52 America/Sao_Paulo] 2026-03-27 10:21:52 - Primeira bobina - SEQNOTA: 111328
+[27-Mar-2026 10:21:52 America/Sao_Paulo] 2026-03-27 10:21:52 - Etiquetas encontradas: 3
+[27-Mar-2026 10:31:46 America/Sao_Paulo] 2026-03-27 10:31:46 - Registros principais: 1
+[27-Mar-2026 10:31:46 America/Sao_Paulo] 2026-03-27 10:31:46 - Buscando bobinas...
+[27-Mar-2026 10:31:46 America/Sao_Paulo] 2026-03-27 10:31:46 - Bobinas encontradas: 737
+[27-Mar-2026 10:31:46 America/Sao_Paulo] 2026-03-27 10:31:46 - Primeira bobina - SEQETIQUETA: 5129 (tipo: integer)
+[27-Mar-2026 10:31:46 America/Sao_Paulo] 2026-03-27 10:31:46 - Primeira bobina - CODIGO_PRODUTO: 1237
+[27-Mar-2026 10:31:46 America/Sao_Paulo] 2026-03-27 10:31:46 - Primeira bobina - SEQNOTA: 111328
+[27-Mar-2026 10:31:46 America/Sao_Paulo] 2026-03-27 10:31:46 - Etiquetas encontradas: 3
+[27-Mar-2026 14:55:09 America/Sao_Paulo] 2026-03-27 14:55:09 - Registros principais: 1
+[27-Mar-2026 14:55:09 America/Sao_Paulo] 2026-03-27 14:55:09 - Buscando bobinas disponíveis...
+[27-Mar-2026 14:55:09 America/Sao_Paulo] 2026-03-27 14:55:09 - Bobinas encontradas: 737
+[27-Mar-2026 14:55:09 America/Sao_Paulo] 2026-03-27 14:55:09 - Etiquetas já processadas: 3
+[27-Mar-2026 14:57:18 America/Sao_Paulo] 2026-03-27 14:57:18 - Registros principais: 1
+[27-Mar-2026 14:57:18 America/Sao_Paulo] 2026-03-27 14:57:18 - Buscando bobinas disponíveis...
+[27-Mar-2026 14:57:18 America/Sao_Paulo] 2026-03-27 14:57:18 - Bobinas encontradas: 737
+[27-Mar-2026 14:57:18 America/Sao_Paulo] 2026-03-27 14:57:18 - Etiquetas já processadas: 3
+[27-Mar-2026 15:12:11 America/Sao_Paulo] 2026-03-27 15:12:11 - Registros principais: 1
+[27-Mar-2026 15:12:11 America/Sao_Paulo] 2026-03-27 15:12:11 - Buscando bobinas disponíveis...
+[27-Mar-2026 15:12:11 America/Sao_Paulo] 2026-03-27 15:12:11 - Bobinas encontradas: 737
+[27-Mar-2026 15:12:11 America/Sao_Paulo] 2026-03-27 15:12:11 - Etiquetas já processadas: 3
+[27-Mar-2026 16:14:25 America/Sao_Paulo] 2026-03-27 16:14:25 - Registros principais: 1
+[27-Mar-2026 16:14:25 America/Sao_Paulo] 2026-03-27 16:14:25 - Buscando bobinas disponíveis...
+[27-Mar-2026 16:14:25 America/Sao_Paulo] 2026-03-27 16:14:25 - Bobinas encontradas: 737
+[27-Mar-2026 16:14:25 America/Sao_Paulo] 2026-03-27 16:14:25 - Etiquetas já processadas: 3
+[27-Mar-2026 17:39:39 America/Sao_Paulo] 2026-03-27 17:39:39 - Registros principais: 1
+[27-Mar-2026 17:39:39 America/Sao_Paulo] 2026-03-27 17:39:39 - Buscando bobinas disponíveis...
+[27-Mar-2026 17:39:39 America/Sao_Paulo] 2026-03-27 17:39:39 - Bobinas encontradas: 740
+[27-Mar-2026 17:39:39 America/Sao_Paulo] 2026-03-27 17:39:39 - Etiquetas já processadas: 3

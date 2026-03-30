@@ -1,0 +1,52 @@
+[2026-03-27 20:08:09] [info] ========================================
+[2026-03-27 20:08:09] [info] Iniciando atualização para CPF
+[2026-03-27 20:08:09] [info] Nome completo: EVA GARCIA LEAL LUCIANO
+[2026-03-27 20:08:09] [info] Data Nascimento: 24/10/1960
+[2026-03-27 20:08:09] [info] Usuário: GABRIELAF
+[2026-03-27 20:08:09] [info] Total de unidades selecionadas: 1
+[2026-03-27 20:08:09] [info] Nome processado (2 primeiras palavras): EVA GARCIA
+[2026-03-27 20:08:09] [info] Processando: SIC RIO PRETO - CODIC: 7121
+[2026-03-27 20:08:09] [error] ERRO - SIC RIO PRETO CODIC 7121: Registro não encontrado ou não ativo (CODIC: 7121)
+[2026-03-27 20:08:09] [info] RESUMO - Sucessos: 0, Avisos: 0, Erros: 1
+[2026-03-27 20:08:09] [info] ========================================
+[2026-03-27 20:08:46] [info] ========================================
+[2026-03-27 20:08:46] [info] Iniciando atualização para CPF
+[2026-03-27 20:08:46] [info] Nome completo: EVA GARCIA LEAL LUCIANO
+[2026-03-27 20:08:46] [info] Data Nascimento: 24/10/1960
+[2026-03-27 20:08:46] [info] Usuário: GABRIELAF
+[2026-03-27 20:08:46] [info] Total de unidades selecionadas: 1
+[2026-03-27 20:08:46] [info] Nome processado (2 primeiras palavras): EVA GARCIA
+[2026-03-27 20:08:46] [info] Processando: SIC RIO PRETO - CODIC: 7121
+[2026-03-27 20:08:46] [info] Nome diferente: '' -> 'EVA GARCIA LEAL LUCIANO'
+[2026-03-27 20:08:46] [info] NFantasia diferente: '' -> 'EVA GARCIA'
+[2026-03-27 20:08:46] [info] Contato diferente: '' -> 'EVA GARCIA'
+[2026-03-27 20:08:46] [info] Data diferente: '' -> '1960-10-24'
+[2026-03-27 20:08:47] [info] SUCESSO - SIC RIO PRETO CODIC 7121 - Alterações: nome: '' -> 'EVA GARCIA LEAL LUCIANO', nfantasia: '' -> 'EVA GARCIA', contato: '' -> 'EVA GARCIA', data: '' -> '1960-10-24'
+[2026-03-27 20:08:47] [info] RESUMO - Sucessos: 1, Avisos: 0, Erros: 0
+[2026-03-27 20:08:47] [info] ========================================
+[2026-03-27 20:19:11] [info] ========================================
+[2026-03-27 20:19:11] [info] Iniciando atualização para CPF
+[2026-03-27 20:19:11] [info] Nome completo: EVA GARCIA LEAL LUCIANO
+[2026-03-27 20:19:11] [info] Data Nascimento: 24/10/1960
+[2026-03-27 20:19:11] [info] Usuário: GABRIELAF
+[2026-03-27 20:19:11] [info] Total de unidades selecionadas: 1
+[2026-03-27 20:19:11] [info] Nome processado (2 primeiras palavras): EVA GARCIA
+[2026-03-27 20:19:11] [info] Processando: SIC RIO PRETO - CODIC: 7121
+[2026-03-27 20:19:11] [info] Nome diferente: '' -> 'EVA GARCIA LEAL LUCIANO'
+[2026-03-27 20:19:11] [info] NFantasia diferente: '' -> 'EVA GARCIA'
+[2026-03-27 20:19:11] [info] Contato diferente: '' -> 'EVA GARCIA'
+[2026-03-27 20:19:11] [info] Data diferente: '' -> '1960-10-24'
+[2026-03-27 20:19:12] [info] SUCESSO - SIC RIO PRETO CODIC 7121 - Alterações: nome: '' -> 'EVA GARCIA LEAL LUCIANO', nfantasia: '' -> 'EVA GARCIA', contato: '' -> 'EVA GARCIA', data: '' -> '1960-10-24'
+[2026-03-27 20:19:12] [info] RESUMO - Sucessos: 1, Avisos: 0, Erros: 0
+[2026-03-27 20:19:12] [info] ========================================
+[2026-03-27 20:24:05] [info] ========================================
+[2026-03-27 20:24:05] [info] Iniciando atualização para CPF
+[2026-03-27 20:24:05] [info] Nome completo: DANIEL MUSSI LOPES FURTADO
+[2026-03-27 20:24:05] [info] Data Nascimento: 05/11/1996
+[2026-03-27 20:24:05] [info] Usuário: GABRIELAF
+[2026-03-27 20:24:05] [info] Total de unidades selecionadas: 1
+[2026-03-27 20:24:05] [info] Nome processado (2 primeiras palavras): DANIEL MUSSI
+[2026-03-27 20:24:05] [info] Processando: SIC VOTUPORANGA / RONDONOPOLIS - CODIC: 57627
+[2026-03-27 20:24:05] [error] ERRO - SIC VOTUPORANGA / RONDONOPOLIS CODIC 57627: Registro não encontrado ou não ativo (CODIC: 57627)
+[2026-03-27 20:24:05] [info] RESUMO - Sucessos: 0, Avisos: 0, Erros: 1
+[2026-03-27 20:24:05] [info] ========================================
